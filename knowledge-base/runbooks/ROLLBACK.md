@@ -92,7 +92,7 @@ The next merge to `main` will redeploy `main`, so you must also fix the code.
 append-only, and force-pushing `main` is blocked by branch protection while it
 is live and barred by doctrine always. ⚠️ Don't lean on the platform block: on
 2026-07-19 a visibility flip silently **deleted** the protection rule for 2½
-hours ([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §6) — treat force-push
+hours ([shared working practices](../../AGENTS.md)) — treat force-push
 as radioactive regardless (the 2026-07-02 force-rewind incident is what it
 looks like when it goes wrong).
 

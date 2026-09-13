@@ -1,8 +1,6 @@
-# PRODUCT_SPINE — moved
+<!-- homiquity-doc: retired -->
+# Retired: PRODUCT_SPINE — moved
 
-**Superseded by and absorbed into
-[knowledge-base/L1_VISION_AND_SCOPE.md](knowledge-base/L1_VISION_AND_SCOPE.md)** — the L1 mission
-& scope doc (the borrower→lender core loop, modules, roles, AI boundaries, the cut-line).
-
-This stub remains only so existing links resolve. Point references at L1 when you touch them;
-do not add new content here.
+Retired from active guidance on 2026-09-13. Use [AGENTS.md](AGENTS.md) and its
+primary-source map. This file establishes no legal requirement or product restriction.
+The original is recoverable using this path's Git blob in the [document register](knowledge-base/document-register.json).

@@ -47,7 +47,7 @@ function directive(reason) {
     "       pip3 install pymupdf && python3 scripts/extract-selling-guide.py",
     "   The PDF recovers from this repo's own git history — no network needed.",
     "   Do NOT answer a Fannie policy question from memory in the meantime; a",
-    "   missing source is an honest gap (CLAUDE.md; TEAM_PRACTICES §10).",
+    "   missing source is an honest gap (AGENTS.md and the primary-source map).",
   ].join("\n");
 }
 
@@ -101,6 +101,10 @@ const MD_ADVICE =
   "python3 scripts/extract-selling-guide.py --markdown";
 
 function main() {
+  console.log("Homiquity: read AGENTS.md and only the task-specific sources it identifies. Old charters, agent memory and routine reports are not authority. The pinned corpus must still be checked for applicable amendments.");
+  const instructions = require("./source-instructions-guard.cjs").run(ROOT);
+  if (instructions.errors.length) console.log("Instruction audit needs attention: " + instructions.errors.join("; "));
+
   let guard;
   try {
     guard = require("./selling-guide-corpus-guard.cjs");

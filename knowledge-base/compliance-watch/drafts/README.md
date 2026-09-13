@@ -1,6 +1,6 @@
-# Compliance Watch drafts
+<!-- homiquity-doc: retired -->
+# Retired: Compliance Watch drafts
 
-Signature-ready artifacts produced by the `compliance-watch` routine — filing preparation sheets,
-policy drafts, cited checklists. Every file here carries the routine's R5 header: **DRAFT for
-founder review; not filed, not sent, not legal advice.** The routine writes drafts; only the
-founder files, sends, or signs (CHARTER §1b, L3).
+Retired from active guidance on 2026-09-13. Use [AGENTS.md](../../../AGENTS.md) and its
+primary-source map. This file establishes no legal requirement or product restriction.
+The original is recoverable using this path's Git blob in the [document register](../../document-register.json).

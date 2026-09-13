@@ -46,7 +46,7 @@ build whose artifact is then **booted** against a disposable Postgres until
 requires that check with `enforce_admins` ON — nobody direct-pushes `main`,
 founder included; force-push and deletion of `main` are blocked. No required
 reviews: the author merges their own PR once the gate is green
-([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §6).
+([shared working practices](../../AGENTS.md)).
 **⚠️ Enforcement follows plan/visibility — verify it, don't assume it**
 *(2026-07-19)*: protection only exists here because the repo is **public** on the
 Free plan. When the repo went private for ~2½ hours that day, GitHub silently
@@ -57,7 +57,7 @@ now, pro later") and the rule re-applied from the config recorded in
 [DB_MIGRATIONS.md](./DB_MIGRATIONS.md) §One-time setup, verified by probe PR
 #262. **Before relying on `--auto`, confirm
 `gh api repos/…/branches/main/protection` lists the `gate` context; on 403/404,
-use watch-then-merge and flag the founder** (TEAM_PRACTICES §6). On merge, the
+use watch-then-merge and flag the founder** (AGENTS.md working practices). On merge, the
 same workflow's **`migrate-prod`** job auto-applies any pending `migrations/` to
 the production DB over a Neon DIRECT URL minted at run time from `NEON_API_KEY`
 — no prod DB password is stored in GitHub; full flow and its limits (a manual
@@ -91,10 +91,9 @@ a 200 is not the right commit). **PR branches are not deployed**: the Railway
 service is wired to the `main` branch of `barakatammre84/Homiquity` only, so
 there are no preview URLs — verify a branch against a local worktree server
 ([LOCAL_DEV.md](./LOCAL_DEV.md)). One branch per isolated worktree,
-merged = deleted same day ([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md)
-§4). The old `npm run save` / `npm run sync` scripts direct-pushed `main` and
+merged = deleted same day ([shared working practices](../../AGENTS.md)). The old `npm run save` / `npm run sync` scripts direct-pushed `main` and
 were removed in PR #251 — direct pushes are blocked by branch protection while
-it is live, and barred by doctrine always ([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §6).
+it is live, and barred by doctrine always ([shared working practices](../../AGENTS.md)).
 
 ## Reverting
 
@@ -342,7 +341,7 @@ failed deploy is invisible from the outside. Read
 [`ci.yml`](../../.github/workflows/ci.yml) for the authoritative step list.)
 
 The token ratchet's residual is the `strict: false` racing-merge window
-(TEAM_PRACTICES §5 traps): two individually-green PRs can still combine into a
+(AGENTS.md working practices traps): two individually-green PRs can still combine into a
 red `main`, which the **next** PR's gate surfaces — fix forward in that PR by
 retokening or ratcheting the baseline (the #112 class, now caught in CI instead
 of lingering).
@@ -362,7 +361,7 @@ gate's disposable Postgres exists for that boot probe only; it is not an
 integration environment, and no integration test is pointed at it.) If a
 change is only exercised by an integration test, run it by hand against a live
 worktree server and record that in the PR
-([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §5).
+([shared working practices](../../AGENTS.md)).
 
 ### A test that does not run still reports success
 
@@ -399,5 +398,5 @@ would shrink alongside the bug and pass.
 Moved to **[CHANGE_LEDGER.md](./CHANGE_LEDGER.md)** on 2026-08-06 — it was ~60% of
 this file. Every push to `main` (it deploys) and every action against the production
 database or its env vars still gets a row there **in the same session**, newest first
-([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §6). Never rewrite or delete rows;
+([shared working practices](../../AGENTS.md)). Never rewrite or delete rows;
 corrections get a new row.

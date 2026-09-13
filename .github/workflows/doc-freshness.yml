@@ -1,34 +1,14 @@
-# Living-doc freshness — scheduled, deliberately NOT part of the merge gate.
-#
-# `scripts/doc-freshness-guard.cjs` fails when a doc carrying
-#   > **Freshness:** last verified YYYY-MM-DD · review every N days
-# passes its review interval. That is a real discipline (ASSUMPTIONS.md — the file
-# whose entire job is separating fact from assumption — once went a month unverified
-# while the code moved hundreds of commits), but it is a check against the CALENDAR,
-# not against the diff.
-#
-# So it must not sit in `gate`. In the required check it would go red on the day
-# ASSUMPTIONS.md hits day 31 and block EVERY merge in the repo — work that caused
-# nothing, held hostage by a doc review, with `enforce_admins` leaving no bypass. The
-# author who happens to open the next PR is also rarely the right person to re-verify
-# a governance register. That is why `regulatory-freshness.cjs`, the sibling
-# discipline this guard was modelled on, has always been checkup-only.
-#
-# Weekly instead: overdue docs surface as a failed run (GitHub emails the repo owner
-# on a failed scheduled workflow) and nobody's merge stops. Run it on demand from
-# Actions → Doc freshness → Run workflow.
-name: Doc freshness
+# Checks repository records only. Actual scheduler registration requires a live application read.
+name: Source and instruction records
 
 on:
   schedule:
-    # Mondays 09:00 UTC — the same day Dependabot opens its PRs, so the week's
-    # housekeeping arrives together.
     - cron: "0 9 * * 1"
   workflow_dispatch:
 
 jobs:
   freshness:
-    name: living-doc freshness
+    name: source and instruction records
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -38,8 +18,5 @@ jobs:
           node-version: 24.x
           cache: pnpm
       - run: pnpm install --frozen-lockfile --prod=false
-      - name: Living-doc freshness
-        # Zero-dependency and offline: reads the freshness lines out of the repo.
-        # A failure here means a doc is overdue for re-verification, not that
-        # anything is broken — fix it by doing the review pass and moving the date.
+      - name: Source records and document dispositions
         run: pnpm guard:docs

@@ -1,19 +1,6 @@
-name: seat roster (registry snapshot freshness)
+# Checks repository records only. Actual scheduler registration requires a live application read.
+name: Task instruction routing
 
-# The structural half of `pnpm guard:seats` runs in the required gate: the generated tables
-# must match knowledge-base/routines/SEATS.tsv, every active seat's definition must exist, and
-# no living doc may name a scheduled task the roster does not know. All of that is
-# deterministic — it reads only repo contents.
-#
-# This workflow runs the half the gate deliberately skips: the roster's `Registry read` date.
-# No CI job can read the laptop scheduler or the CCR trigger list, so SEATS.tsv is a SNAPSHOT
-# taken by a session that can, and the date is what forces someone to re-take it. That check is
-# calendar-driven, so it must not sit in `gate` — it would go red on a date, blocking every
-# merge in the repo for a reason no PR caused (the same argument as doc-freshness.yml).
-#
-# A red run here means: go read `list_scheduled_tasks` and `RemoteTrigger action:list` (cron
-# rows only — the trigger list is dominated by ephemeral one-shot PR-watchers), correct the
-# roster, run `pnpm guard:seats --write-table`, and bump the date.
 
 on:
   schedule:
@@ -22,13 +9,12 @@ on:
 
 jobs:
   roster:
-    name: registry snapshot is fresh
+    name: task instruction routing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-      # No install: the guard is dependency-free by design, like every other guard here.
-      - name: Seat roster (full check, freshness included)
+      - name: Task definition routing (scheduler state is not inferred)
         run: node scripts/seat-roster-guard.cjs

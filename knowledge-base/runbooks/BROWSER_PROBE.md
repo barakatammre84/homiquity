@@ -10,7 +10,7 @@ cannot. **It adds no dependency** — Chromium is already on disk in any environ
 (Playwright's browser cache via `PLAYWRIGHT_BROWSERS_PATH`, or a system Chrome), and Node 22 ships
 a WebSocket client in core, so the Chrome DevTools Protocol is reachable with `node` alone.
 `package.json` and `pnpm-lock.yaml` are untouched, which is what
-[CHARTER §6](../routines/CHARTER.md) actually protects.
+[shared working practices](../../AGENTS.md) actually protects.
 
 ## Why it exists
 
@@ -69,7 +69,7 @@ run — see the caveat below.
    ⚠️ **It checked only `aria-label` / `title` / text content until 2026-08-18**, so a correctly
    labelled `<input id=x>` + `<Label htmlFor=x>` was reported as unnamed. That produced **nine
    false positives across five public pages and zero true ones** on its first real sweep — four on
-   the affordability calculator alone, every one properly associated. Since CHARTER §10 now lets
+   the affordability calculator alone, every one properly associated. Since AGENTS.md working practices now lets
    this output be cited as evidence, over-reporting sends people to fix what is not broken.
 
    ⚠️ **It also ignored the accessibility tree until the same day.** Anything inside
@@ -94,7 +94,7 @@ run — see the caveat below.
   not aimed. Read the list, don't quote the number: it is a starting point for judgement, not a
   defect count. Same discipline `guard:ui` demands — every count it prints is a floor.
 
-So the rail in [CHARTER §10](../routines/CHARTER.md) stands, in its amended form: **report the
+So the rail in [shared working practices](../../AGENTS.md) stands, in its amended form: **report the
 command you ran and what it printed.** That is what turns "verified in a browser" from a claim into
 a fact, and it is the only form of that claim anyone here may make.
 

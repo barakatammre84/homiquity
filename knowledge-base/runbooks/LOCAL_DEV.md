@@ -328,7 +328,7 @@ deliberately never touches. The hook skips all of it to stay cheap enough to lea
 The flow below is unchanged; the old `pnpm save`/`pnpm sync` one-command scripts were **removed**
 (PR #251). Everything lands as a short-lived branch → PR → `gate` check green →
 squash merge ([CICD.md](./CICD.md) §Shipping; verify protection is live before
-trusting `--auto` — [TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §6):
+trusting `--auto` — [shared working practices](../../AGENTS.md)):
 
 ```bash
 git checkout -b <topic-branch>
