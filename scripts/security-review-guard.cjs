@@ -10,7 +10,7 @@
  * Detection is heuristic: unnamed vendors, columns outside the name vocabulary
  * and other sensitive changes may need review without triggering this script.
  *
- * Inputs supplied by CI:
+ * Inputs supplied by CI or local preflight:
  *   CHANGED_FILES / CHANGED_FILES_FILE — newline-separated changed paths
  *   CHANGED_LINES / CHANGED_LINES_FILE — added/removed lines from `git diff -U0`
  *   PR_BODY — pull request description
@@ -19,7 +19,8 @@
  * tests/securityReviewGuard.test.ts.
  */
 
-/** Selected paths that trigger the review-evidence check. */
+/** Selected paths that trigger the review-evidence check.
+ * Keep service matches explicit; a directory prefix would flag unrelated backend work. */
 const PATH_TRIGGERS = [
   { label: "PII vault / field encryption", match: (f) => /^server\/services\/(ssnVault|piiVault|encryptionService)\.ts$/.test(f) },
   // Include authentication delegates as well as route and integration modules.
@@ -78,7 +79,10 @@ const LINE_TRIGGERS = [
 
 // Schema detection checks added declarations for identity/contact/consent names.
 // It does not classify every sensitive column or inspect the data stored there.
-// Matching an added SQL name to a removed one suppresses relocation/edit noise;
+// Income/credit/balance and generic license_number/legal_name patterns are deliberately
+// excluded to limit name-only over-triggering across loan and business fields.
+// An exclusion does not establish that a particular field is nonsensitive.
+// Matching removed and added SQL names across schema files avoids flagging file splits;
 // adding the same name in another table can therefore escape this trigger.
 
 /** Not columns, even though they share the `name: builder("sql_name")` shape. */

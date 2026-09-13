@@ -435,17 +435,12 @@ jobs:
         # naming conventions, template placeholders, and proposals whose whole point is
         # that the file is absent. Run --list to triage.
         run: pnpm guard:citations
-      - name: Security-review guard (TEAM_PRACTICES §9)
-        # Fails when the PR touches a §9 trigger (PII vault/encryption, auth/sessions,
-        # role gates, uploads, outbound messaging, PII-adjacent logging) and the PR body
-        # records no security review. §9 is binding but was unenforceable: CODEOWNERS +
-        # required code-owner review is the usual mechanism, and it cannot work with a
-        # single collaborator — GitHub forbids self-approval and enforce_admins is on, so
-        # it would deadlock every §9 PR. This enforces the ARTIFACT instead of a second
-        # approver. It proves a review was written down, never that it was correct, and it
-        # cannot see two §9 triggers at all (a PII column in shared/schema/, a new PII
-        # sub-processor) — those stay human judgement. (Job `name:` above deliberately
-        # unchanged — verbatim required-check string; see the rename warning.)
+      - name: Security-review evidence guard
+        # AGENTS.md requires review before merging security-sensitive changes.
+        # This guard detects selected paths and diff patterns, then checks for a review
+        # heading and minimum text length. It does not assess review quality or detect
+        # every sensitive change; scripts/security-review-guard.cjs describes its limits.
+        # This step label is separate from the unchanged required-check job name above.
         env:
           # Via env, never inlined into run: — a PR body is attacker-controlled text and
           # ${{ }} interpolation into a shell script is a command-injection vector.
@@ -470,7 +465,7 @@ jobs:
           # heading", the cheapest way past a phantom failure was to attest to reviewing
           # code the PR never touched: the exact habit the gate exists to prevent
           # (F-0818-16 — two-dot reported 68 files on #567 where 4 changed, and 12 on
-          # #569 where 5 changed; `server/services/emailService.ts`, a §9 trigger, landed
+          # #569 where 5 changed; `server/services/emailService.ts`, a review trigger, landed
           # on main the same day and would have been charged to any PR branched before it).
           #
           # The merge-base is resolved EXPLICITLY rather than with `A...B` shorthand: a
@@ -484,7 +479,7 @@ jobs:
             DIFF_BASE="$MERGE_BASE"
           else
             DIFF_BASE="$BASE_SHA"
-            echo "::warning::§9 guard: no merge-base between base and head; falling back to the base tip. The changed-file list may over-report."
+            echo "::warning::Security-review guard: no merge-base between base and head; falling back to the base tip. The changed-file list may over-report."
           fi
           git diff --name-only "$DIFF_BASE" "$HEAD_SHA" > "$RUNNER_TEMP/changed_files.txt"
           git diff -U0 "$DIFF_BASE" "$HEAD_SHA" > "$RUNNER_TEMP/changed_lines.diff"
