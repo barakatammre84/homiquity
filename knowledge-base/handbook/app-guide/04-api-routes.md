@@ -111,8 +111,8 @@ An empty ledger means **no observations recorded**, not that the file has no out
 | POST | `/api/loan-applications/:id/work-waits` | `{ replayed, wait }`; 201 on creation, 200 on an identical retry |
 | POST | `/api/loan-applications/:id/work-waits/:waitId/close` | `{ replayed, wait }`; 200 for closure or an identical retry |
 
-All three routes require an internal staff role and either the application's assigned
-loan-officer pointer or active deal-team membership; admin has explicit global access.
+All three routes require an internal staff role and active deal-team membership on the
+application; admin has explicit global access. The loan-officer pointer alone grants no access.
 Inactive/unrelated staff receive 404. Borrowers and external partners receive 403, even
 when on the deal team. Application access is checked on every read, write, and retry.
 All responses are private and non-cacheable. Reads are audited; writes and their audit

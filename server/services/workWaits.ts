@@ -13,11 +13,11 @@ export class WorkWaitError extends Error {
 
 async function authorize(tx: Transaction, applicationId: string, actor: Actor, write: boolean) {
   if (!isInternalStaffRole(actor.role)) throw new WorkWaitError("Staff access required", 403);
-  // Serialize a file's observation writes. The lock also keeps assignment stable until commit.
-  const [application] = await tx.select({ id: loanApplications.id, loanOfficerId: loanApplications.loanOfficerId })
+  // Serialize a file's observation writes; active deal-team membership grants scoped access.
+  const [application] = await tx.select({ id: loanApplications.id })
     .from(loanApplications).where(eq(loanApplications.id, applicationId)).for(write ? "update" : "share");
   if (!application) throw new WorkWaitError("Application not found", 404);
-  if (isAdmin(actor) || application.loanOfficerId === actor.id) return;
+  if (isAdmin(actor)) return;
   const members = await tx.select({ id: dealTeamMembers.id }).from(dealTeamMembers).where(and(
     eq(dealTeamMembers.applicationId, applicationId), eq(dealTeamMembers.userId, actor.id), eq(dealTeamMembers.isActive, true),
   )).for("share");

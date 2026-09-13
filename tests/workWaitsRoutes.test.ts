@@ -13,10 +13,14 @@ const startEventId = randomUUID(), closingEventId = randomUUID();
 const observation = { taskId, counterparty: "borrower", startEventId, startedAt, promisedAt };
 const closure = { closingEventId, closedAt, outcome: "work_received", documentId };
 let waitId: string;
-async function request(role: string, path = endpoint, body?: unknown) {
-  return fetch(`${BASE_URL}${path}`, { method: body === undefined ? "GET" : "POST", headers: {
+async function request(role: string, path = endpoint, body?: unknown, method = body === undefined ? "GET" : "POST") {
+  return fetch(`${BASE_URL}${path}`, { method, headers: {
     Cookie: cookies[role] ?? "", Origin: BASE_URL, "Content-Type": "application/json",
   }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+}
+async function assignOfficer(id: string, loanOfficerId: string) {
+  const response = await request("admin", `/api/loan-applications/${id}/loan-officer`, { loanOfficerId }, "PATCH");
+  expect(response.status).toBe(200);
 }
 async function counts() {
   const result = await pool.query(`SELECT
@@ -43,10 +47,11 @@ beforeAll(async () => {
   await pool.query("INSERT INTO loan_applications (id,user_id,status) VALUES ($1,$3,'draft'),($2,$3,'draft')", [applicationId, otherApplicationId, borrowerId]);
   await pool.query("INSERT INTO tasks (id,application_id,title,task_type,status) VALUES ($1,$2,'Fictional outstanding work','document_request','BLOCKED'),($3,$4,'Other file work','document_request','OPEN')", [taskId, applicationId, otherTaskId, otherApplicationId]);
   await pool.query("INSERT INTO documents (id,application_id,user_id,document_type,file_name,storage_path,status) VALUES ($1,$2,$5,'paystub','Fictional.pdf','/objects/fictional-wait','uploaded'),($3,$4,$5,'paystub','Other.pdf','/objects/fictional-other','uploaded')", [documentId, applicationId, otherDocumentId, otherApplicationId, borrowerId]);
-  for (const role of ["lo", "processor", "underwriter", "closer", "broker", "lender"]) {
+  for (const role of ["processor", "underwriter", "closer", "broker", "lender"]) {
     await pool.query("INSERT INTO deal_team_members (application_id,user_id,team_role,is_active) VALUES ($1,$2,$3,true)", [applicationId, `test-${role}`, role]);
   }
   await pool.query("INSERT INTO deal_team_members (application_id,user_id,team_role,is_active) VALUES ($1,'test-loa','loa',false)", [applicationId]);
+  await assignOfficer(applicationId, "test-lo");
   initialState = await counts();
 });
 afterAll(async () => {
@@ -55,6 +60,7 @@ afterAll(async () => {
   await pool.query("DELETE FROM tasks WHERE id IN ($1,$2)", [taskId, otherTaskId]);
   await pool.query("DELETE FROM documents WHERE id IN ($1,$2)", [documentId, otherDocumentId]);
   await pool.query("DELETE FROM deal_team_members WHERE application_id IN ($1,$2)", [applicationId, otherApplicationId]);
+  await pool.query("DELETE FROM deal_activities WHERE application_id IN ($1,$2)", [applicationId, otherApplicationId]);
   await pool.query("DELETE FROM loan_applications WHERE id IN ($1,$2)", [applicationId, otherApplicationId]);
   await pool.query("DELETE FROM users WHERE id=$1", [borrowerId]);
   await pool.end();
@@ -74,8 +80,15 @@ describe.sequential("observation-only work waits over real HTTP and PostgreSQL",
     expect((await request("loa", endpoint, observation)).status).toBe(404);
     expect((await request("lo", `/api/loan-applications/${otherApplicationId}/work-waits`)).status).toBe(404);
     for (const role of ["lo", "processor", "underwriter", "closer", "admin"]) expect((await request(role)).status).toBe(200);
+  });
+  it("does not grant access from an officer pointer without active membership", async () => {
+    const otherEndpoint = `/api/loan-applications/${otherApplicationId}/work-waits`;
     await pool.query("UPDATE loan_applications SET loan_officer_id='test-loa' WHERE id=$1", [otherApplicationId]);
-    expect((await request("loa", `/api/loan-applications/${otherApplicationId}/work-waits`)).status).toBe(200);
+    expect((await request("loa", otherEndpoint)).status).toBe(404);
+    expect((await request("loa", otherEndpoint, { ...observation, taskId: otherTaskId })).status).toBe(404);
+    expect((await request("loa", `${otherEndpoint}/${randomUUID()}/close`, closure)).status).toBe(404);
+    await assignOfficer(otherApplicationId, "test-loa");
+    expect((await request("loa", otherEndpoint)).status).toBe(200);
   });
   it("validates references, chronology, pagination and rejects unrecognized writable fields", async () => {
     expect((await request("lo", endpoint, { ...observation, taskId: otherTaskId })).status).toBe(404);
@@ -110,12 +123,18 @@ describe.sequential("observation-only work waits over real HTTP and PostgreSQL",
     for (const closedAt of ["2025-01-01T00:00:00Z", "2099-01-01T00:00:00Z"]) {
       expect((await request("lo", `${endpoint}/${waitId}/close`, { ...closure, closedAt })).status).toBe(400);
     }
-    await pool.query("UPDATE deal_team_members SET is_active=false WHERE application_id=$1 AND user_id='test-lo'", [applicationId]);
+    const membership = await pool.query("SELECT id FROM deal_team_members WHERE application_id=$1 AND user_id='test-lo' AND is_active=true", [applicationId]);
+    expect(membership.rows).toHaveLength(1);
+    const removed = await request("admin", `/api/deal-team/${membership.rows[0].id}`, undefined, "DELETE");
+    expect(removed.status).toBe(200);
     try {
+      const application = await pool.query("SELECT loan_officer_id FROM loan_applications WHERE id=$1", [applicationId]);
+      expect(application.rows[0].loan_officer_id).toBe("test-lo");
       expect((await request("lo")).status).toBe(404);
+      expect((await request("lo", endpoint, observation)).status).toBe(404);
       expect((await request("lo", `${endpoint}/${waitId}/close`, closure)).status).toBe(404);
     } finally {
-      await pool.query("UPDATE deal_team_members SET is_active=true WHERE application_id=$1 AND user_id='test-lo'", [applicationId]);
+      await assignOfficer(applicationId, "test-lo");
     }
   });
   it("freezes elapsed time on closure, preserving one closure and its audit under retries", async () => {
