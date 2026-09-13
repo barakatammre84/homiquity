@@ -6,4 +6,3 @@ and coordinate overlap. This table does not establish scheduler registrations or
 
 | routine / session | target | worktree | branch | claimed (UTC) | intent |
 |---|---|---|---|---|---|
-| Codex #816 | financial workpaper account-masking test | `.worktrees/financial-masking-assertion` | `codex/financial-masking-assertion` | 2026-09-13T21:31:54+00:00 | Remove hash/ID substring collisions while detecting actual fixture account last-4 leaks; tests only. |
