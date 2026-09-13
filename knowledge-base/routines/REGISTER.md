@@ -93,6 +93,7 @@ When your intended work meets a live claim, the answer is rarely "stop":
 
 | routine / session | target | worktree | branch | claimed (UTC) | intent |
 |---|---|---|---|---|---|
+| codex founder-directed source cleanup | All tracked Markdown and Homiquity `.claude` instructions; documentation/source guards and their tests; project-local Claude memory and task definitions (backed up outside Git). Runtime loan code excluded. | `.worktrees/automation-direction` | `codex/automation-direction` | 2026-09-13T14:33Z | Replaces the narrower #811 scope under explicit founder approval. Coordination for #805: source/authority cleanup follows its already-landed #806 docs; preserve its UI implementation and generated design measurements. No callable Claude-session messaging tool is available; sequence competing doc edits after this cleanup. #810 API documentation is reference-only and its feature work is not changed. |
 
 
 ## Recently released
