@@ -62,8 +62,9 @@ provisions and an applicability analysis, not an invented hierarchy between inte
 
 ## Working practices — internal engineering choices
 
-- Work in `~/Developer/homiquity` or its isolated worktrees, on `claude/…` or `codex/…`
-  branches from current `main`. Homiquity-Core is retired; Documents copies are recovery sources.
+- Locally, work in `~/Developer/homiquity` or its isolated worktrees; in cloud sessions, use
+  the platform-provided checkout of the same repository. Use `claude/…` or `codex/…` branches
+  from current `main`. Homiquity-Core is retired; Documents copies are recovery sources.
 - Fetch and inspect status and open PRs before editing. Preserve other sessions' changes.
   Coordinate overlapping files, record your claim in REGISTER, and release it in the same PR.
 - Set `git config core.hooksPath .githooks`. Use the existing dependencies unless the user

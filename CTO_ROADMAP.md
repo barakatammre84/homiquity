@@ -14,8 +14,10 @@ contracted services. Automate those handoffs. Internal processor, assistant and 
 organize work; they are not staffing prerequisites. Automate routine work or expose the specific
 integration, authorization or decision still needed and help the officer complete it.
 
-A required human action needs an applicable source or an explicit business decision. Automate
-its preparation, follow-up and recordkeeping wherever possible.
+For each human action, state whether it is required by an applicable primary provision or chosen
+by the business; a business preference is not a legal or program requirement. Automate its
+preparation, follow-up and recordkeeping wherever possible. Internal governance programs and
+fixed manual cohorts are not standing prerequisites to building automation.
 
 ## The workflow to serve
 
@@ -28,8 +30,8 @@ its preparation, follow-up and recordkeeping wherever possible.
 | Closing and funding | Reconcile documents and figures, track signatures and funding conditions, confirm actual completion with counterparties |
 | Closeout and relationship | Reconcile commission receipt, chase trailing items, organize records and prepare authorized client follow-up |
 
-Map these views to existing states and services. The Loan Factory review supplies workflow ideas,
-not legal requirements or a staffing plan. Build for Homiquity's broker channel.
+Map these views to existing states and services. Competitor workflows are design input, not legal
+requirements or a staffing plan. Build for Homiquity's broker channel.
 
 ## Build order
 
