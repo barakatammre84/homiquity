@@ -174,11 +174,7 @@ describe("denied is not rot (the 293-false-signals lesson)", () => {
 });
 
 describe("freshness (offline liveness)", () => {
-  /**
-   * `reportDate` defaults to yesterday so the steward-liveness check is satisfied and the
-   * pre-existing cases keep testing only what they were written for; pass `null` for a
-   * reports directory with no steward report in it at all.
-   */
+  // Historical report fixtures must not substitute for actual source-watch evidence.
   function stateFile(mutate: (s: any) => void, reportDate: string | null = "2026-08-22") {
     const dir = mkdtempSync(join(tmpdir(), "sg-watch-"));
     const s = emptyState();
@@ -242,53 +238,20 @@ describe("freshness (offline liveness)", () => {
     rmSync(dir, { recursive: true, force: true });
   });
 
-  // The steward's OWN liveness. On 2026-08-24 the CCR scheduler advanced the seat's
-  // next_run_at without dispatching a session — no session, no branch, no report, and
-  // every gate green. `last_run` from the triggers API proved nothing (it is empty for
-  // every trigger, including ones that had just run), so the landed report is the only
-  // honest evidence. CHARTER §7: a routine that cannot be shown to have run is not a
-  // control.
-  it("no steward report at all fails — the seat has never been shown to run", () => {
-    const { dir, paths } = stateFile(() => {}, null);
-    const r = runFreshness(NOW, paths);
-    expect(r.failures.join("\n")).toContain("NO run report has ever landed");
-    rmSync(dir, { recursive: true, force: true });
+  it("fresh watcher evidence does not require a retired agent's report", () => {
+    for (const reportDate of [null, "2026-08-10"]) {
+      const { dir, paths } = stateFile(() => {}, reportDate);
+      const r = runFreshness(NOW, paths);
+      expect(r.failures).toEqual([]);
+      expect(r.warnings).toEqual([]);
+      expect(r.summary).not.toContain("steward");
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 
-  it("a stale steward report warns, then fails once a whole week has passed", () => {
-    const warnCase = stateFile(() => {}, "2026-08-19"); // 4d before NOW → past warn, under fail
-    const warned = runFreshness(NOW, warnCase.paths);
-    expect(warned.failures).toEqual([]);
-    expect(warned.warnings.join("\n")).toContain("newest LANDED run report");
-    rmSync(warnCase.dir, { recursive: true, force: true });
-
-    const failCase = stateFile(() => {}, "2026-08-10"); // 13d → past fail
-    const failed = runFreshness(NOW, failCase.paths);
-    expect(failed.failures.join("\n")).toContain("newest LANDED run report");
-    rmSync(failCase.dir, { recursive: true, force: true });
-  });
-
-  it("does not fire across an ordinary weekend — the reason it is 3/7 and not 2/4", () => {
-    // Friday's report read on Monday: 3 days, which must stay quiet or the guard
-    // cries wolf every week and people learn to skip it.
-    const { dir, paths } = stateFile(() => {}, "2026-08-21");
-    const r = runFreshness(Date.parse("2026-08-24T12:00:00Z"), paths);
-    expect(r.failures).toEqual([]);
-    expect(r.warnings.join("\n")).not.toContain("LANDED run report");
-    rmSync(dir, { recursive: true, force: true });
-  });
-
-  it("an acknowledged steward pause downgrades the failure to a warning (the ratchet)", () => {
-    const { dir, paths } = stateFile(
-      (s) =>
-        (s.acknowledgedBlocked = {
-          steward: { since: "2026-08-24", reason: "seat paused", procurement: "re-register the trigger" },
-        }),
-      null,
-    );
-    const r = runFreshness(NOW, paths);
-    expect(r.failures).toEqual([]);
-    expect(r.warnings.join("\n")).toContain("NO run report has ever landed");
+  it("a fresh agent report cannot make stale watcher evidence pass", () => {
+    const { dir, paths } = stateFile(s => { s.lastRun = "2026-08-01T00:00:00Z"; }, "2026-08-23");
+    expect(runFreshness(NOW, paths).failures.join("\n")).toContain("last ran");
     rmSync(dir, { recursive: true, force: true });
   });
 });

@@ -438,7 +438,7 @@ function main() {
       "not detect a new PII sub-processor at all, and its shared/schema/ PII detection matches a\n" +
       "NAME VOCABULARY — a PII column named outside it still passes. A green gate never means\n" +
       "§9 is satisfied on those.\n" +
-      "See knowledge-base/governance/TEAM_PRACTICES.md §9.",
+      "Shared instructions: AGENTS.md.",
   );
   process.exit(1);
 }

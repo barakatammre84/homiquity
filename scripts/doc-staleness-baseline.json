@@ -1,8 +1,8 @@
 {
-  "kbPathRefs": 8,
-  "npmCommandRefs": 5,
-  "launchSprintRefs": 7,
-  "oldRepoRefs": 3,
+  "kbPathRefs": 1,
+  "npmCommandRefs": 3,
+  "launchSprintRefs": 0,
+  "oldRepoRefs": 2,
   "deadHostRefs": 1,
-  "updated": "2026-08-20"
+  "updated": "2026-09-13"
 }

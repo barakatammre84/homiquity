@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
  *
  * These assertions turn the platform's federal/industry compliance posture
  * into tests that fail loudly if a change drifts:
- *  - Reg B (ECOA): AI services must NEVER sit in the credit-decision path.
+ *  - Internal AI Governance Policy P1: AI services stay out of the decision path.
  *  - FCRA: credit pulls stay consent-gated; the funnel persists consent.
  *  - ESIGN / Reg Z: disclosure gates stay wired to their routes.
  *  - Guideline traceability: every underwriting rule cites its source.
@@ -52,7 +52,7 @@ const AI_IMPORT_PATTERNS = [
   /@anthropic-ai\/sdk/,
 ];
 
-describe("Reg B (ECOA): AI stays out of the credit-decision path", () => {
+describe("AI Governance Policy P1: AI stays out of the credit-decision path", () => {
   for (const module of DECISION_PATH_MODULES) {
     it(`${module} imports no AI service`, () => {
       const source = read(module);
@@ -218,7 +218,7 @@ describe("Guideline traceability: underwriting rules cite their sources", () => 
   });
 });
 
-describe("Reg B: the intake decision path is fully deterministic", () => {
+describe("AI Governance Policy P1: the intake decision path is fully deterministic", () => {
   it("the intake route no longer imports the retired LLM analysis module", () => {
     const source = readLendingRoutes();
     expect(source).not.toMatch(/from\s+["'][^"']*\/gemini["']/);

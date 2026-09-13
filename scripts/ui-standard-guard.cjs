@@ -30,7 +30,7 @@
  * cva variants are invisible to it, so every count here is a FLOOR, not a total.
  *
  * Green means "no new instances of seven specific mistakes". Nothing more.
- * (knowledge-base/routines/CHARTER.md §10: "A guard only answers its own question.")
+ * A guard only answers its own question.
  * ---------------------------------------------------------------------------
  */
 const fs = require("fs");

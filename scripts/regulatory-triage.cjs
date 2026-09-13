@@ -14,8 +14,8 @@
  *
  * The watcher used to end at a stdout line: a guideline change was announced,
  * printed, and lost the moment the terminal scrolled. Nothing carried it to
- * knowledge-base/compliance/UNDERWRITING_SCENARIO_INTAKE.md, so the intake
- * queue filled with hand-pasted model submissions that had no upstream trigger
+ * the compliance intake queue, so that queue filled with hand-pasted
+ * model submissions that had no upstream trigger
  * behind them while real agency changes went unrecorded. This is that missing
  * edge, and only that edge.
  *

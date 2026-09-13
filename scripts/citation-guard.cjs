@@ -105,10 +105,27 @@ const NOT_TRACKED_BY_DESIGN = [
 /** Backticked tokens that look like a repo path: a known code/doc extension. */
 const PATHISH = /`([A-Za-z0-9_@.\-/]+\.(?:ts|tsx|js|jsx|cjs|mjs|json|md|css|sql|sh|yml|yaml))`/g;
 
+/**
+ * Documents the register marks `history`: immutable dated records, excluded from ordinary
+ * searches by design. Their pointers are statements about a past state, so a reference to a
+ * document retired or deleted later is correct history, not rot — exactly the carve-out EXCLUDED
+ * above makes by hand, driven off the register instead of a path list that has to be maintained.
+ * Editing these to satisfy a link checker would falsify the record they exist to preserve.
+ */
+const REGISTER_FILE = path.join(ROOT, "knowledge-base/document-register.json");
+const HISTORY = new Set(
+  fs.existsSync(REGISTER_FILE)
+    ? (JSON.parse(fs.readFileSync(REGISTER_FILE, "utf8")).documents || [])
+        .filter((r) => r.disposition === "history")
+        .map((r) => r.path)
+    : [],
+);
+
 const files = execSync("git ls-files '*.md'", { cwd: ROOT, encoding: "utf8" })
   .split("\n")
   .filter(Boolean)
-  .filter((f) => !EXCLUDED.some((re) => re.test(f)));
+  .filter((f) => !EXCLUDED.some((re) => re.test(f)))
+  .filter((f) => !HISTORY.has(f));
 
 /** Every basename in the repo, so a doc may name `emailService.ts` without a path. */
 const basenames = new Set(

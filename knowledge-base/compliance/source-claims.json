@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "fannie-selling-guide",
+      "publisher": "Fannie Mae",
+      "kind": "program",
+      "url": "https://selling-guide.fanniemae.com/sel/a3-2-01/compliance-laws"
+    },
+    {
+      "id": "cfpb-reg-b-definitions",
+      "publisher": "CFPB",
+      "kind": "law",
+      "url": "https://www.consumerfinance.gov/rules-policy/regulations/1002/2/"
+    },
+    {
+      "id": "cfpb-reg-b-notifications",
+      "publisher": "CFPB",
+      "kind": "law",
+      "url": "https://www.consumerfinance.gov/rules-policy/regulations/1002/9/"
+    },
+    {
+      "id": "angel-oak-bank-statement",
+      "publisher": "Angel Oak Mortgage Solutions",
+      "kind": "lender",
+      "url": "https://angeloakms.com/programs/bank-statement-mortgage-program/"
+    },
+    {
+      "id": "angel-oak-dscr",
+      "publisher": "Angel Oak Mortgage Solutions",
+      "kind": "lender",
+      "url": "https://angeloakms.com/dscr-loan-calculator/"
+    }
+  ],
+  "claims": [
+    {
+      "id": "fannie-applicable-laws",
+      "source": "fannie-selling-guide",
+      "locator": "A3-2-01, Lender Compliance With Laws and Regulations",
+      "effectiveDate": "2025-12-10",
+      "verifiedOn": "2026-09-13",
+      "applicability": "The seller/servicer and other parties expressly addressed by A3-2-01; evaluate the broker relationship rather than assuming direct seller obligations.",
+      "statement": "A3-2-01 requires the parties it addresses to comply with applicable federal, state and local laws.",
+      "versionStatus": "dated"
+    },
+    {
+      "id": "reg-b-mechanical-evaluation",
+      "source": "cfpb-reg-b-definitions",
+      "locator": "12 CFR 1002.2(p)(1)",
+      "effectiveDate": null,
+      "verifiedOn": "2026-09-13",
+      "applicability": "The definition of an empirically derived, demonstrably and statistically sound credit scoring system; not permission for every proposed automated system.",
+      "statement": "Section 1002.2(p)(1) describes a credit scoring system that evaluates creditworthiness mechanically.",
+      "versionStatus": "transaction-version-unresolved",
+      "versionNote": "Determine the version applicable to the transaction; the displayed provision was read on the verification date."
+    },
+    {
+      "id": "reg-b-specific-reasons",
+      "source": "cfpb-reg-b-notifications",
+      "locator": "12 CFR 1002.9(b)(2)",
+      "effectiveDate": null,
+      "verifiedOn": "2026-09-13",
+      "applicability": "Statements of specific reasons for adverse action under this provision; determine the responsible creditor and notice duties for the transaction.",
+      "statement": "Section 1002.9(b)(2) requires specific principal reasons; failure to achieve a qualifying score alone is insufficient.",
+      "versionStatus": "transaction-version-unresolved",
+      "versionNote": "Determine the version applicable to the transaction; the displayed provision was read on the verification date."
+    },
+    {
+      "id": "angel-oak-bank-statement",
+      "source": "angel-oak-bank-statement",
+      "locator": "Statement-period heading and expense-factor program bullet",
+      "effectiveDate": null,
+      "versionStatus": "transaction-version-unresolved",
+      "versionNote": "The reviewed public page has no displayed effective date; obtain the current applicable lender matrix.",
+      "verifiedOn": "2026-09-13",
+      "applicability": "This lender public program/calculator description only. Does not establish complete qualification, Homiquity approval or a universal rule.",
+      "statement": "Angel Oak describes 12 or 24 months of statements, a 50% default expense factor and a 70% expense factor for some higher-expense industries."
+    },
+    {
+      "id": "angel-oak-dscr",
+      "source": "angel-oak-dscr",
+      "locator": "FAQ: How debt service coverage ratio (DSCR) is calculated?; calculator disclaimer",
+      "effectiveDate": null,
+      "versionStatus": "transaction-version-unresolved",
+      "versionNote": "The reviewed public page has no displayed effective date; obtain the current applicable lender matrix.",
+      "verifiedOn": "2026-09-13",
+      "applicability": "This lender public program/calculator description only. Does not establish complete qualification, Homiquity approval or a universal rule.",
+      "statement": "Angel Oak describes its DSCR calculator method as rent divided by PITIA; its calculator is an estimate, not a lending commitment."
+    }
+  ]
+}

@@ -1,0 +1,2263 @@
+{
+  "version": 1,
+  "baselineCommit": "493be52b69002ee96a981f08d5d5e5c9efd5e20d",
+  "activeInstructions": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CTO_ROADMAP.md",
+    "knowledge-base/ACTIVE_CONTEXT.md",
+    "knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md"
+  ],
+  "documents": [
+    {
+      "path": ".agents/skills/frontend-design/SKILL.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "decdff43d05908b4c1fc2cfd2d80fc5743440934"
+    },
+    {
+      "path": ".agents/skills/pdf/SKILL.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "d3e046a5ae107a6cb23cfb16c219837094ab35d3"
+    },
+    {
+      "path": ".agents/skills/pdf/forms.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "6e7e1e0d9e6ae17215db3e130aea3c3c546487e6"
+    },
+    {
+      "path": ".agents/skills/pdf/reference.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "41400bf4fc67f15fb062d43695ec92f078226023"
+    },
+    {
+      "path": ".agents/skills/ui-ux-pro-max/SKILL.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "08a354b59b9e73307b51cc6794058a7f037af0ca"
+    },
+    {
+      "path": ".agents/skills/web-design-guidelines/SKILL.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "07f883b3f7465edd9b341452caa824427a430eef"
+    },
+    {
+      "path": ".claude/agents/_JOURNEY_WALK_RAILS.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "8cc77d58365ca8531f81350144fe708dd76e52d2"
+    },
+    {
+      "path": ".claude/agents/_OWNER_RAILS.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "3c70783d4728c12dda9b1007f00471e543a384d9"
+    },
+    {
+      "path": ".claude/agents/compliance-auditor.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "c5e11ba14d12bec8174f9b1113f0766d4b26a836"
+    },
+    {
+      "path": ".claude/agents/doc-governance-reviewer.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "08f639e5152dac1daa086f58fe2176485beb0546"
+    },
+    {
+      "path": ".claude/agents/feature-reviewer.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0dc374f7eba4c91a79448ea061fdd60dfc9fb4e1"
+    },
+    {
+      "path": ".claude/agents/finding-verifier.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "fbbd69691a8554421a6f204c548590fcd4767727"
+    },
+    {
+      "path": ".claude/agents/hq-accelerator-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "f08e7590ac2481993aa4b7ee21ddefe8efdcf249"
+    },
+    {
+      "path": ".claude/agents/hq-admin-console-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "7847d8b20867040a4eca3a5b60b06194b3e8d7b1"
+    },
+    {
+      "path": ".claude/agents/hq-ai-coach-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "ed7f840adf1a67a6cb475d1d2cee608ffaa959aa"
+    },
+    {
+      "path": ".claude/agents/hq-aus-autopilot-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "b61fa6b2b522c25323736cb9e57ccd4137796cd4"
+    },
+    {
+      "path": ".claude/agents/hq-auth-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "9ac471350157edfbaf29407314b4442792e78454"
+    },
+    {
+      "path": ".claude/agents/hq-borrower-journey-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "7c70b7d78a5cd63e832c4e85dca3ecbc59ba89e3"
+    },
+    {
+      "path": ".claude/agents/hq-broker-portal-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "cc7f305ad3ca309bbe59da99ba27272e7b6d3781"
+    },
+    {
+      "path": ".claude/agents/hq-calculators-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "af3759dacdae13c9eb93d3a14dc39929bac226b4"
+    },
+    {
+      "path": ".claude/agents/hq-ci-guards-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "143eb0af6a81698ee2f2711b1ec369fdfdf30b6a"
+    },
+    {
+      "path": ".claude/agents/hq-compensation-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "48c57ea1398151c061ed7da1a1a74e946d43ea21"
+    },
+    {
+      "path": ".claude/agents/hq-credit-fcra-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "5aa551a80628e63b9830175d416d47770b1feb8a"
+    },
+    {
+      "path": ".claude/agents/hq-data-intel-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "fe8ed5c0455af0103ce6956850ae030ce2ae1ea8"
+    },
+    {
+      "path": ".claude/agents/hq-documents-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "19a92740fd5bcfde9903905f235e4b392d7445fb"
+    },
+    {
+      "path": ".claude/agents/hq-gse-delivery-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "fd5f584a509f4b53fe9806787f2ad14dc25962d2"
+    },
+    {
+      "path": ".claude/agents/hq-hmda-fairlending-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "607d91d3e01abeb13a7a782c215cc4d83aaa4eab"
+    },
+    {
+      "path": ".claude/agents/hq-homeowner-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "7a19b09c8b28f06547a09c698f549be9641e8473"
+    },
+    {
+      "path": ".claude/agents/hq-income-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "efc280e63df131107721cfef73912f17b5e3f310"
+    },
+    {
+      "path": ".claude/agents/hq-intake-funnel-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0f445554c38037b9c216edf7f21cf49508596f0f"
+    },
+    {
+      "path": ".claude/agents/hq-jobs-cron-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "4c49933c7b0929d901c0b2ee59a633901fa61d0f"
+    },
+    {
+      "path": ".claude/agents/hq-letters-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "65d3e248e318f4a7dbc42933df6adade42736996"
+    },
+    {
+      "path": ".claude/agents/hq-market-data-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "6d585d6dc3c2ef289dfabbcd5a9cbc510388996d"
+    },
+    {
+      "path": ".claude/agents/hq-mcp-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "939122615d0a8d70dde568d489fe016f9bb4a2c1"
+    },
+    {
+      "path": ".claude/agents/hq-messaging-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "602f1228ecfd0d740e92f632c1c1c663e9244d47"
+    },
+    {
+      "path": ".claude/agents/hq-multi-property-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "df7b283e2a851882b171d9cadb48580c38ea2248"
+    },
+    {
+      "path": ".claude/agents/hq-observability-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "4032bc0dbc4050ce29635fb4851822654aa2378b"
+    },
+    {
+      "path": ".claude/agents/hq-offers-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "241abe6a71539e1c2cecb88c429c2ce44f24b340"
+    },
+    {
+      "path": ".claude/agents/hq-partners-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "6a0fc98109b4687550b788c4ed5675171a389570"
+    },
+    {
+      "path": ".claude/agents/hq-pii-vault-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "f739cf12e4e08cb5679b44833dcc71e34ffb6d6a"
+    },
+    {
+      "path": ".claude/agents/hq-pipeline-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "5b10971a9c3f96884422416ebfcf0f49497e6eec"
+    },
+    {
+      "path": ".claude/agents/hq-pricing-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "62e516ec3261810be5986411422a20fcf916b221"
+    },
+    {
+      "path": ".claude/agents/hq-property-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "9da1e79c37540dba967903d214c179d910be7641"
+    },
+    {
+      "path": ".claude/agents/hq-rate-locks-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "4dad9c8ee093feb7d5dfa368c04fbc9fb137b818"
+    },
+    {
+      "path": ".claude/agents/hq-realtor-engine-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "6a2530286769f107655e948f005311225ff3411e"
+    },
+    {
+      "path": ".claude/agents/hq-rent-reporting-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0705344abcc70dcd0dee2bffc03ae7c7eaa33d93"
+    },
+    {
+      "path": ".claude/agents/hq-seo-content-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "7a5e0863d75f3c299d8897035e1ff3a214c64d64"
+    },
+    {
+      "path": ".claude/agents/hq-task-engine-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0bf6f62823a7ad3bbe6a19089de51b0746015e6a"
+    },
+    {
+      "path": ".claude/agents/hq-tax-intel-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "1fc6199caec944c168215c5b53b4974a70870e95"
+    },
+    {
+      "path": ".claude/agents/hq-trid-disclosures-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "e51718f20fc6d0c4fd522134212a451b9fb5ae30"
+    },
+    {
+      "path": ".claude/agents/hq-underwriting-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "73c7f35db447279242705b3d42b0f4639d628e12"
+    },
+    {
+      "path": ".claude/agents/hq-urla-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "347095983b8148ad1f39e268c9412f47f10d91d7"
+    },
+    {
+      "path": ".claude/agents/hq-verifications-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0dfeb74a09c9d9445d8e5d0213dc0ff21cd9b71e"
+    },
+    {
+      "path": ".claude/agents/journey-walker-affluent.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "b4a1c4e57c6d7a3eee31f11052698f1011501276"
+    },
+    {
+      "path": ".claude/agents/journey-walker-aspiring-owner.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "eec85bdb5751ccc4d628e8417224c01a57fd447f"
+    },
+    {
+      "path": ".claude/agents/journey-walker-condo-buyer.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0878b4499207089aa1d4857f4d4bd824b50a96de"
+    },
+    {
+      "path": ".claude/agents/journey-walker-self-employed.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "f1acdab6db0efe9c8cc3ed0870a72668c452bfdf"
+    },
+    {
+      "path": ".claude/agents/journey-walker-staff-broker.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "95b278aac79d694da38fbc33190553904b7d6a5d"
+    },
+    {
+      "path": ".claude/agents/journey-walker-staff-closer.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "5cdef0eb3d2c47451b63f13a5be45187b68d880f"
+    },
+    {
+      "path": ".claude/agents/journey-walker-staff-lo.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "58cdb5cfa84b22e0960ca1592f1bbf514d901fb6"
+    },
+    {
+      "path": ".claude/agents/journey-walker-staff-processor.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "fd8fff143d33456a3db19b4e038920f6aabc25c5"
+    },
+    {
+      "path": ".claude/agents/journey-walker-staff-underwriter.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "72e57810b10444eaeb5c42a721f27319cb69f4dd"
+    },
+    {
+      "path": ".claude/agents/journey-walker-w2-buyer.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "2e0c40851526ea75bc98b3e2702c2cf7b6e467a6"
+    },
+    {
+      "path": ".claude/agents/ux-reviewer.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "870b4bef333469799955608e365d6b2987befff2"
+    },
+    {
+      "path": ".claude/agents/workflow-verifier.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "b312942428f5a4ac255ec9f029d632dbab5f5142"
+    },
+    {
+      "path": ".claude/skills/algorithm-auditor/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "6f0fee5fbeb907ed082bcff825010af51992e108"
+    },
+    {
+      "path": ".claude/skills/api-routes/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "8749d3c2d290625ba8d75a10912a17d42b099db7"
+    },
+    {
+      "path": ".claude/skills/app-walker/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "e6b945ea5b1b176c64416e3b100d6a1f9f3a2fe9"
+    },
+    {
+      "path": ".claude/skills/backend-data-engineer/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "e65b9e2ffcced51c1ed413a4452b2f5e336e45d4"
+    },
+    {
+      "path": ".claude/skills/complex-file-engine/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "4845fa3289930d604b0533e38396245e685fa319"
+    },
+    {
+      "path": ".claude/skills/compliance-watch/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "808d14677729955e243bf9dcb99bd5a4047afad0"
+    },
+    {
+      "path": ".claude/skills/design-identity-engine/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "533e23308535f2c283d6d56da7f51aaa52c8dd2b"
+    },
+    {
+      "path": ".claude/skills/doc-accuracy/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "f71758c498adf01ab17e0d3396aaba895bd3670d"
+    },
+    {
+      "path": ".claude/skills/domain-oracle/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "a456b95ca1eb55a05f7db2ebffe53c38d49dfdda"
+    },
+    {
+      "path": ".claude/skills/evening-triage/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "2bdd3d46e12a8be7c8e0f05a5705e44da623b3ff"
+    },
+    {
+      "path": ".claude/skills/feature-coverage/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "9c07006f2d6d9d68ade80b28642926fdb53b962f"
+    },
+    {
+      "path": ".claude/skills/financial-audit/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "6a9527df0d15436a48131852d7c5ed01fb8c4b08"
+    },
+    {
+      "path": ".claude/skills/handoff-refresh/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "365592b2cfbcaa1e71b481295c07387b54503181"
+    },
+    {
+      "path": ".claude/skills/integration-readiness/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "a6045ee5a8359d6c062bcd90f8748f8d7c69f8e6"
+    },
+    {
+      "path": ".claude/skills/journey-walk/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "8f738db940afaef3b13ddbf7070ec51fd8d34b04"
+    },
+    {
+      "path": ".claude/skills/mortgage-calculations/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "c7ba38d55e8bc737919f5d7bf38b1a110f95df33"
+    },
+    {
+      "path": ".claude/skills/move-up-lane/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "1b5a7e51b017b737b7a7cc9aaac38c33e76ee837"
+    },
+    {
+      "path": ".claude/skills/primary-engineer/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "b2399e4bcfb5569f10f6162810d22dc69b578cde"
+    },
+    {
+      "path": ".claude/skills/qa-mutation-verifier/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "88c9b1e8e121ad0c53dbff613e10482ae889145d"
+    },
+    {
+      "path": ".claude/skills/refactor-radar/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "3ed24ae28e266da49ab02a1de17d25c2f170c378"
+    },
+    {
+      "path": ".claude/skills/rent-reporting-watch/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "bb1347629720c8582c2193cdd9aba544683cacdd"
+    },
+    {
+      "path": ".claude/skills/selling-guide-steward/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "d77ef50aa3339796d31f8427eb2198f7da2a6b12"
+    },
+    {
+      "path": ".claude/skills/seo-content/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "b3f2176a7549319c74f9b9e0ee744e48bd8215b6"
+    },
+    {
+      "path": ".claude/skills/staff-journey-walk/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "901fa5acda384e745ebf7fc8131870b629d62d71"
+    },
+    {
+      "path": ".claude/skills/ui-components/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "0cf91f6c1621f40416594e6c1f6b79f9e244272a"
+    },
+    {
+      "path": ".claude/skills/ui-conformance-sweep/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "ae8d3368d7d6e15ffc13882915dbc1b17416b531"
+    },
+    {
+      "path": ".claude/skills/workflow-prover/SKILL.md",
+      "disposition": "router",
+      "reason": "Removed duplicated policy and stale priorities; retained task identity and technical entry points.",
+      "originalBlob": "ee38162e76daa65c0af0cb23d47a77ea814a5b20"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "e21e6370540b588ae152f2e7903ee0483e569a91"
+    },
+    {
+      "path": "AGENTS.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "50abc2e123431fa31d56d257d2d575de72b87bb2"
+    },
+    {
+      "path": "CLAUDE.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "14851aee785e33a23760045f175de92e8e5354e5"
+    },
+    {
+      "path": "CTO_ROADMAP.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "f4df63c72421af4679d8fae2a6a43f38cef75fcf"
+    },
+    {
+      "path": "PRODUCT_SPINE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "68d6a594c3ecd03337a4380423c2b52c4c743b5d"
+    },
+    {
+      "path": "README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "df546561dc1f4467c8bb4c109a492559ebb62162"
+    },
+    {
+      "path": "attached_assets/lifestyle/CREDITS.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "f8ffc92bd17a0e2bc97822a367973b8d5db04664"
+    },
+    {
+      "path": "attached_assets/scenes/README.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "712e8988b519fd456a1ac57bcbcba0d54a4a3291"
+    },
+    {
+      "path": "attached_assets/spot/README.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "c7dc32f6fd3824748f0e5e1cc0b55efcbb1a1d9e"
+    },
+    {
+      "path": "benchmarks/extraction/LABELING_PROTOCOL.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "bb4324d13678ff067b20d2ea28a775d3b1943120"
+    },
+    {
+      "path": "benchmarks/extraction/README.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "e2fd0bcaf01b64e87304a5752f9e35316888d9dd"
+    },
+    {
+      "path": "demo/lender-demo/README.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "445044663431faee1b0e8fdfce749cfc07e4227e"
+    },
+    {
+      "path": "demo/lender-demo/video-walkthrough-script.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "313f05d81f586b1eb7a36e1daa728dba30341ae8"
+    },
+    {
+      "path": "docs/cdia-metro2/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "6d3d9a8a435dd2c9c76b76b7736c1f4bdf2c5135"
+    },
+    {
+      "path": "docs/fannie-mae/AGENTS.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "6a3c21f2653aca9cfc8ca95a8eb98314465c5b6b"
+    },
+    {
+      "path": "docs/fannie-mae/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "a668625ecc5dd1b392209b0033649ff5ea602ff2"
+    },
+    {
+      "path": "docs/fannie-mae/capital-gains-income-reference.md",
+      "disposition": "rewrite",
+      "reason": "Replaced secondary rule interpretations with verified section locations in the pinned primary corpus.",
+      "originalBlob": "dabb6ed673fc9297279dd6e62b763fe547849a38"
+    },
+    {
+      "path": "docs/fannie-mae/employment-related-assets-income-reference.md",
+      "disposition": "rewrite",
+      "reason": "Replaced secondary rule interpretations with verified section locations in the pinned primary corpus.",
+      "originalBlob": "ee9152eb6e6c39d1036e67d11f2c2a3a23e3d5a5"
+    },
+    {
+      "path": "docs/fannie-mae/rental-income-reference.md",
+      "disposition": "rewrite",
+      "reason": "Replaced secondary rule interpretations with verified section locations in the pinned primary corpus.",
+      "originalBlob": "6abc5aed8ad801f8d924caec60fd5bd97d917a80"
+    },
+    {
+      "path": "docs/fannie-mae/self-employment-income-reference.md",
+      "disposition": "rewrite",
+      "reason": "Replaced secondary rule interpretations with verified section locations in the pinned primary corpus.",
+      "originalBlob": "b247fd1150a1d4b1dc267d520a86c0d3ff283033"
+    },
+    {
+      "path": "docs/fannie-mae/selling-guide/INDEX.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "76744bd8a1fcc472e4116afaaa491297c722b7ed"
+    },
+    {
+      "path": "docs/fannie-mae/selling-guide/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "2e28031f19bf2d78350649db66a9629fae9d76fc"
+    },
+    {
+      "path": "docs/fcra/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "eafe4d7643e3d453037e57346fca1a7f913f16b8"
+    },
+    {
+      "path": "docs/irs-forms/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "401ff0646243b9d2ec39d5b9b3c8b4f6d1e0f2d7"
+    },
+    {
+      "path": "docs/lender-programs/angel-oak/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "6d242fdc691a5b7b9c60809f38a43ebdc2ba82d5"
+    },
+    {
+      "path": "docs/lender-programs/angel-oak/bank-statement-program-reference.md",
+      "disposition": "rewrite",
+      "reason": "Short primary-publisher reading reverified 2026-09-13; transaction-specific matrix/version remains unresolved. Retains code-citation anchors.",
+      "originalBlob": "415d844217edaab8fd5925a4849ffd336b425d79"
+    },
+    {
+      "path": "docs/lender-programs/angel-oak/dscr-program-reference.md",
+      "disposition": "rewrite",
+      "reason": "Short primary-publisher reading reverified 2026-09-13; transaction-specific matrix/version remains unresolved. Retains code-citation anchors.",
+      "originalBlob": "d9b5e9b3c5ac3ec5a90c379632e58080d8865d88"
+    },
+    {
+      "path": "docs/nmls-safe/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "7fa0e13c7d798476e7a5a9068a0343e7cba48bef"
+    },
+    {
+      "path": "docs/nmls/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "dd5d182ee1009cd3f3908af8cf232e09545f1a1d"
+    },
+    {
+      "path": "docs/reg-z/README.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "e4c4b01dbf5686854889161ed1935cac4cc4938d"
+    },
+    {
+      "path": "knowledge-base/ACTIVE_CONTEXT.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "d00723f90e3461f2592903347da14e3e781add93"
+    },
+    {
+      "path": "knowledge-base/L1_VISION_AND_SCOPE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "895248fc6f8d8c9eec3a981e83fcf0a72c81181d"
+    },
+    {
+      "path": "knowledge-base/L2_COMPLIANCE_AND_LOGIC.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "aa882529d5e3fa452a597eb59f99acedfbccd49c"
+    },
+    {
+      "path": "knowledge-base/README.md",
+      "disposition": "rewrite",
+      "reason": "Single index of active entry points and technical references.",
+      "originalBlob": "2b92af1eedb22a8c52de8d85d3f29bd806466c8b"
+    },
+    {
+      "path": "knowledge-base/SESSION_CLAIMS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d3ca5e728721d391f0ada1ce1e27922f6a5dba8f"
+    },
+    {
+      "path": "knowledge-base/archive/INFRASTRUCTURE_RISKS.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ea8af96ab5c6f463e055e2f30d1dae37d6416b10"
+    },
+    {
+      "path": "knowledge-base/archive/LAUNCH_READINESS_CHECKLIST.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "c5f38556acafe2722b8508d59e27dd042e0e92e1"
+    },
+    {
+      "path": "knowledge-base/archive/README.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f42af35201416f8b23d1e9d3fc8668dad8bed50c"
+    },
+    {
+      "path": "knowledge-base/archive/assessments/BACKEND_UI_OPTIMIZATION_AUDIT.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "28cefebd8a8ad121970c59124b293f91f96e8a7e"
+    },
+    {
+      "path": "knowledge-base/archive/assessments/BLUEPRINT_DESK_CROSSWALK.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "64d70b1c6150c21c7c1fa4c0a0b7aedfd1ecf13f"
+    },
+    {
+      "path": "knowledge-base/archive/assessments/LENDER_READINESS_GAP_ANALYSIS.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "b699526895addab134aeb2f1f2c488845ad022d6"
+    },
+    {
+      "path": "knowledge-base/archive/assessments/STATE_OF_THE_PLATFORM.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f7b1e5bdae9909b2d1c7717c6e66d563c661edda"
+    },
+    {
+      "path": "knowledge-base/archive/design/design_guidelines.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "3a3407c07c4d7a55b07340124110252c432f5348"
+    },
+    {
+      "path": "knowledge-base/archive/design/visual-consistency-standard.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6bcec58b6c95193684479502c6137bb8b14940f3"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-bridge-bind.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "297609c4270249a99810c551240385aca02ca0e0"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-code-health.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "e192e2faeb40219572649c2f4365c8841fa43fc6"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-customer-success.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "5918fcb695d3569471e45316ae61ffca58e363eb"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-lo-edgecases.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6097737b79a792b4997d865fff554606abff99da"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-lo-pipeline.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "0f7bd78572ec9def41d9328ddcf452884643b7f9"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-midday-lender.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "57700a26ec2686c0929a24905d3123b52e8d68b0"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-risk-governance.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "44b76cede14ee9a0cfa05a16175f8caf33fd66b0"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-security.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "814fc1b96a6fcdeca381d004bd794515c652ff2a"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-04-vendor-procurement.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "950c7de5480dbc39033fcc766fddfc76dec01047"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-05-evening.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "852c85cdfa088be6970f5cff8b6837d69e43334a"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-05-morning-gate.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ba9ccabcc8f693880215607b06c71dff8ebd3288"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-05-sprint-blitz.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "876ca2a5468845e30bae651aa453a30004c53975"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-06-morning-gate.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "969967fd9648383c4b2de8882e42e1a0cdd611e5"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-06-sprint-blitz.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ef5bf9e4014af66067eb45eab8c14e30477b3d7c"
+    },
+    {
+      "path": "knowledge-base/archive/founder-routines/2026-07-06-vendor-procurement.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d75a2f884ef6b3f1fa891f30033a0c53f837fc36"
+    },
+    {
+      "path": "knowledge-base/archive/lo-audit/2026-07-03.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ca9b76a9c89a8cad045a2f38988e5fa9dd08824f"
+    },
+    {
+      "path": "knowledge-base/archive/lo-audit/2026-07-04-pm.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "407e4229c763e248df9ff3e6068f643a5a0dc95a"
+    },
+    {
+      "path": "knowledge-base/archive/lo-audit/2026-07-04.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "1981d4e2c5a5a2cb70772a457146fc8540655533"
+    },
+    {
+      "path": "knowledge-base/archive/roadmap/CTO_ROADMAP_2026-08-06.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "cb5d0edc26fa9628d51bd21d88746a1744a11bfd"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/README.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "26a57bb6f7dfbfb5446923f9025d01b71d2d69f0"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/analytics-plan.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "2dce2bcfd16152c01725fc224b2793237b564b55"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/exec-summary.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6dfd43ad2082b0c265874b5de6149d779b46cc7b"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/page-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "022253e8af7798e6ee1d2bdd1a05e9c499f5a3f4"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/psychology-patterns.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "8cf13baba6218ac231fe41bd21664a899ae7e25b"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/ux-roadmap.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "2be21e1a6b146fdae5a80ad549209a51631da66c"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/warm-canvas-proposal.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "2a04d5193141adf0026f920f6846bbc521816a1e"
+    },
+    {
+      "path": "knowledge-base/archive/ux-audit/workflows.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "22fb42a347e8d66f2e9a5b1aba9984715828b4f6"
+    },
+    {
+      "path": "knowledge-base/backend-data-engineer/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "301a01042b290002bf3af4f7b11f25359705237b"
+    },
+    {
+      "path": "knowledge-base/complex-file-engine/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "1e58cd2a40dc8e62bd143fbee3c218ecde2b993f"
+    },
+    {
+      "path": "knowledge-base/compliance-watch/STATE_LADDER.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2f30479e57abd1fe1817d0083b16fc3b1c79d6e0"
+    },
+    {
+      "path": "knowledge-base/compliance-watch/drafts/2026-08-17-mcr-q3-2026-prep.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6f662c97dfeb7e1acdaeec680e3faad3f17df60e"
+    },
+    {
+      "path": "knowledge-base/compliance-watch/drafts/README.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "64fbdc487fd5f9c6c65ffd9069d09c12241b2d4c"
+    },
+    {
+      "path": "knowledge-base/compliance/COMPLIANCE_COUNSEL_REVIEW.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "b975986d70c7aaa45809fe659ab1351121c10eb8"
+    },
+    {
+      "path": "knowledge-base/compliance/LAUNCH_COUNSEL_PACKET.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "dad8cc2a45f41e5d0ae30f677e0c648217c8bc6e"
+    },
+    {
+      "path": "knowledge-base/compliance/LO_SUBMISSION_TO_CLOSING_REVIEW.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "212cf3bbcf15762737ef39f00118cea80fae6eda"
+    },
+    {
+      "path": "knowledge-base/compliance/NTHLA_609G_SPEC.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "facf8ea440c4de4526efd0a911cfea23eecde75f"
+    },
+    {
+      "path": "knowledge-base/compliance/REGULATORY_MONITORING.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "e08d77f12f81058e47696875f442de2dbf176e50"
+    },
+    {
+      "path": "knowledge-base/compliance/SAFE_MLO_COMPLIANCE_MAP.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "163042e15d711131cfd80b66b297cf3731cb1913"
+    },
+    {
+      "path": "knowledge-base/compliance/SCENARIO_ARCHITECT.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3b180522cdf1bd65bc3f99c7ecbf72318a84bb70"
+    },
+    {
+      "path": "knowledge-base/compliance/SELLING_GUIDE_CONFORMANCE.md",
+      "disposition": "history",
+      "reason": "Existing dated measurement/claim record retained for recovery and legacy integrity checks, not current authority; excluded from ordinary searches.",
+      "originalBlob": "4e3fcfe2dd9efea5a9062481597e4c3364af92be"
+    },
+    {
+      "path": "knowledge-base/compliance/SELLING_GUIDE_COVERAGE.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "b555ced99af7fb59d0e3bb8f89aa5736d04e5f6d"
+    },
+    {
+      "path": "knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "772170e7188625e777786ed8d7187a7cf8394ea7"
+    },
+    {
+      "path": "knowledge-base/compliance/SELLING_GUIDE_PERMANENCE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "49259fb6186f6d0b09adc7159554a8613a8a9cc4"
+    },
+    {
+      "path": "knowledge-base/compliance/UNDERWRITING_SCENARIOS.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "18a4afe65b61eb16d37584a0442f33c2e0c63fe6"
+    },
+    {
+      "path": "knowledge-base/compliance/UNDERWRITING_SCENARIO_INTAKE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c85e9efeb4f8eb0db49e0199a9421a1c4a802048"
+    },
+    {
+      "path": "knowledge-base/compliance/security/threat_model.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2debacd9a69fe1af3318b0511572c291ed609284"
+    },
+    {
+      "path": "knowledge-base/design-identity/ILLUSTRATION_BRIEF.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "70b515a9075bab7cc775807c04c831fb3c17c5b6"
+    },
+    {
+      "path": "knowledge-base/design-identity/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "740412ba56349c5464399631fa1ae937881dc256"
+    },
+    {
+      "path": "knowledge-base/doc-accuracy/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "0abe6616ac50eae86cbe3e58a2ea6088054113be"
+    },
+    {
+      "path": "knowledge-base/feature-review/CHARTER.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "65c2bf27dc3045010deb464ad07b357f33e9c621"
+    },
+    {
+      "path": "knowledge-base/feature-review/CORE_INTELLIGENCE_AUDIT_2026-09-08.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "8ac9a4180d3f46f5247ef83d144414e63bdb1bb5"
+    },
+    {
+      "path": "knowledge-base/feature-review/DOMAINS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "274a3ab2147d023f477f8ad6e845382ad67612a7"
+    },
+    {
+      "path": "knowledge-base/feature-review/FINDINGS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "03bc628dbdd053cb8c818a4e5c23a0f7f6f7c7dc"
+    },
+    {
+      "path": "knowledge-base/feature-review/HOMI_OUTCOME_STUDY_2026-09-10.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "a99e63fba414a610b57a6580f813ea546df4fe29"
+    },
+    {
+      "path": "knowledge-base/feature-review/JOURNEYS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f0b9e72b4972b07320ce5d1ce792a487a18ca524"
+    },
+    {
+      "path": "knowledge-base/feature-review/STAFF_JOURNEYS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a5cf46a6e76be36e4dbe751716f194d5c831d7d3"
+    },
+    {
+      "path": "knowledge-base/feature-review/UNDERWRITING_PRODUCT_INTEGRITY_AUDIT_2026-09-11.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "eef59910320ec9350218665888d9583de12b351a"
+    },
+    {
+      "path": "knowledge-base/feature-review/WORKFLOWS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "6f84387e6adbb05d3e95108f0f0b814356f547e8"
+    },
+    {
+      "path": "knowledge-base/feature-review/journey-walks/2026-08-19-four-door-walks.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6084b9bf5df896a5c1241fea38722d5a784b97d9"
+    },
+    {
+      "path": "knowledge-base/feature-review/journey-walks/2026-08-23-lo-submission-review.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "187a8c216bcce606ac02ebc9287c88fdca54b891"
+    },
+    {
+      "path": "knowledge-base/feature-review/journey-walks/2026-09-07-complex-borrower-lo-loop.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f05f8a87baf2923a992ea9d5bc4ab4e23e57d466"
+    },
+    {
+      "path": "knowledge-base/feature-review/journey-walks/2026-09-08-mixed-income-analysis-loop.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "20469a27f7a9d528300ed6cd816cef8b0d96619d"
+    },
+    {
+      "path": "knowledge-base/financial-audit/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "0df1723fdf02407f174a79575b0d34640cb2f6fd"
+    },
+    {
+      "path": "knowledge-base/governance/AI_GOVERNANCE_POLICY.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0487aa584019b54999c5770560df58641345e93a"
+    },
+    {
+      "path": "knowledge-base/governance/ARMED_LAUNCH_CHARTER_2026-07-07.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d136c0a96ecafe497d3c90738b4ec0cfcaeb8d1a"
+    },
+    {
+      "path": "knowledge-base/governance/ASSUMPTIONS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "05233b30306bb645374ef99fe4ece8880eede555"
+    },
+    {
+      "path": "knowledge-base/governance/CHANNEL_DECISION.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "26ec1f7067c5bd4ced5fc8f639be871959a3028f"
+    },
+    {
+      "path": "knowledge-base/governance/CONTINGENT_LIABILITY_REGISTER.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "309224ce97c40b387e4f8b919cf2fd9c51e42b77"
+    },
+    {
+      "path": "knowledge-base/governance/HIRING_PLAN.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "04ac31874f8d9222dbd10340083f82dd355af7b8"
+    },
+    {
+      "path": "knowledge-base/governance/MODEL_RISK_GOVERNANCE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "1c5976b0f70e8915d32d55f196d71c005b5a7352"
+    },
+    {
+      "path": "knowledge-base/governance/TEAM_PRACTICES.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a34814cfc6fd93984a043374f8404897ae358798"
+    },
+    {
+      "path": "knowledge-base/governance/UNCONSUMED_CAPABILITIES.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "4d9e3e6bfd359cbe9f61c31cb533521c78257d3c"
+    },
+    {
+      "path": "knowledge-base/governance/security/ACCESS_CONTROL_POLICY.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "e5448dbe67b496264699a07fdb4959f6c8b4d40e"
+    },
+    {
+      "path": "knowledge-base/governance/security/ASSET_REGISTER.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "55303709bcfc7f152f17c154b2c59d58797e0f1f"
+    },
+    {
+      "path": "knowledge-base/governance/security/INCIDENT_RESPONSE_PLAN.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "08edc37b05578310e91f2067cf8469421b1599c2"
+    },
+    {
+      "path": "knowledge-base/governance/security/INFORMATION_SECURITY_POLICY.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "4b18c5925e95d28928c2559a8c7a13525188662f"
+    },
+    {
+      "path": "knowledge-base/governance/security/PLAID_SECURITY_QUESTIONNAIRE_ANSWERS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "cae24d58f31fc5d981339d302ea0f0e5ddc2470a"
+    },
+    {
+      "path": "knowledge-base/handbook/DEVELOPER_PLAYBOOK.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a85ca503ff1b54b57c8163f8709b134009ef9b0b"
+    },
+    {
+      "path": "knowledge-base/handbook/FEATURE_MAP.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "7428843a683af7ac1990cdecf351ad1848ed983e"
+    },
+    {
+      "path": "knowledge-base/handbook/URLA_FORM_REFACTOR_TRAP.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "e2273fb7575fcdcc7a0385c2d5b0f55f804f1150"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/01-start-here.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a6d667f3d4d658caf022415f9c9b3f668c35f4dd"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/02-architecture.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "dbc60ef6582274e7c5bb9397cfa11a754f42b7aa"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/03-database.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "abe13db702455758251d341ef45352bca1b1177a"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/04-api-routes.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "fa1fc38a5f7d09b9a07ad4e0e14f78f421d3a30d"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/05-data-flow.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "4a2371c57975e15c6dd1fbdc67cd81f380a4604a"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/06-auth-security-secrets.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3d9fd6002484f1df07b8c712f32460861baebba6"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/07-frontend.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "251b74f11caf1f921fd3e3adc075365fba13c396"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/08-services.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a1f768a3a505bcf0f1f698bedd8b56d4ede003cd"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/09-integrations.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "146a6b025be03240e57caf6199ea4741bd4954ae"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/10-deploy-ops.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d7563ebe389f074df63b02265e705855e3fce6b2"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/11-domain-glossary.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "57fd022b07f67139945b96e239d52c93f9a33eb9"
+    },
+    {
+      "path": "knowledge-base/handbook/app-guide/12-api-contract.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "326cc35856bf306e770a2c840a9fa7477a78b489"
+    },
+    {
+      "path": "knowledge-base/handbook/design/DESIGN_SYSTEM.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "2de636acdaeb1702bbd25ab3112cb460276b4a68"
+    },
+    {
+      "path": "knowledge-base/handoff/00-product-roles-and-the-map.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "19efe35f708a784c5143848aff7eaa50fbd8901c"
+    },
+    {
+      "path": "knowledge-base/handoff/01-architecture-request-lifecycle.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "7ae7600fee634adfef7210bb59329abb7f51ed52"
+    },
+    {
+      "path": "knowledge-base/handoff/02-auth-and-authorization.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "6d4e3670bce674c167061aad1f2f26c5e9853fae"
+    },
+    {
+      "path": "knowledge-base/handoff/03-data-model-and-schema.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "35c72f6e428cc0653380e3b41fcf1d331a43e54a"
+    },
+    {
+      "path": "knowledge-base/handoff/04-data-flow-loan-journey.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d4a2e600e6e0d11be1fb48d915b7b6bcde2167ef"
+    },
+    {
+      "path": "knowledge-base/handoff/05-backend-patterns-engines-adapters.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "656620d35db0ed0c9531fb28a802e825b8ae74d1"
+    },
+    {
+      "path": "knowledge-base/handoff/06-frontend-patterns.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "40fe6cc69a51d7d6a0578388ce60f3df2abd9b8a"
+    },
+    {
+      "path": "knowledge-base/handoff/07-test-harness-and-ci-proof.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f464e1f81e99e414d0f98b80c7b1ed09c748bedf"
+    },
+    {
+      "path": "knowledge-base/handoff/08-compliance-rails.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "168fc8ecc213c5ae83806a351a2b3300699b6725"
+    },
+    {
+      "path": "knowledge-base/handoff/09-prompting-and-automation.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c0ba6bf903faa8007efb45f671b8b31c64cd1e03"
+    },
+    {
+      "path": "knowledge-base/handoff/10-deploy-environments-migrations.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "499f79022d5bec16d4475ee3cc92da15e544fffd"
+    },
+    {
+      "path": "knowledge-base/handoff/11-patterns-and-repetition.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3f03572171f838147f381ac466debee9323ee9e1"
+    },
+    {
+      "path": "knowledge-base/handoff/12-loop-safe-build-playbook.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "6a4e4e302a2f47f7b01f7ae4f9fc103fcf1c4881"
+    },
+    {
+      "path": "knowledge-base/handoff/13-selling-guide-as-the-foundation.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "bab2b84862f1a2e7110985781624cbec1592ec46"
+    },
+    {
+      "path": "knowledge-base/handoff/FACTS.md",
+      "disposition": "history",
+      "reason": "Existing dated measurement/claim record retained for recovery and legacy integrity checks, not current authority; excluded from ordinary searches.",
+      "originalBlob": "82a62843b8d20c511aa0d8d417d5c02b5fc1728d"
+    },
+    {
+      "path": "knowledge-base/handoff/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "9c8dcbbd85ac36c764e8d6c3e2b88bb47d2342e0"
+    },
+    {
+      "path": "knowledge-base/handoff/README.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "39c835e7eda44a7a04a1347bafbbccc5aafabe34"
+    },
+    {
+      "path": "knowledge-base/handoff/TEACHBACK_KEY.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "9f582d22c9455194386c9c393026ea3768315631"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/INVOKE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2cc2a4f4b8e8f3c1e51fbbbe9cda515f7da03835"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/_RAILS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "48f3e3bf8089c8f1c9706019b79f5c0d080e8d9b"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/_REPORT_FORMAT.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0cb1a6a37150e82879b3665e67fa7948c6123279"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/bug-fix.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "5d7166dbcb15acb31a4ce158fa5e4b986027d389"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/doc-update.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3dab44c5a0a1e60b762e5ebf1e34e281a40e3fb8"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/feature.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "1588a877aa453142548be22fcff02ba346a3513d"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/new-route.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d8dff454cf1942fd1f7dfa06266882a6906ac20d"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/new-test.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c2b45431e9ae0f55323c3723ff313d10c76d7896"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/refactor.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "471c2fbca249d5a556bc19eb9fed6ccd794f1ebb"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/schema-migration.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0a9796ef0f80b4faf614a51c926ac2dec5f25056"
+    },
+    {
+      "path": "knowledge-base/handoff/prompts/ui-page.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "81b6eb49a1f7c73dfbdc06c71421004c9d5f8e39"
+    },
+    {
+      "path": "knowledge-base/logs/2026-07-12-external-strategy-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "e3fa674a3e144595d41bf7763e4243371d3693a5"
+    },
+    {
+      "path": "knowledge-base/logs/2026-07-17-external-agentic-mortgage-artifacts-evaluation.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "b0202dd4d08920637328634422878ec3cf4dad42"
+    },
+    {
+      "path": "knowledge-base/logs/2026-07-17-prod-api-outage-uuid-esm-postmortem.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d514bb276b1cdea496e6d6afff46091ccd059262"
+    },
+    {
+      "path": "knowledge-base/logs/2026-07-17-underwriter-splitscreen-vendor-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "52909265b1d96813309911ac7abfd91cfcdf1359"
+    },
+    {
+      "path": "knowledge-base/logs/2026-07-19-modular-architecture-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "58504c3c2ef926b6c2c0970a3a6bb450ad6e1c33"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-04-cross-sector-fintech-frameworks-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "19c35152ff4ec730834c0c4310068e0e0a52d91b"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-04-financial-architecture-capital-structure-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "500e479501f5a3e59d6d0ad57451540fe7558230"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-04-rate-com-competitive-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "8f4776a2deeadfb335bf106b167ad8f3f1226f68"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-04-renter-incubation-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "c01af54df0d0303d1b4d0b49584f76ec388cb044"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-04-sovereign-underwriting-stack-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d755ba5eff45d32b738c1c3429778141b18a1aff"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-05-financial-architecture-reaudit-qm-loan-size-floor.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ebbcdcbe3eeaeedda471580f13088d5ebd5f09d1"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-06-financial-architecture-reaudit-pricing-policy-control-plane.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "97333747a56c3683b920a882a5ea2ce11ee7df9d"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-06-orphan-branch-triage.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "2fcf9b9a2600d213a73a297124ad0ec1082a859a"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-07-financial-architecture-reaudit-counterparty-receivable-disclosure-coupling.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "127cdb2522c520f652c18d74877115f9fb3396b3"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-08-financial-architecture-reaudit-commission-payouts.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f35b79f39644c9b69f548266428192196788d7ab"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-08-rent-reporting-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "8d5ea7ba457abaf39b1e67284deaa1a01f31cbd7"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-09-financial-architecture-reaudit-revenue-recognition.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "afe2f1827c733f0488f937e0c83f827e1d9bc2b8"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-10-financial-architecture-reaudit-counterparty-enforceability.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "59cb58519de2e9a6f5d80b261fc25c868eea2acd"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-11-financial-architecture-revenue-representation-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "61d12f7011bed1264def6919958734e98d74ec70"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-12-financial-architecture-reaudit-counterparty-integrity.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "98c67554329dbe66f8898ee9058dde1092e0950d"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-13-financial-architecture-receivable-and-recognition-trigger.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d81ff4588bbbfbc51c599ee85e58158fc4c85873"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-14-financial-architecture-reaudit-revenue-fix-propagation.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "a054b724c8e089edda9d754d3c55a5b23c1f161d"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-15-financial-architecture-recognition-trigger-coupling.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d629cfb2558847830bc2ff4057a0e65edcaed21f"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-16-financial-architecture-reaudit-lock-lapse-and-remittance-float.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "aea8f36b8b7efef9d905276255af7521991b7c6f"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-18-financial-architecture-reaudit-vendor-order-cost-capture.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ab85a08f9653f3323457b244e6b28b99fc109698"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-18-knowledge-file-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "1f1c9f9e2d78c5dfd5da77ea586255723bc73886"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-18-parked-branches.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "a515cf192d55152432755bff3555213a6c3da4d4"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-18-session-closeout-local-development.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "b37b905cf129d712599c3e81e25cbec3572dba90"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-20-hygiene-pitch-adjudication.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6c91e391e55044f3b8374d729de3522ce4ef9983"
+    },
+    {
+      "path": "knowledge-base/logs/2026-08-20-merge-queue-close-out.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "9ea4ce6719b03df4489b203d2902f228dbfe3afa"
+    },
+    {
+      "path": "knowledge-base/logs/2026-09-11-core-is-the-product.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "0040445f0bd8816fae9bbedbdd3b1f030e8d0542"
+    },
+    {
+      "path": "knowledge-base/logs/2026-09-12-one-application.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "5da0fcad0661fc31a46fc1fcefb3ea03b6249454"
+    },
+    {
+      "path": "knowledge-base/primary-engineer/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "197591b9a375baee2b89662edf017468c70543da"
+    },
+    {
+      "path": "knowledge-base/refactor-radar/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ca3dc7a31d62dab43dd5a61f758533f0d137a3e4"
+    },
+    {
+      "path": "knowledge-base/refactor-radar/RESEARCH.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "bc3cabcb6bbc0e4d09538fcbf353d5f5fda69a7f"
+    },
+    {
+      "path": "knowledge-base/research/NON_W2_LENDING_RESEARCH_BRIEFING.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "453a380f71dea6b3c98b71c011bbe87e4edefdef"
+    },
+    {
+      "path": "knowledge-base/research/NON_W2_TECH_OPTIMIZATION_PLAN.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f6b4abb1d9b5533a5c8304bc0c1c4b3cc8896764"
+    },
+    {
+      "path": "knowledge-base/research/better-teardown/HOMIQUITY-PROJECT-KNOWLEDGE.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "112d135aba613bbc5f5be265fca060e49865172f"
+    },
+    {
+      "path": "knowledge-base/research/better-teardown/better-teardown-raw-notes.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f011d39cbc9647b762ee0a68f311d3229fe9cc12"
+    },
+    {
+      "path": "knowledge-base/research/gtm/AGENT_ONEPAGER_ROCKET_COMPASS.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d22fb3b3810e0379c46e3f9af11e474d01100b60"
+    },
+    {
+      "path": "knowledge-base/research/gtm/COMPETITIVE_BRIEF_2026-07-06.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "63136adb8dd2c80a105cae55588c4bacf6e4b1fe"
+    },
+    {
+      "path": "knowledge-base/research/gtm/LO_BATTLECARD_NEXA.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6ce97b7b2f36ca87474d85c2bf19b7359f5d7c06"
+    },
+    {
+      "path": "knowledge-base/research/gtm/TAX_SERIES_01_DRAFT.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "4863552d4872c3a2d80e81efb884561e49a77707"
+    },
+    {
+      "path": "knowledge-base/research/islamic-finance/LENDER_CHANNEL_VALIDATION.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "270bce1b1927eb82a6b4241db372a44013073227"
+    },
+    {
+      "path": "knowledge-base/research/islamic-finance/SHARIAH_GOVERNANCE.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "741145b65ef92cdd1030eda691c15e88375af478"
+    },
+    {
+      "path": "knowledge-base/research/islamic-finance/UNIVERSAL_ADAPTATION_LAYER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "a2d690ba8167842ebfe01630e423f42dffcfc1b6"
+    },
+    {
+      "path": "knowledge-base/research/my-research/README.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "1a41cb97127d95ee96afdb09109f7ecd15eaef5b"
+    },
+    {
+      "path": "knowledge-base/research/my-research/wholesale-lender-shortlist-2026-07-04.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "b2c0799db30091c8a4d6cda9f7b14890b916ba83"
+    },
+    {
+      "path": "knowledge-base/routines/CHARTER.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "304b3059390631c305f20f02005904592e7126f3"
+    },
+    {
+      "path": "knowledge-base/routines/HANDOFF.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c5d2b8f015433ea279b8c0c605c5f75e785ec505"
+    },
+    {
+      "path": "knowledge-base/routines/LESSONS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "89bc3237cadde74cc1755b2a6b14fa1e491a8c31"
+    },
+    {
+      "path": "knowledge-base/routines/REGISTER.md",
+      "disposition": "rewrite",
+      "reason": "Consolidated current direction, source navigation or a retained code reference; original narrative retired.",
+      "originalBlob": "c7f056c395662dc06b86a334872db96bc4508597"
+    },
+    {
+      "path": "knowledge-base/routines/TEAM.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "b1527c27a5531bc2ac79b944c13631a40b959012"
+    },
+    {
+      "path": "knowledge-base/routines/feature-completion/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "260a33d6a2c75e8f8339a188d0518f0c3bac051a"
+    },
+    {
+      "path": "knowledge-base/routines/feature-coverage/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "575124bc6ee78ce91895a7e01bb1bfd6f9299359"
+    },
+    {
+      "path": "knowledge-base/routines/journey-walk/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "9ac7b4cfd1ef27897c0f57dd6b9640b2027b0ddc"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-12-lender-delivery-gate.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "d28e03c7c84e9c53939268ec0d9a0b8e5d3ead9f"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-12-sprint-blitz.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "f887bf86214673d21711cdeb89ffb62c2d9b04be"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-12-wiring-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "09fbfbdc94abde91e61a50bbbc0377212d15f9a5"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-compliance-watch.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "70f02bc849934a8ea65f65d22762bf17b5f5aee8"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-evening-triage.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "c4f1b3f38f15ede8041176926956d6ccf7ec67cc"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-launch-gate.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "462a2f3d2c7745a8cdd61813bb55c54c6a87a517"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-primary-engineer.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "fd635476740a3f14e0edf651863958fc33a4f383"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-qa-sweep.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "7a428644425217e8bf46facadad0eadacf97f1a7"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-refactor-radar.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "a9e8b452ff633c4d9f96fe0ae9f0d9603c675a5a"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-17-vendor-procurement.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "e2f8237d8c44f8b791e166e6b9699b41ee09a3e4"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-18-app-walker.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "c21697a6b6fad9bbdca5ef126a2dcdddb2144cc8"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-18-evening-triage.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6f8221066926af951d5e7934868447f60fdf4222"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-18-lender-delivery-gate.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "b79169befa7927767aec142fc1cc6c895f278787"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-18-qa-sweep.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "2e33e31aec83fb3acdbb18ea7cf63229183ef182"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-18-wiring-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "20163beccce8d6b0e9ee6153df153c88ef92a898"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-19-evening-triage.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "928482c79fd5b569f24dd60eddc8c3ef337359b7"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-19-qa-sweep.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "73f741a7b003498bc229d34a96329fd37bfb51c5"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-19-wiring-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "263b8f5181293ce36d655430fbb571fb18784673"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-doc-accuracy.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "fbf662f635996a45a59986f863a72e50cd0988fa"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-feature-completion.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "b6339aad51166ddd72582789b355e207a0e7bd3e"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-journey-walk-j2.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "e24fed5932b8268523f58fc475f2fb94d83495ee"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-journey-walk.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "0dda25e25aad993d6d8a9b32330f65d40b6e67ef"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-primary-engineer.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "1a5a8843a5afc391ca8745981e7aa6ed7f1345ac"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-qa-sweep.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "c6da7a970c40bc3a2cfab1d5adfd8728c72cbb4a"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-rent-reporting-watch.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "3b9c4676089c0751a4de7fea8e78351bfdda8f3f"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-trunk-health.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "3704b17a6c893d88d2d610472b25e2e41a55bb14"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-wiring-audit.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "ac6607e0ac8225ee48357799ee5e741d2453e79d"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-20-workflow-completion.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "67a71a9ee4a490e4f8fb90adc569d7b4f3242693"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-22-doc-accuracy.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "190bef4855ce954f3a40bce2204a6917df2c94bb"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-23-feature-completion.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "de03c19f224a7e2216ee77623428d84d7fc5371e"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-23-handoff-steward.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "4fb5a65b54abba03e18916eb4280af4d5fc68759"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-24-handoff-steward.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "19bfb7b8ec759a69a083ff8e0abce153edb35d44"
+    },
+    {
+      "path": "knowledge-base/routines/reports/2026-08-24-selling-guide-steward.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "e84518161a211e8d1ba1a3969c83c02eaa55dc0a"
+    },
+    {
+      "path": "knowledge-base/routines/reports/README.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "11b1068d5e3baf8cd0712a394762b0ef12c160f1"
+    },
+    {
+      "path": "knowledge-base/routines/staff-journey-walk/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6eea3efaa4c16cc1445a6c407c53b79baa7dbcfd"
+    },
+    {
+      "path": "knowledge-base/routines/workflow-completion/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "3b538a3de84ceff3f132e9474ae16adeb52d5016"
+    },
+    {
+      "path": "knowledge-base/runbooks/BETA_GO_LIVE_READINESS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "e6658eca5446194261f17c11e80e1cf1fe0b84ad"
+    },
+    {
+      "path": "knowledge-base/runbooks/BROWSER_PROBE.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "0c5404e383f971b198a8672cf7992204c97726a7"
+    },
+    {
+      "path": "knowledge-base/runbooks/CHANGE_LEDGER.md",
+      "disposition": "history",
+      "reason": "Append-only change history preserved byte-for-byte; not current project instructions.",
+      "originalBlob": "dfca985db462d9ad42b3df9fde5f60b516fa68f7"
+    },
+    {
+      "path": "knowledge-base/runbooks/CICD.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "5b9ec9097828539f2f52412fd6f49f478abd2f91"
+    },
+    {
+      "path": "knowledge-base/runbooks/DB_MIGRATIONS.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "81931f157b4b18654a382810b29d5564ad994323"
+    },
+    {
+      "path": "knowledge-base/runbooks/EXTRACTION_EVALUATION.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "b375347ea61374671367a6b896aeab3abd687a85"
+    },
+    {
+      "path": "knowledge-base/runbooks/LOCAL_DEV.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "707af23dd9ecd2d256e62db5c48c4487f95a8dcb"
+    },
+    {
+      "path": "knowledge-base/runbooks/NEON_PREVIEW_DB.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "45283728bee457860f0a7621834f47e72ae226e6"
+    },
+    {
+      "path": "knowledge-base/runbooks/PHASE_0_TECH_READINESS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "674dd77aeaaf679ef7419939e56ecef82ef092d9"
+    },
+    {
+      "path": "knowledge-base/runbooks/PRE_PRODUCTION_OPS_ROUTINES.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "311d32039a8c0fda08cd6144be7e7896e56c8d59"
+    },
+    {
+      "path": "knowledge-base/runbooks/PROD_ACCEPTANCE_TEST.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2e4105de5caa2f906e1a735da95d2cca0384d371"
+    },
+    {
+      "path": "knowledge-base/runbooks/ROLLBACK.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "b95f3d7603448513ab8439816d5cb503f6092647"
+    },
+    {
+      "path": "knowledge-base/runbooks/TEST_ACCOUNTS.md",
+      "disposition": "reference",
+      "reason": "Technical/artifact reference only; not project or legal authority. Verify implementation or source before reuse.",
+      "originalBlob": "bbabd2a138d39215c263180967d518a72d09ddbc"
+    },
+    {
+      "path": "knowledge-base/runbooks/support-playbooks/README.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "be5857f490f7c0f09cf614681be1264e51ad0b6e"
+    },
+    {
+      "path": "knowledge-base/runbooks/support-playbooks/discrimination-credit-error-escalation.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f22f4effbf6e69402f095e7a54c3343564020c94"
+    },
+    {
+      "path": "knowledge-base/runbooks/support-playbooks/locked-out-user.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0caff0d20ed2a4a01243f144e2233a8aa4c01e11"
+    },
+    {
+      "path": "knowledge-base/sop/SOP-000-manual-charter.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a7daf8a88541571a60980858c7cdb0de47d2cfc1"
+    },
+    {
+      "path": "knowledge-base/specs/CORE_INTEGRATION.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f1fb7fed4d910f44970152d18ac06d1fc27f8fa1"
+    },
+    {
+      "path": "knowledge-base/specs/FREE_DATA_MOAT.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "ab1ad41aa13a3fa008363aac34693c023ae6f5e3"
+    },
+    {
+      "path": "knowledge-base/specs/LO2_SCENARIO_SIMULATOR_SPECS.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "7fa4f521d88e818b2a1d6e5dad3bde4a0df6599f"
+    },
+    {
+      "path": "knowledge-base/specs/LO_ADVISOR_PROGRAM.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "74c0af7d8b2906d02f7959abcc0f5fd7db53e747"
+    },
+    {
+      "path": "knowledge-base/specs/PARTNER_HUB_PROGRAM.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "ba4bcaa8e4c0331052b23013479064e351216a2b"
+    },
+    {
+      "path": "knowledge-base/specs/UNIVERSAL_ADAPTATION_LAYER_PROGRAM.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f6712b785aaaaa3460b057343704ad0618a99e5f"
+    },
+    {
+      "path": "knowledge-base/specs/_TEMPLATE.md",
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "5ab2274e8487497b1ae64fbb590fe64effb7c730"
+    },
+    {
+      "path": "knowledge-base/ui-conformance/LEDGER.md",
+      "disposition": "history",
+      "reason": "Historical record preserved byte-for-byte, excluded from normal agent searches and authority.",
+      "originalBlob": "6ba68cbcdfe8bb7d0ae0f160c6962f05d5f16395"
+    }
+  ]
+}

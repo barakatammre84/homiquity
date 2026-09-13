@@ -11,8 +11,8 @@
  * data/regulatory/regulatory-watch-signals.json, each carrying the regulatory-
  * ledger entries it may affect. `pnpm reg:triage` renders open rows for
  * adjudication. This script NEVER writes the compliance registry: promotion of
- * a signal into knowledge-base/compliance/UNDERWRITING_SCENARIO_INTAKE.md is
- * authored by a human or the /domain-oracle routine, with a citation.
+ * a signal into the compliance registry is authored by a human, with a citation
+ * to the applicable primary source.
  *
  * ---------------------------------------------------------------------------
  * WHY THIS FILE LOOKS PARANOID — every guard below is a defect this watcher had
@@ -413,8 +413,7 @@ async function main() {
       const age = p.neverWorked ? "no successful observation on record" : `last worked ${p.days}d ago`;
       console.log(`  • ${p.id}: ${age}, ${p.consecutiveFailures} consecutive failure(s) — ${p.lastError}`);
     }
-    console.log("  These need a subscription or a licensed feed, not a retry. See");
-    console.log("  knowledge-base/compliance/REGULATORY_MONITORING.md Tier 3.");
+    console.log("  These need a subscription or a licensed feed, not a retry.");
   }
 
   // Never a coverage claim we did not earn.

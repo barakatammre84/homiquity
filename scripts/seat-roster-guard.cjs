@@ -48,8 +48,6 @@ const FRESHNESS = /\*\*Registry read:\*\*\s*last verified\s*(\d{4}-\d{2}-\d{2})\
 
 /** Living docs that may name a scheduled task. Immutable history is excluded on purpose. */
 const EXTENSION_DOCS = [
-  "knowledge-base/routines/CHARTER.md",
-  "knowledge-base/routines/TEAM.md",
   "knowledge-base/routines/REGISTER.md",
   "knowledge-base/README.md",
   "CTO_ROADMAP.md",
@@ -405,26 +403,15 @@ function writeTables(paths) {
 }
 
 function main() {
-  const argv = process.argv.slice(2);
-  const paths = defaultPaths();
-  if (argv.includes("--write-table")) writeTables(paths);
-
-  const { failures, warnings, summary } = runRoster(Date.now(), paths, {
-    noFreshness: argv.includes("--no-freshness"),
-  });
-  for (const w of warnings) console.log(`WARN  ${w}`);
-  for (const f of failures) console.log(`FAIL  ${f}`);
-  if (failures.length === 0) {
-    console.log(
-      `seat-roster-guard: ${summary}` + (warnings.length ? ` — ${warnings.length} warning(s)` : "") + " ✅"
-    );
-    process.exit(0);
+  if (process.argv.includes("--write-table")) {
+    console.error("The historical seat snapshot is retired; refusing to restore tables into retired charters.");
+    process.exitCode = 1;
+    return;
   }
-  console.log(
-    `\n${failures.length} seat-roster problem(s). The roster is what every fresh session reads to ` +
-    "know which routines exist; a wrong one misdirects every seat downstream (CHARTER §0)."
-  );
-  process.exit(1);
+  // Legacy parsing exports remain for recovery of historical SEATS.tsv snapshots.
+  // Local files never prove which tasks the application has actually scheduled.
+  require("./source-instructions-guard.cjs").main();
+  console.log("Task definitions checked through the document register. Scheduler registrations: unverified; inspect the application.");
 }
 
 module.exports = {
