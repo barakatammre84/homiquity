@@ -1,6 +1,6 @@
 # Current implementation context
 
-Code inspected 2026-09-13 on the source-cleanup branch, based on `ff7b4674`.
+Code inspected 2026-09-13 against merged `e1f494bd` (#811).
 These are implementation observations, not legal conclusions or evidence of launch readiness.
 
 | Observation | Evidence |
@@ -9,7 +9,23 @@ These are implementation observations, not legal conclusions or evidence of laun
 | The configured business channel is broker | `shared/businessChannel.ts`: BUSINESS_CHANNEL |
 | DU/LPA submission paths include deterministic simulations and refuse unsupported live credentials | `server/services/ausSubmission.ts` |
 | Wholesale submission acknowledgments use a simulation | `server/services/lenderSubmission.ts`: simulateLenderAcknowledgment |
-| Existing runtime controls and tests remain in place during the instruction cleanup | This PR changes documentation and developer tooling, not server/client/shared logic |
+| The merged instruction cleanup did not change loan-processing behavior | #811 has no changes under server/, client/, shared/ or migrations/ |
+
+## One-operator implementation starting points
+
+Inspected 2026-09-13; these are code observations, not an end-to-end verification:
+
+- `client/src/pages/staff/loCommandCenter/ActionsRail.tsx` already exposes scenario, lock,
+  submission-readiness, call-preparation and letter actions.
+- `client/src/pages/staff/staffDashboard/MyQueueTab.tsx` renders a role-scoped queue. Its
+  “automated” count means tasks were automatically created, not that their work completed.
+- `server/services/taskEngine.ts` maps multiple staff roles and enforces role-queue access.
+  A unified operator experience must retain authorization for each loan and action.
+- `server/routes/task-engine.ts` and the task engine are existing implementation entry points;
+  their complete event, completion and retry behavior has not been audited in this task.
+
+The one-operator journey in CTO_ROADMAP.md is the target. It is not yet verified as a complete
+operating capability. Current issues and PRs record work in progress.
 
 ## Verify before relying on it
 
