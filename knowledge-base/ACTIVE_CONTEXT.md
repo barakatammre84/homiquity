@@ -29,8 +29,8 @@ operating capability. Current issues and PRs record work in progress.
 
 ## Verify before relying on it
 
-Production deployment, licensing records, vendor credentials, provider contracts, actual scheduler
-registrations and borrower readiness have not been reverified in this cleanup. Earlier dated
+Production deployment, licensing records, vendor credentials, provider contracts and borrower
+readiness have not been reverified in this cleanup. Earlier dated
 claims about those subjects are historical observations, not current status.
 
 Read current deployment health and configuration when the task needs them. Check each provider's
