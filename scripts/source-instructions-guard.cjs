@@ -5,7 +5,7 @@ const { createHash } = require('crypto');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..');
-const DISPOSITIONS = new Set(['rewrite', 'router', 'reference', 'retired', 'history']);
+const DISPOSITIONS = new Set(['rewrite', 'router', 'reference', 'retired', 'history', 'deleted']);
 const PRIMARY_HOSTS = new Set(['selling-guide.fanniemae.com', 'www.consumerfinance.gov', 'angeloakms.com']);
 
 function validateSources(data, sourceMap, now = new Date()) {
@@ -51,10 +51,24 @@ function validateDocuments(register, files, read) {
       errors.push(`${row.path}: incomplete disposition/recovery record`);
   }
   for (const file of files) if (!rows.has(file)) errors.push(`${file}: unclassified Markdown`);
-  for (const file of rows.keys()) if (!files.includes(file)) errors.push(`${file}: registered file missing`);
-  const excluded = [...rows.values()].filter(r => ['retired', 'history'].includes(r.disposition));
+  // `deleted` inverts every other disposition: the file must be ABSENT. The row is itself the
+  // recovery record — `originalBlob` still names the content in Git — so removing the file costs
+  // nothing recoverable while ending its ability to be opened and read as guidance. A retirement
+  // notice left on disk is still a document an agent can load; an absent file is not.
+  const gone = new Set([...rows.values()].filter(r => r.disposition === 'deleted').map(r => r.path));
+  for (const file of rows.keys()) {
+    if (gone.has(file)) {
+      if (files.includes(file)) errors.push(`${file}: deleted policy has been restored`);
+      continue;
+    }
+    if (!files.includes(file)) errors.push(`${file}: registered file missing`);
+  }
+  const excluded = [...rows.values()].filter(r => ['retired', 'history', 'deleted'].includes(r.disposition));
   const ignore = read('.ignore');
   for (const row of excluded) {
+    // Nothing on disk to exclude from searches or to hash; the naming check below still applies,
+    // so an active instruction cannot quietly cite a deleted document as authority.
+    if (row.disposition === 'deleted') continue;
     if (!ignore.split('\n').includes('/' + row.path)) errors.push(`${row.path}: not excluded from ordinary searches`);
     if (row.disposition === 'retired') {
       const text = read(row.path);

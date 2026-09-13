@@ -10,7 +10,11 @@ function fixture() {
 }
 describe('source and instruction boundaries', () => {
   it('checks the actual checkout including hidden agent definitions', () => {
-    const result = run(); expect(result.count).toBeGreaterThan(350); expect(result.errors).toEqual([]);
+    // Floor, not a target: it only proves the guard scanned the real checkout rather than an
+    // empty set. Lowered from 350 when the 95 retired stubs were deleted outright (375 -> 280);
+    // their register rows survive as `deleted` recovery records. Raise this only alongside a
+    // deliberate corpus change — never lower it to make a failing run pass.
+    const result = run(); expect(result.count).toBeGreaterThan(250); expect(result.errors).toEqual([]);
   });
   it('rejects internal documents and lookalike hosts as primary sources', () => {
     for (const url of ['knowledge-base/L2_COMPLIANCE_AND_LOGIC.md', 'https://www.consumerfinance.gov.example.org/rule']) {

@@ -48,8 +48,6 @@ const FRESHNESS = /\*\*Registry read:\*\*\s*last verified\s*(\d{4}-\d{2}-\d{2})\
 
 /** Living docs that may name a scheduled task. Immutable history is excluded on purpose. */
 const EXTENSION_DOCS = [
-  "knowledge-base/routines/CHARTER.md",
-  "knowledge-base/routines/TEAM.md",
   "knowledge-base/routines/REGISTER.md",
   "knowledge-base/README.md",
   "CTO_ROADMAP.md",

@@ -587,10 +587,9 @@
     },
     {
       "path": "PRODUCT_SPINE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "68d6a594c3ecd03337a4380423c2b52c4c743b5d",
-      "retiredSha256": "03dc5b10e6bd1d20cfa317efe21522c0bcdef6c34a38930229401be58eb3638a"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "68d6a594c3ecd03337a4380423c2b52c4c743b5d"
     },
     {
       "path": "README.md",
@@ -750,17 +749,15 @@
     },
     {
       "path": "knowledge-base/L1_VISION_AND_SCOPE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "895248fc6f8d8c9eec3a981e83fcf0a72c81181d",
-      "retiredSha256": "1e145ef074254f3b0219e94eca8e2ccc93bb611ca9cfc6dc265ff5eb67fcc8ea"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "895248fc6f8d8c9eec3a981e83fcf0a72c81181d"
     },
     {
       "path": "knowledge-base/L2_COMPLIANCE_AND_LOGIC.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "aa882529d5e3fa452a597eb59f99acedfbccd49c",
-      "retiredSha256": "65be6d0af23043db6f920663c52a782c21185a3db789f2366d29fb54059463b8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "aa882529d5e3fa452a597eb59f99acedfbccd49c"
     },
     {
       "path": "knowledge-base/README.md",
@@ -770,10 +767,9 @@
     },
     {
       "path": "knowledge-base/SESSION_CLAIMS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "d3ca5e728721d391f0ada1ce1e27922f6a5dba8f",
-      "retiredSha256": "4bbed68c03f218f93e5cadb720ba598cc02fc49925d9a8c4745614d132a52052"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d3ca5e728721d391f0ada1ce1e27922f6a5dba8f"
     },
     {
       "path": "knowledge-base/archive/INFRASTRUCTURE_RISKS.md",
@@ -1005,10 +1001,9 @@
     },
     {
       "path": "knowledge-base/compliance-watch/STATE_LADDER.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "2f30479e57abd1fe1817d0083b16fc3b1c79d6e0",
-      "retiredSha256": "e6ee9ae97f807aa3a92e0b03ffacd61518e056d3d6cb6b2af7e8308d1bfa188e"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2f30479e57abd1fe1817d0083b16fc3b1c79d6e0"
     },
     {
       "path": "knowledge-base/compliance-watch/drafts/2026-08-17-mcr-q3-2026-prep.md",
@@ -1018,59 +1013,51 @@
     },
     {
       "path": "knowledge-base/compliance-watch/drafts/README.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "64fbdc487fd5f9c6c65ffd9069d09c12241b2d4c",
-      "retiredSha256": "9aa37a8c94743ad70bc21cd4664b05e5a4e04a457945a05f1d8a53a1b291644e"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "64fbdc487fd5f9c6c65ffd9069d09c12241b2d4c"
     },
     {
       "path": "knowledge-base/compliance/COMPLIANCE_COUNSEL_REVIEW.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "b975986d70c7aaa45809fe659ab1351121c10eb8",
-      "retiredSha256": "f68eb10ffc8638722e958847c1751b57a6068644c6a68d669e0a9d98363131e7"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "b975986d70c7aaa45809fe659ab1351121c10eb8"
     },
     {
       "path": "knowledge-base/compliance/LAUNCH_COUNSEL_PACKET.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "dad8cc2a45f41e5d0ae30f677e0c648217c8bc6e",
-      "retiredSha256": "9f6b3de23ed9e8574fbd6bddfdbf204a67bdad45c43565aa033ab6a707745eb1"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "dad8cc2a45f41e5d0ae30f677e0c648217c8bc6e"
     },
     {
       "path": "knowledge-base/compliance/LO_SUBMISSION_TO_CLOSING_REVIEW.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "212cf3bbcf15762737ef39f00118cea80fae6eda",
-      "retiredSha256": "5660424cbc11078fb6a121f9a02ff9b1d33284c41d8c6dcd80f80b26a43e5689"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "212cf3bbcf15762737ef39f00118cea80fae6eda"
     },
     {
       "path": "knowledge-base/compliance/NTHLA_609G_SPEC.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "facf8ea440c4de4526efd0a911cfea23eecde75f",
-      "retiredSha256": "9412d2e5e4c11715ff93fb869e837485c339faad7d7202b7adb3d39bdb8d8f14"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "facf8ea440c4de4526efd0a911cfea23eecde75f"
     },
     {
       "path": "knowledge-base/compliance/REGULATORY_MONITORING.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "e08d77f12f81058e47696875f442de2dbf176e50",
-      "retiredSha256": "a78514477d02d977dab0411f65a16656eba755ab92b313d52f1e4923a33ae6e0"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "e08d77f12f81058e47696875f442de2dbf176e50"
     },
     {
       "path": "knowledge-base/compliance/SAFE_MLO_COMPLIANCE_MAP.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "163042e15d711131cfd80b66b297cf3731cb1913",
-      "retiredSha256": "e849da95308398d6f763df011059419b1d681c96db8442b68c469dbf733570d8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "163042e15d711131cfd80b66b297cf3731cb1913"
     },
     {
       "path": "knowledge-base/compliance/SCENARIO_ARCHITECT.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "3b180522cdf1bd65bc3f99c7ecbf72318a84bb70",
-      "retiredSha256": "bee317ba575011ec23645b0c6237229d1c90fbdaa5a860148dd9294ecf2a9ca3"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3b180522cdf1bd65bc3f99c7ecbf72318a84bb70"
     },
     {
       "path": "knowledge-base/compliance/SELLING_GUIDE_CONFORMANCE.md",
@@ -1092,10 +1079,9 @@
     },
     {
       "path": "knowledge-base/compliance/SELLING_GUIDE_PERMANENCE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "49259fb6186f6d0b09adc7159554a8613a8a9cc4",
-      "retiredSha256": "f8d33d3c36c58848e4687ccf68475e3cb3b95311426f81a2e6e4de00e96bbfc1"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "49259fb6186f6d0b09adc7159554a8613a8a9cc4"
     },
     {
       "path": "knowledge-base/compliance/UNDERWRITING_SCENARIOS.md",
@@ -1105,24 +1091,21 @@
     },
     {
       "path": "knowledge-base/compliance/UNDERWRITING_SCENARIO_INTAKE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "c85e9efeb4f8eb0db49e0199a9421a1c4a802048",
-      "retiredSha256": "b1627deaad3bcfee92c3e004cb0d822380a9f00497a68f8f51f88ef93534eff6"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c85e9efeb4f8eb0db49e0199a9421a1c4a802048"
     },
     {
       "path": "knowledge-base/compliance/security/threat_model.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "2debacd9a69fe1af3318b0511572c291ed609284",
-      "retiredSha256": "dac9cad03ea2a5032ad148ffd2494a46de73eda6f348af84460065b7ce00e335"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2debacd9a69fe1af3318b0511572c291ed609284"
     },
     {
       "path": "knowledge-base/design-identity/ILLUSTRATION_BRIEF.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "70b515a9075bab7cc775807c04c831fb3c17c5b6",
-      "retiredSha256": "872cf272eaf3b87d26f9fb57aa5f6b9cde14c322d2f9cd8f161627e0e218c949"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "70b515a9075bab7cc775807c04c831fb3c17c5b6"
     },
     {
       "path": "knowledge-base/design-identity/LEDGER.md",
@@ -1138,10 +1121,9 @@
     },
     {
       "path": "knowledge-base/feature-review/CHARTER.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "65c2bf27dc3045010deb464ad07b357f33e9c621",
-      "retiredSha256": "9c31cc93fddeaccaed38fe226fedd80486470f5a4431aacd18f8c7456c004157"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "65c2bf27dc3045010deb464ad07b357f33e9c621"
     },
     {
       "path": "knowledge-base/feature-review/CORE_INTELLIGENCE_AUDIT_2026-09-08.md",
@@ -1151,17 +1133,15 @@
     },
     {
       "path": "knowledge-base/feature-review/DOMAINS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "274a3ab2147d023f477f8ad6e845382ad67612a7",
-      "retiredSha256": "f8632f6f08d2d347c1083f58fa498dbc84a15cf656144f69b57e46c9f2ef275d"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "274a3ab2147d023f477f8ad6e845382ad67612a7"
     },
     {
       "path": "knowledge-base/feature-review/FINDINGS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "03bc628dbdd053cb8c818a4e5c23a0f7f6f7c7dc",
-      "retiredSha256": "49cf3a367d9cf8d631e90bd0835efa0376fee8bca03f41a698200352400cb480"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "03bc628dbdd053cb8c818a4e5c23a0f7f6f7c7dc"
     },
     {
       "path": "knowledge-base/feature-review/HOMI_OUTCOME_STUDY_2026-09-10.md",
@@ -1171,17 +1151,15 @@
     },
     {
       "path": "knowledge-base/feature-review/JOURNEYS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "f0b9e72b4972b07320ce5d1ce792a487a18ca524",
-      "retiredSha256": "032e289e0b3bba77e96bb37c0e140542e80d43d82eca79fec7076a517ccb8757"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f0b9e72b4972b07320ce5d1ce792a487a18ca524"
     },
     {
       "path": "knowledge-base/feature-review/STAFF_JOURNEYS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "a5cf46a6e76be36e4dbe751716f194d5c831d7d3",
-      "retiredSha256": "c36dcec1190c83e42e1d81c3b4cf8bff25543aa2d561edb37705591367808979"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a5cf46a6e76be36e4dbe751716f194d5c831d7d3"
     },
     {
       "path": "knowledge-base/feature-review/UNDERWRITING_PRODUCT_INTEGRITY_AUDIT_2026-09-11.md",
@@ -1191,10 +1169,9 @@
     },
     {
       "path": "knowledge-base/feature-review/WORKFLOWS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "6f84387e6adbb05d3e95108f0f0b814356f547e8",
-      "retiredSha256": "173ef51458b7f59095f87f9c92e1ae38a915526cfe6f42063df125da53b16324"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "6f84387e6adbb05d3e95108f0f0b814356f547e8"
     },
     {
       "path": "knowledge-base/feature-review/journey-walks/2026-08-19-four-door-walks.md",
@@ -1228,10 +1205,9 @@
     },
     {
       "path": "knowledge-base/governance/AI_GOVERNANCE_POLICY.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "0487aa584019b54999c5770560df58641345e93a",
-      "retiredSha256": "9abf9cb16ed2043466e9447cb51349a83e771bf93321f4a00b342f24f43d7ab6"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0487aa584019b54999c5770560df58641345e93a"
     },
     {
       "path": "knowledge-base/governance/ARMED_LAUNCH_CHARTER_2026-07-07.md",
@@ -1241,10 +1217,9 @@
     },
     {
       "path": "knowledge-base/governance/ASSUMPTIONS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "05233b30306bb645374ef99fe4ece8880eede555",
-      "retiredSha256": "34b91e32691ce2c91f62e20a002d2dc44ec86b34c66dbc5e7982a3470158732c"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "05233b30306bb645374ef99fe4ece8880eede555"
     },
     {
       "path": "knowledge-base/governance/CHANNEL_DECISION.md",
@@ -1254,87 +1229,75 @@
     },
     {
       "path": "knowledge-base/governance/CONTINGENT_LIABILITY_REGISTER.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "309224ce97c40b387e4f8b919cf2fd9c51e42b77",
-      "retiredSha256": "15dfac3949f3bc6f63923862f188c534552f293c85890a972f04f5531b843943"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "309224ce97c40b387e4f8b919cf2fd9c51e42b77"
     },
     {
       "path": "knowledge-base/governance/HIRING_PLAN.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "04ac31874f8d9222dbd10340083f82dd355af7b8",
-      "retiredSha256": "79f59ea09d39f97df62bfa2e29643deaa0af4635695775de84cc61c900d908b8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "04ac31874f8d9222dbd10340083f82dd355af7b8"
     },
     {
       "path": "knowledge-base/governance/MODEL_RISK_GOVERNANCE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "1c5976b0f70e8915d32d55f196d71c005b5a7352",
-      "retiredSha256": "7aa81419a619e4c646a483cc789559228c59d9d50bbd00254641c4c92c1c2aeb"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "1c5976b0f70e8915d32d55f196d71c005b5a7352"
     },
     {
       "path": "knowledge-base/governance/TEAM_PRACTICES.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "a34814cfc6fd93984a043374f8404897ae358798",
-      "retiredSha256": "86b7e49f4b004b331263ec2aab6acda8d7c234a405d063f8677086590cb5857b"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a34814cfc6fd93984a043374f8404897ae358798"
     },
     {
       "path": "knowledge-base/governance/UNCONSUMED_CAPABILITIES.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "4d9e3e6bfd359cbe9f61c31cb533521c78257d3c",
-      "retiredSha256": "73895cc44d0773c2f337a8dde68d838f00695876347ee87c0fd5b01b0457abd5"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "4d9e3e6bfd359cbe9f61c31cb533521c78257d3c"
     },
     {
       "path": "knowledge-base/governance/security/ACCESS_CONTROL_POLICY.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "e5448dbe67b496264699a07fdb4959f6c8b4d40e",
-      "retiredSha256": "9b78f5cdbeb75fea012b518ea936c9ccedbb15ffc668508d77867ef287a0e581"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "e5448dbe67b496264699a07fdb4959f6c8b4d40e"
     },
     {
       "path": "knowledge-base/governance/security/ASSET_REGISTER.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "55303709bcfc7f152f17c154b2c59d58797e0f1f",
-      "retiredSha256": "d3319740a061e2f15770d04e81791fd4f32e06208fd7c9aaeab60fcef15849f2"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "55303709bcfc7f152f17c154b2c59d58797e0f1f"
     },
     {
       "path": "knowledge-base/governance/security/INCIDENT_RESPONSE_PLAN.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "08edc37b05578310e91f2067cf8469421b1599c2",
-      "retiredSha256": "5e1ccb37067cc15d9bd1678dc606caff6f4a941ee461a6ff3eeba58bc808e618"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "08edc37b05578310e91f2067cf8469421b1599c2"
     },
     {
       "path": "knowledge-base/governance/security/INFORMATION_SECURITY_POLICY.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "4b18c5925e95d28928c2559a8c7a13525188662f",
-      "retiredSha256": "e9f97a43c4d9f6d4bc3aad0afd6f2911a851f56844a20efd95f01d71a8a26332"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "4b18c5925e95d28928c2559a8c7a13525188662f"
     },
     {
       "path": "knowledge-base/governance/security/PLAID_SECURITY_QUESTIONNAIRE_ANSWERS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "cae24d58f31fc5d981339d302ea0f0e5ddc2470a",
-      "retiredSha256": "5d61486b1bb1045c5e451fd00722ba143cdc94eb83c075480c934b4e5d088895"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "cae24d58f31fc5d981339d302ea0f0e5ddc2470a"
     },
     {
       "path": "knowledge-base/handbook/DEVELOPER_PLAYBOOK.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "a85ca503ff1b54b57c8163f8709b134009ef9b0b",
-      "retiredSha256": "1474ddfe02fd3aa156d152af8141fe5332e83261e0d1453bad7b6314a7943475"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a85ca503ff1b54b57c8163f8709b134009ef9b0b"
     },
     {
       "path": "knowledge-base/handbook/FEATURE_MAP.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "7428843a683af7ac1990cdecf351ad1848ed983e",
-      "retiredSha256": "92e76b9d085c138f08b77e48aef5e250623c55ca759b92fe7fb2d49eb0fa8bf6"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "7428843a683af7ac1990cdecf351ad1848ed983e"
     },
     {
       "path": "knowledge-base/handbook/URLA_FORM_REFACTOR_TRAP.md",
@@ -1344,24 +1307,21 @@
     },
     {
       "path": "knowledge-base/handbook/app-guide/01-start-here.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "a6d667f3d4d658caf022415f9c9b3f668c35f4dd",
-      "retiredSha256": "584ea051145015a23984e03faeb04df252cf5d2b54794aa91cc428ae43c5ce6c"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a6d667f3d4d658caf022415f9c9b3f668c35f4dd"
     },
     {
       "path": "knowledge-base/handbook/app-guide/02-architecture.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "dbc60ef6582274e7c5bb9397cfa11a754f42b7aa",
-      "retiredSha256": "7a97cbdc2e9e33a67b8810af81a9635cb4e0166cfcb6e1cd925e473255a391c5"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "dbc60ef6582274e7c5bb9397cfa11a754f42b7aa"
     },
     {
       "path": "knowledge-base/handbook/app-guide/03-database.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "abe13db702455758251d341ef45352bca1b1177a",
-      "retiredSha256": "f6df01e24f9072565d7cc7938a1581dde43cc8519a641d0e5f24c86a9ba714f8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "abe13db702455758251d341ef45352bca1b1177a"
     },
     {
       "path": "knowledge-base/handbook/app-guide/04-api-routes.md",
@@ -1371,59 +1331,51 @@
     },
     {
       "path": "knowledge-base/handbook/app-guide/05-data-flow.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "4a2371c57975e15c6dd1fbdc67cd81f380a4604a",
-      "retiredSha256": "593953182947155e75c4516d28fba008005d333f32b8274a6b5643ca6afa71c8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "4a2371c57975e15c6dd1fbdc67cd81f380a4604a"
     },
     {
       "path": "knowledge-base/handbook/app-guide/06-auth-security-secrets.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "3d9fd6002484f1df07b8c712f32460861baebba6",
-      "retiredSha256": "f34c5a3b0d50d4c4a13797238ea11df6a8ac07e35d25f405b9ff2c6eb3f16d60"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3d9fd6002484f1df07b8c712f32460861baebba6"
     },
     {
       "path": "knowledge-base/handbook/app-guide/07-frontend.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "251b74f11caf1f921fd3e3adc075365fba13c396",
-      "retiredSha256": "c27537074c304d19375a2c5dc0762e62944a9f3b2ffa434cb5ee7777428e2bf5"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "251b74f11caf1f921fd3e3adc075365fba13c396"
     },
     {
       "path": "knowledge-base/handbook/app-guide/08-services.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "a1f768a3a505bcf0f1f698bedd8b56d4ede003cd",
-      "retiredSha256": "dfe50f28cc08f9c7fb1e65654428bc5124339f1ad15046a75b7aa097d4ea075a"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a1f768a3a505bcf0f1f698bedd8b56d4ede003cd"
     },
     {
       "path": "knowledge-base/handbook/app-guide/09-integrations.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "146a6b025be03240e57caf6199ea4741bd4954ae",
-      "retiredSha256": "929355f51fdc6e4fe0e93ec343f3f2bdbe470131052a4fea4e8b6e8587f8bc76"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "146a6b025be03240e57caf6199ea4741bd4954ae"
     },
     {
       "path": "knowledge-base/handbook/app-guide/10-deploy-ops.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "d7563ebe389f074df63b02265e705855e3fce6b2",
-      "retiredSha256": "e5327698a4583a6d62abdd76dea28851b17192b7a9f8ebea81c381f2c93e7dcd"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d7563ebe389f074df63b02265e705855e3fce6b2"
     },
     {
       "path": "knowledge-base/handbook/app-guide/11-domain-glossary.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "57fd022b07f67139945b96e239d52c93f9a33eb9",
-      "retiredSha256": "5cf3e25988ed07f78438779f8fde9a15ec2f850ad560227ae3289505ceceda0d"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "57fd022b07f67139945b96e239d52c93f9a33eb9"
     },
     {
       "path": "knowledge-base/handbook/app-guide/12-api-contract.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "326cc35856bf306e770a2c840a9fa7477a78b489",
-      "retiredSha256": "f9b43caf5d7cca6328f40cb223f26ef2e1d3db3b2f61a43d256db6af03593454"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "326cc35856bf306e770a2c840a9fa7477a78b489"
     },
     {
       "path": "knowledge-base/handbook/design/DESIGN_SYSTEM.md",
@@ -1433,101 +1385,87 @@
     },
     {
       "path": "knowledge-base/handoff/00-product-roles-and-the-map.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "19efe35f708a784c5143848aff7eaa50fbd8901c",
-      "retiredSha256": "b668368b5fc5eef8eeeede7b802cec2089a7f753d1629cba3de014ab60f223e8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "19efe35f708a784c5143848aff7eaa50fbd8901c"
     },
     {
       "path": "knowledge-base/handoff/01-architecture-request-lifecycle.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "7ae7600fee634adfef7210bb59329abb7f51ed52",
-      "retiredSha256": "afc76c16604790820855d6e4acd958e3efa6dbf76b036b99ad333cf6cbdf4bad"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "7ae7600fee634adfef7210bb59329abb7f51ed52"
     },
     {
       "path": "knowledge-base/handoff/02-auth-and-authorization.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "6d4e3670bce674c167061aad1f2f26c5e9853fae",
-      "retiredSha256": "347a05f5b2300bdaa15cce1c1f61fdc3341601179d692b9fbe0812adb3e808f1"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "6d4e3670bce674c167061aad1f2f26c5e9853fae"
     },
     {
       "path": "knowledge-base/handoff/03-data-model-and-schema.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "35c72f6e428cc0653380e3b41fcf1d331a43e54a",
-      "retiredSha256": "df818e028e5955c1883cfe7bf38ee7da5e533b9ca14105e415cf99ed7162b796"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "35c72f6e428cc0653380e3b41fcf1d331a43e54a"
     },
     {
       "path": "knowledge-base/handoff/04-data-flow-loan-journey.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "d4a2e600e6e0d11be1fb48d915b7b6bcde2167ef",
-      "retiredSha256": "ccbed5d4bc6313af736a3ab50931511170bfd0e23308f56ffd5bb0ca2ab7aec8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d4a2e600e6e0d11be1fb48d915b7b6bcde2167ef"
     },
     {
       "path": "knowledge-base/handoff/05-backend-patterns-engines-adapters.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "656620d35db0ed0c9531fb28a802e825b8ae74d1",
-      "retiredSha256": "7859fcb9c552fadfff0c5f6180292bef7ac8191f5407229bf0e6aa1b03379804"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "656620d35db0ed0c9531fb28a802e825b8ae74d1"
     },
     {
       "path": "knowledge-base/handoff/06-frontend-patterns.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "40fe6cc69a51d7d6a0578388ce60f3df2abd9b8a",
-      "retiredSha256": "cacd8fe0f03f1b99a999918b9dd99624b88d8fa2f062e41fef5b304f97dfaf7d"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "40fe6cc69a51d7d6a0578388ce60f3df2abd9b8a"
     },
     {
       "path": "knowledge-base/handoff/07-test-harness-and-ci-proof.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "f464e1f81e99e414d0f98b80c7b1ed09c748bedf",
-      "retiredSha256": "68fe9166d63a9b5ad98341fe8981739cec3675a3ce7f6fcadfb2dd4e0d57fe6f"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f464e1f81e99e414d0f98b80c7b1ed09c748bedf"
     },
     {
       "path": "knowledge-base/handoff/08-compliance-rails.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "168fc8ecc213c5ae83806a351a2b3300699b6725",
-      "retiredSha256": "c9ce591f121a1564821f6a4b37a9e4b8952ec3e3a4c3fd007441794f44e9d08d"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "168fc8ecc213c5ae83806a351a2b3300699b6725"
     },
     {
       "path": "knowledge-base/handoff/09-prompting-and-automation.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "c0ba6bf903faa8007efb45f671b8b31c64cd1e03",
-      "retiredSha256": "fd1cc36ac0372949dfc85a32739609e239126bb97f9f8645638e2e7aea478491"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c0ba6bf903faa8007efb45f671b8b31c64cd1e03"
     },
     {
       "path": "knowledge-base/handoff/10-deploy-environments-migrations.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "499f79022d5bec16d4475ee3cc92da15e544fffd",
-      "retiredSha256": "4d09f56cbe252ad86bf77be7d004a4ee3c0a1f096a54e2164d26ae58ca2c9683"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "499f79022d5bec16d4475ee3cc92da15e544fffd"
     },
     {
       "path": "knowledge-base/handoff/11-patterns-and-repetition.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "3f03572171f838147f381ac466debee9323ee9e1",
-      "retiredSha256": "e594a969c979d15c4ec91393a540f663d1bef0941db48123c6cbd34e90a418c8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3f03572171f838147f381ac466debee9323ee9e1"
     },
     {
       "path": "knowledge-base/handoff/12-loop-safe-build-playbook.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "6a4e4e302a2f47f7b01f7ae4f9fc103fcf1c4881",
-      "retiredSha256": "49197743efa94e305624d6e96e0b1a845e74caf9b973740a107cd7576a52e34d"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "6a4e4e302a2f47f7b01f7ae4f9fc103fcf1c4881"
     },
     {
       "path": "knowledge-base/handoff/13-selling-guide-as-the-foundation.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "bab2b84862f1a2e7110985781624cbec1592ec46",
-      "retiredSha256": "683b4a0aa179a5c6fdb617203df965de221d7789d02c51c2753ff90eb764c001"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "bab2b84862f1a2e7110985781624cbec1592ec46"
     },
     {
       "path": "knowledge-base/handoff/FACTS.md",
@@ -1543,94 +1481,81 @@
     },
     {
       "path": "knowledge-base/handoff/README.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "39c835e7eda44a7a04a1347bafbbccc5aafabe34",
-      "retiredSha256": "1db9cd4c3e2642fff2ec2b3aa1922aa20606953a90b2e7698bb5e06cf2c732bd"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "39c835e7eda44a7a04a1347bafbbccc5aafabe34"
     },
     {
       "path": "knowledge-base/handoff/TEACHBACK_KEY.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "9f582d22c9455194386c9c393026ea3768315631",
-      "retiredSha256": "5f1e6ad3d9cb75e8e7883015129a174e71c48c18fa4ae6dee6d834d01bf06f10"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "9f582d22c9455194386c9c393026ea3768315631"
     },
     {
       "path": "knowledge-base/handoff/prompts/INVOKE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "2cc2a4f4b8e8f3c1e51fbbbe9cda515f7da03835",
-      "retiredSha256": "0b24690e083131acd2f648d3e7c0d109b1fb6c6d114b8846ba2165b4e4217729"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2cc2a4f4b8e8f3c1e51fbbbe9cda515f7da03835"
     },
     {
       "path": "knowledge-base/handoff/prompts/_RAILS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "48f3e3bf8089c8f1c9706019b79f5c0d080e8d9b",
-      "retiredSha256": "ce5419934d8266f49878df7934dcb22a729462e349f1559e03c2f9c92e481ce4"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "48f3e3bf8089c8f1c9706019b79f5c0d080e8d9b"
     },
     {
       "path": "knowledge-base/handoff/prompts/_REPORT_FORMAT.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "0cb1a6a37150e82879b3665e67fa7948c6123279",
-      "retiredSha256": "34591748fd08ac8897f5f2e1786eddcb93bf1090249fabcfe547916f1d367bdd"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0cb1a6a37150e82879b3665e67fa7948c6123279"
     },
     {
       "path": "knowledge-base/handoff/prompts/bug-fix.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "5d7166dbcb15acb31a4ce158fa5e4b986027d389",
-      "retiredSha256": "2f9d3f42c8b3831e2703c38977fe7c12cd0044ffc2c371d4e25cfb45e76c917a"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "5d7166dbcb15acb31a4ce158fa5e4b986027d389"
     },
     {
       "path": "knowledge-base/handoff/prompts/doc-update.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "3dab44c5a0a1e60b762e5ebf1e34e281a40e3fb8",
-      "retiredSha256": "0bad0b1b818d970537ee7298343407ebc786754e4f32946e7dfbf055f2a923f8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "3dab44c5a0a1e60b762e5ebf1e34e281a40e3fb8"
     },
     {
       "path": "knowledge-base/handoff/prompts/feature.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "1588a877aa453142548be22fcff02ba346a3513d",
-      "retiredSha256": "b3d13a4a1a72467dd7364d71c4bf706591f96dd0cb1619ae1e82d932e62e6a1c"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "1588a877aa453142548be22fcff02ba346a3513d"
     },
     {
       "path": "knowledge-base/handoff/prompts/new-route.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "d8dff454cf1942fd1f7dfa06266882a6906ac20d",
-      "retiredSha256": "f7c65c8dd9bb0c7f5e039815c35830abeb99ed52ce508f6ebe45eaf80dd9db9f"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "d8dff454cf1942fd1f7dfa06266882a6906ac20d"
     },
     {
       "path": "knowledge-base/handoff/prompts/new-test.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "c2b45431e9ae0f55323c3723ff313d10c76d7896",
-      "retiredSha256": "37f43f00690d106701f8bfad282120d0a2404c0b7c09146acb1a0bb6326b2313"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c2b45431e9ae0f55323c3723ff313d10c76d7896"
     },
     {
       "path": "knowledge-base/handoff/prompts/refactor.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "471c2fbca249d5a556bc19eb9fed6ccd794f1ebb",
-      "retiredSha256": "82b8211f71088d42c179feaeb0002f32aa46218c225fb402e34f0c0e4115bfc8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "471c2fbca249d5a556bc19eb9fed6ccd794f1ebb"
     },
     {
       "path": "knowledge-base/handoff/prompts/schema-migration.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "0a9796ef0f80b4faf614a51c926ac2dec5f25056",
-      "retiredSha256": "95492ffd2d29be543b441af3f4a9a3c001188fa2dcc4a80c1d356d4c510c1cc6"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0a9796ef0f80b4faf614a51c926ac2dec5f25056"
     },
     {
       "path": "knowledge-base/handoff/prompts/ui-page.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "81b6eb49a1f7c73dfbdc06c71421004c9d5f8e39",
-      "retiredSha256": "3b4a3af3e720c5be073896adae5f90af653bc54093b3f38d1890786d104c3e19"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "81b6eb49a1f7c73dfbdc06c71421004c9d5f8e39"
     },
     {
       "path": "knowledge-base/logs/2026-07-12-external-strategy-adjudication.md",
@@ -1838,10 +1763,9 @@
     },
     {
       "path": "knowledge-base/refactor-radar/RESEARCH.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "bc3cabcb6bbc0e4d09538fcbf353d5f5fda69a7f",
-      "retiredSha256": "ed5700ec8038d2b746cff8b616e5bdac7be6cd5ee921685c77e1d0482e9aabea"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "bc3cabcb6bbc0e4d09538fcbf353d5f5fda69a7f"
     },
     {
       "path": "knowledge-base/research/NON_W2_LENDING_RESEARCH_BRIEFING.md",
@@ -1923,24 +1847,21 @@
     },
     {
       "path": "knowledge-base/routines/CHARTER.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "304b3059390631c305f20f02005904592e7126f3",
-      "retiredSha256": "6ee76b9901fc7fdf1821d2cd5cbdc1b066fc401b9e991d191bc8f0d67681f76e"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "304b3059390631c305f20f02005904592e7126f3"
     },
     {
       "path": "knowledge-base/routines/HANDOFF.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "c5d2b8f015433ea279b8c0c605c5f75e785ec505",
-      "retiredSha256": "56bcff821db953d4500cb3d09002918b240758cb208ac25d58bae7677b1013ea"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "c5d2b8f015433ea279b8c0c605c5f75e785ec505"
     },
     {
       "path": "knowledge-base/routines/LESSONS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "89bc3237cadde74cc1755b2a6b14fa1e491a8c31",
-      "retiredSha256": "120fdd6f8a37101e24377dfaa8e694ece3cb29215f1a22191677170ece1efdca"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "89bc3237cadde74cc1755b2a6b14fa1e491a8c31"
     },
     {
       "path": "knowledge-base/routines/REGISTER.md",
@@ -1950,10 +1871,9 @@
     },
     {
       "path": "knowledge-base/routines/TEAM.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "b1527c27a5531bc2ac79b944c13631a40b959012",
-      "retiredSha256": "1e47698d64a7e1766868cc9ed7c577b96b0cec7689be33108d135d74899a0d41"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "b1527c27a5531bc2ac79b944c13631a40b959012"
     },
     {
       "path": "knowledge-base/routines/feature-completion/LEDGER.md",
@@ -2191,10 +2111,9 @@
     },
     {
       "path": "knowledge-base/runbooks/BETA_GO_LIVE_READINESS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "e6658eca5446194261f17c11e80e1cf1fe0b84ad",
-      "retiredSha256": "f4b82ccb1fb03aff0783fe90789950941c823e6341a2bd8b617bc12ec5d22783"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "e6658eca5446194261f17c11e80e1cf1fe0b84ad"
     },
     {
       "path": "knowledge-base/runbooks/BROWSER_PROBE.md",
@@ -2240,24 +2159,21 @@
     },
     {
       "path": "knowledge-base/runbooks/PHASE_0_TECH_READINESS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "674dd77aeaaf679ef7419939e56ecef82ef092d9",
-      "retiredSha256": "869cc387406b4427a0757cce97fca97dfbf0e4b8a5df3c4d0d9a097ab3acf19f"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "674dd77aeaaf679ef7419939e56ecef82ef092d9"
     },
     {
       "path": "knowledge-base/runbooks/PRE_PRODUCTION_OPS_ROUTINES.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "311d32039a8c0fda08cd6144be7e7896e56c8d59",
-      "retiredSha256": "ec97cb8c9dd2f331704c10be12849bf7da8ec8954cece9311f752b85622787d9"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "311d32039a8c0fda08cd6144be7e7896e56c8d59"
     },
     {
       "path": "knowledge-base/runbooks/PROD_ACCEPTANCE_TEST.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "2e4105de5caa2f906e1a735da95d2cca0384d371",
-      "retiredSha256": "e612c9700f8e013062318a5fe4a7a3fe5fcfc17b148cad9c665d237b54574cd9"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "2e4105de5caa2f906e1a735da95d2cca0384d371"
     },
     {
       "path": "knowledge-base/runbooks/ROLLBACK.md",
@@ -2273,80 +2189,69 @@
     },
     {
       "path": "knowledge-base/runbooks/support-playbooks/README.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "be5857f490f7c0f09cf614681be1264e51ad0b6e",
-      "retiredSha256": "dffe94736fbe2eebe1a93b1ee3d8a210cf4cdcd3f6143b471dfb7ef1ec5bbfc8"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "be5857f490f7c0f09cf614681be1264e51ad0b6e"
     },
     {
       "path": "knowledge-base/runbooks/support-playbooks/discrimination-credit-error-escalation.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "f22f4effbf6e69402f095e7a54c3343564020c94",
-      "retiredSha256": "bb3da1b984e9aa0ae5bbba6bbd010f4aae6047dd954d9f4202b9202b2c315ec9"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f22f4effbf6e69402f095e7a54c3343564020c94"
     },
     {
       "path": "knowledge-base/runbooks/support-playbooks/locked-out-user.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "0caff0d20ed2a4a01243f144e2233a8aa4c01e11",
-      "retiredSha256": "cf89d4362359f8d51079dac54d8864d7307deb53357ab3f6941299a108160c40"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "0caff0d20ed2a4a01243f144e2233a8aa4c01e11"
     },
     {
       "path": "knowledge-base/sop/SOP-000-manual-charter.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "a7daf8a88541571a60980858c7cdb0de47d2cfc1",
-      "retiredSha256": "5e1512222422331fba2b9d3deed6846b7eb7e944a6e41732a09279e13ba9ef80"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "a7daf8a88541571a60980858c7cdb0de47d2cfc1"
     },
     {
       "path": "knowledge-base/specs/CORE_INTEGRATION.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "f1fb7fed4d910f44970152d18ac06d1fc27f8fa1",
-      "retiredSha256": "ec220a5214c15e48f06d6fa46abea8e4dd4b9c6826067705af7c9a21fa0eb726"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f1fb7fed4d910f44970152d18ac06d1fc27f8fa1"
     },
     {
       "path": "knowledge-base/specs/FREE_DATA_MOAT.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "ab1ad41aa13a3fa008363aac34693c023ae6f5e3",
-      "retiredSha256": "37835614cc13859131b38d7bc971059b9ea13a459ac43040c6577a94d2eabaf5"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "ab1ad41aa13a3fa008363aac34693c023ae6f5e3"
     },
     {
       "path": "knowledge-base/specs/LO2_SCENARIO_SIMULATOR_SPECS.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "7fa4f521d88e818b2a1d6e5dad3bde4a0df6599f",
-      "retiredSha256": "c93c67031c572bb1816f8f58f4e0a3f9d6d98bef172ba1ecb54afb41e093e8d5"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "7fa4f521d88e818b2a1d6e5dad3bde4a0df6599f"
     },
     {
       "path": "knowledge-base/specs/LO_ADVISOR_PROGRAM.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "74c0af7d8b2906d02f7959abcc0f5fd7db53e747",
-      "retiredSha256": "9e54dd5e9f48f22f0dfd53b4f742fa05b76f2f8a1bdc5c2271ce6860b00d08cb"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "74c0af7d8b2906d02f7959abcc0f5fd7db53e747"
     },
     {
       "path": "knowledge-base/specs/PARTNER_HUB_PROGRAM.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "ba4bcaa8e4c0331052b23013479064e351216a2b",
-      "retiredSha256": "b4e88f5860fb19d8c4c1f124699cd2bea8ee3d696fbf63a41e440a36c000110f"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "ba4bcaa8e4c0331052b23013479064e351216a2b"
     },
     {
       "path": "knowledge-base/specs/UNIVERSAL_ADAPTATION_LAYER_PROGRAM.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "f6712b785aaaaa3460b057343704ad0618a99e5f",
-      "retiredSha256": "3c38a6c9edd94584b655bdea2004682361ddfc2813f5e3c97b63109da2aa624f"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "f6712b785aaaaa3460b057343704ad0618a99e5f"
     },
     {
       "path": "knowledge-base/specs/_TEMPLATE.md",
-      "disposition": "retired",
-      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect.",
-      "originalBlob": "5ab2274e8487497b1ae64fbb590fe64effb7c730",
-      "retiredSha256": "a0afb2b41f74e94152dd0e1f97b096f57b2c87f46c623cce92508c985a128a13"
+      "disposition": "deleted",
+      "reason": "Removed overlapping direction or unverified policy/research narrative from active guidance; preserved a non-authoritative redirect. Removed from the tree on 2026-09-13; recover via originalBlob.",
+      "originalBlob": "5ab2274e8487497b1ae64fbb590fe64effb7c730"
     },
     {
       "path": "knowledge-base/ui-conformance/LEDGER.md",
