@@ -471,7 +471,7 @@ function main() {
       "     in that PR-body section, plus one line of why. That is a recorded attestation with your\n" +
       "     name on it, not a waiver.\n" +
       "\nThis guard proves the citation was written down. It cannot prove it is correct.\n" +
-      "Register: knowledge-base/governance/TEAM_PRACTICES.md §10.",
+      "Shared instructions: AGENTS.md.",
   );
   process.exit(1);
 }

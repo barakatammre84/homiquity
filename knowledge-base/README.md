@@ -1,257 +1,32 @@
-# Knowledge Base (KB)
+# Knowledge index
 
-The single home for all Homiquity documentation. Every `.md` here is indexed below — an
-unindexed doc is an unread doc (enforced by `scripts/kb-index-guard.cjs` via `pnpm checkup`).
-Four living docs live outside this tree, deliberately: **`AGENTS.md`** (the agent
-entry point; read it first), **`CLAUDE.md`** (Claude Code auto-loads
-it from repo root), **`README.md`** (the repo landing page), and **`CTO_ROADMAP.md`** (the live
-work queue). A fifth, **`PRODUCT_SPINE.md`**, is a one-line pointer stub retained only so old
-links resolve — its content moved to [L1](L1_VISION_AND_SCOPE.md). Regulatory source binaries
-stay in **`docs/`** (fannie-mae / nmls / nmls-safe). App-data (not docs) lives in
-**`data/regulatory/`**.
+Start with [AGENTS.md](../AGENTS.md), [product direction](../CTO_ROADMAP.md),
+[current context](ACTIVE_CONTEXT.md) and the [primary-source map](compliance/SELLING_GUIDE_DECISION_RULE.md).
+The [work claims](routines/REGISTER.md) coordinate edits; open PRs are the stronger signal.
 
-## Precedence hierarchy (which doc wins)
+## Technical references — verify against current code
 
-Decisions flow **L1 → L2 → L3**, and **code wins over any doc on a stale fact** (that's a
-doc-drift bug to fix):
+- [SELLING_GUIDE_COVERAGE.md](compliance/SELLING_GUIDE_COVERAGE.md)
+- [CHANNEL_DECISION.md](governance/CHANNEL_DECISION.md)
+- [URLA_FORM_REFACTOR_TRAP.md](handbook/URLA_FORM_REFACTOR_TRAP.md)
+- [04-api-routes.md](handbook/app-guide/04-api-routes.md)
+- [DESIGN_SYSTEM.md](handbook/design/DESIGN_SYSTEM.md)
+- [BROWSER_PROBE.md](runbooks/BROWSER_PROBE.md)
+- [CICD.md](runbooks/CICD.md)
+- [DB_MIGRATIONS.md](runbooks/DB_MIGRATIONS.md)
+- [EXTRACTION_EVALUATION.md](runbooks/EXTRACTION_EVALUATION.md)
+- [LOCAL_DEV.md](runbooks/LOCAL_DEV.md)
+- [NEON_PREVIEW_DB.md](runbooks/NEON_PREVIEW_DB.md)
+- [ROLLBACK.md](runbooks/ROLLBACK.md)
+- [TEST_ACCOUNTS.md](runbooks/TEST_ACCOUNTS.md)
 
-- **L1 — [Vision & Scope](L1_VISION_AND_SCOPE.md)** — decides what we build (the cut-line).
-- **L2 — [Compliance & Logic](L2_COMPLIANCE_AND_LOGIC.md)** — the guardrails that override any feature.
-- **L3 — Feature specs** — [`specs/`](specs/), template [`specs/_TEMPLATE.md`](specs/_TEMPLATE.md) —
-  each cites its L1 loop + L2 invariants.
+These references locate implementation and previous findings. They are not legal authority or
+evidence of current production state. Coverage reports prove references exist, not that rules are
+correct; conformance findings must be reread against the source before relying on them.
 
-## Where we are right now
+## Dispositions and recovery
 
-- [ACTIVE_CONTEXT.md](ACTIVE_CONTEXT.md) — what is deployed, what the readiness verdict is, which provider is real versus simulated, the unverified production settings, the open founder decisions, and the known gaps between the docs and the code. Facts only, never rules. Read it after [AGENTS.md](../AGENTS.md) and before anything else.
-
-## Sections
-
-- [Core integration](specs/CORE_INTEGRATION.md) — founder-approved sequence for bringing Core review and evidence capabilities into the existing Homiquity app; the five integrations landed. Current as of 2026-09-12, when the brief reversal of 2026-09-11 was itself reversed and Core was set for archive.
-
-### Handbook — how the system is built · [`handbook/`](handbook/)
-- [FEATURE_MAP.md](handbook/FEATURE_MAP.md) — **what has actually been built**: all 41 shipped
-  feature areas, what each does, its key files, and the `hq-*-owner` agent that owns it. Also
-  records which areas have never had a feature review. Start here when the question is "does this
-  exist, and who works on it".
-- [DEVELOPER_PLAYBOOK.md](handbook/DEVELOPER_PLAYBOOK.md) — the map: where code lives, the core
-  workflows, the golden rules.
-- [URLA_FORM_REFACTOR_TRAP.md](handbook/URLA_FORM_REFACTOR_TRAP.md) — why the "obviously pure"
-  helpers in `URLAForm.tsx` must **not** be extracted. Three adversarial reviews refuted all
-  three candidate extractions; each failure mode is invisible to `tsc`, to the full test suite
-  and to every CI guard, and the worst writes a **co-applicant's PII into the primary
-  borrower's rows**. Read before touching that file.
-- [app-guide/](handbook/app-guide/) — the 12-chapter subsystem handbook (read in order, or jump):
-  - [01 — Start Here](handbook/app-guide/01-start-here.md) · [02 — Architecture, Entry & Exit Points](handbook/app-guide/02-architecture.md) · [03 — Database & Schema](handbook/app-guide/03-database.md)
-  - [04 — API Surface](handbook/app-guide/04-api-routes.md) · [05 — Data Flow: A Loan's Journey](handbook/app-guide/05-data-flow.md) · [06 — Auth, Security & Secrets](handbook/app-guide/06-auth-security-secrets.md)
-  - [07 — Frontend](handbook/app-guide/07-frontend.md) · [08 — Service Catalog](handbook/app-guide/08-services.md) · [09 — External Integrations](handbook/app-guide/09-integrations.md)
-  - [10 — Deploy & Operations](handbook/app-guide/10-deploy-ops.md) · [11 — Mortgage Domain Glossary](handbook/app-guide/11-domain-glossary.md)
-  - [12 — The UI ↔ Backend API Contract](handbook/app-guide/12-api-contract.md) — who owns a payload shape, the three wire states (absent / value / `null`), the error shape, and how a shape changes without dropping a borrower's answer.
-- [design/DESIGN_SYSTEM.md](handbook/design/DESIGN_SYSTEM.md) — **the single binding design standard**
-  ("Mint & Flare"). Tokens and the AA-verified colour pairs, the type scale, PageShell geometry,
-  elevation, the icon registry, `<Logo>`/white-label, empty states, the **capture-flow standard**
-  (progressive disclosure · tunnel vision · mobile invariants), the **four-question gate**
-  (provenance · explanation · agreement · honesty), and the adoption checklist. §0 is a *measured*
-  adoption table — no `⏳`, every row carries a number and the command that produces it
-  (`pnpm guard:ui`). Merged 2026-08-18 from `design_guidelines.md` + `visual-consistency-standard.md`,
-  both now in [archive/design/](archive/design/).
-- [handoff/](handoff/) — the **Feynman onboarding & handoff corpus** for a full-stack team: each chapter explains one subsystem plainly, then proves every claim with a read-only command, names where it breaks, and ends in a teach-back. Layered on the app-guide (which wins on any conflict; the code wins over both); counts are command-derived in `handoff/FACTS.md`, drift found in other docs is logged in `handoff/LEDGER.md` rather than hand-patched; `handoff/prompts/` holds the loop rails and templates for building through Claude without breaking the harness.
-
-### Compliance — regulated-logic doctrine (L2 detail) · [`compliance/`](compliance/)
-- [UNDERWRITING_SCENARIOS.md](compliance/UNDERWRITING_SCENARIOS.md) — the registry of *shipped* scenarios · [UNDERWRITING_SCENARIO_INTAKE.md](compliance/UNDERWRITING_SCENARIO_INTAKE.md) — the unadjudicated intake queue (split out 2026-08-06) — scenario catalog + the
-  no-citation-no-implementation contract.
-- [SCENARIO_ARCHITECT.md](compliance/SCENARIO_ARCHITECT.md) · [REGULATORY_MONITORING.md](compliance/REGULATORY_MONITORING.md)
-  · [SAFE_MLO_COMPLIANCE_MAP.md](compliance/SAFE_MLO_COMPLIANCE_MAP.md) · [COMPLIANCE_COUNSEL_REVIEW.md](compliance/COMPLIANCE_COUNSEL_REVIEW.md)
-- [LAUNCH_COUNSEL_PACKET.md](compliance/LAUNCH_COUNSEL_PACKET.md) — the four counsel asks that gate the go-live flip (sendable as-is)
-- [NTHLA_609G_SPEC.md](compliance/NTHLA_609G_SPEC.md) — FCRA §609(g) Notice to Home Loan Applicant: absent today, hard-blocking for F3, and the per-bureau data the credit-vendor contract must deliver
-- [SELLING_GUIDE_CONFORMANCE.md](compliance/SELLING_GUIDE_CONFORMANCE.md) — what our code agrees and disagrees with in the Fannie Mae *Selling Guide* (edition 08-05-2026, one command from greppable via `scripts/extract-selling-guide.py`; the copyrighted text is gitignored since the repo went public, the tracked `section-index.tsv` still locates any section). The Verified-conforming table, the numbered corrections (`C-n`), the recorded gaps (`G-n`) resolved conservatively rather than assumed, and **the scrub loop** a session follows to add to them. Those ids are stable keys other files cite, so `pnpm guard:conformance` fails on a duplicate id or a section id that does not resolve in the committed edition. *(Deliberately no counts here: this line carried two of them, in two copies that disagreed — the drift a count in an index line always becomes.)*
-- [`compliance/SELLING_GUIDE_COVERAGE.md`](compliance/SELLING_GUIDE_COVERAGE.md) — generated standing map of all 423 Selling Guide sections against this codebase; run `pnpm coverage:sg` after editing `compliance/selling-guide-coverage.json`.
-- [SELLING_GUIDE_DECISION_RULE.md](compliance/SELLING_GUIDE_DECISION_RULE.md) — **the rule, for every seat including the CEO's**: before anyone decides what a loan is, who qualifies, what it costs or how it is delivered, the Selling Guide answers it and the answer is cited. Which rendering to read (markdown — it keeps the tables), how to look something up in under a minute, how to cite it, the four things the rule does not let you do, and what the Guide does *not* govern. Written for a reader who will never run a test suite (founder direction 2026-08-24)
-- [LO_SUBMISSION_TO_CLOSING_REVIEW.md](compliance/LO_SUBMISSION_TO_CLOSING_REVIEW.md) — the loan officer's path (file → DU → wholesale lender approval → clear-to-close → closer handoff) verified step-by-step against Selling Guide B1-1/B3-2/C1/D1 readings plus a live end-to-end walkthrough; carries the founder's three answers (tools present / missing / mismatches), the closer-desk gap requirements, and proposed conformance entries (SG-C-A, SG-G-1/2)
-- [SELLING_GUIDE_PERMANENCE.md](compliance/SELLING_GUIDE_PERMANENCE.md) — the program that keeps the Guide the verified source of truth: extraction from git history, the tracked fact + link layer, the always-run corpus gates, the SessionStart hook, the daily steward, the edition/link watch with its acknowledged-blocked ratchet, and the founder-gated criteria for the assumption-replacement end state. Every layer with a runnable receipt.
-- [security/threat_model.md](compliance/security/threat_model.md)
-
-### SOP Manual — written operating procedures (DRAFT) · [`sop/`](sop/)
-- [SOP-000-manual-charter.md](sop/SOP-000-manual-charter.md) — **DRAFT, unsigned** — charter for the operations/QC manual (TPO written-QC-plan obligation, examiner readiness, numbering scheme, approval workflow). Landed 2026-08-20 from the 08-19 orphan snapshot; its template, RACI table and SOP freshness guard are planned, not yet built; its Fannie A3-3-01 wording is ⚠️ unverified pending procurement.
-
-### Governance — policies & session rules · [`governance/`](governance/)
-- [TEAM_PRACTICES.md](governance/TEAM_PRACTICES.md) — how we work (the house-style exemplar).
-- [AI_GOVERNANCE_POLICY.md](governance/AI_GOVERNANCE_POLICY.md) · [MODEL_RISK_GOVERNANCE.md](governance/MODEL_RISK_GOVERNANCE.md)
-  · [ASSUMPTIONS.md](governance/ASSUMPTIONS.md) · [ARMED_LAUNCH_CHARTER_2026-07-07.md](governance/ARMED_LAUNCH_CHARTER_2026-07-07.md)
-- [CHANNEL_DECISION.md](governance/CHANNEL_DECISION.md) — **OPEN, founder-owned:** broker or
-  mini-correspondent. One constant in `shared/businessChannel.ts`; the largest unanswered question
-  about the capital structure. The Fannie delivery stack is frozen (`pnpm guard:channel`) until it lands.
-- [CONTINGENT_LIABILITY_REGISTER.md](governance/CONTINGENT_LIABILITY_REGISTER.md) — what we could owe and
-  whether the reserve covers it. For an asset-light broker the contingent exposures *are* the balance
-  sheet; live figures at `GET /api/reports/contingent-liabilities`.
-- [HIRING_PLAN.md](governance/HIRING_PLAN.md) — the roles that get us originating, in hire
-  order: scorecards, interview loops, four take-homes built from real subsystems, and the
-  human operating routine each role runs against the queue an automated routine already fills.
-- [UNCONSUMED_CAPABILITIES.md](governance/UNCONSUMED_CAPABILITIES.md) — capability built ahead of a
-  consumer, each with a **decide-by date**: wire a consumer or freeze it. Exists because the Fannie
-  delivery stack accreted to 1,482 lines with zero callers before anyone asked "who calls this?".
-
-> The living docs above carry a **Freshness** line (`pnpm guard:docs`). Dated logs under
-> [`logs/`](logs/) deliberately do not — a log is history, not a claim about the present.
-- [SESSION_CLAIMS.md](SESSION_CLAIMS.md) — **stub.** Absorbed into [routines/REGISTER.md](routines/REGISTER.md) on 2026-08-12; retained only so existing links resolve.
-- [routines/feature-coverage/LEDGER.md](routines/feature-coverage/LEDGER.md) — per-area coverage:
-  which of the 41 built feature areas has ever been walked. Seeded with 23 of 41 at `never`.
-- [security/](governance/security/) — the security governance pack (vendor-diligence ready; drafted for the Plaid
-  clearance): [Information Security Policy](governance/security/INFORMATION_SECURITY_POLICY.md)
-  · [Access Control Policy](governance/security/ACCESS_CONTROL_POLICY.md) · [Asset & Endpoint Register](governance/security/ASSET_REGISTER.md)
-  · [Incident Response Plan](governance/security/INCIDENT_RESPONSE_PLAN.md) · [Plaid questionnaire answers + pre-submit checklist](governance/security/PLAID_SECURITY_QUESTIONNAIRE_ANSWERS.md)
-
-### Runbooks — operational how-to · [`runbooks/`](runbooks/)
-- [CICD.md](runbooks/CICD.md) — the Railway build/deploy pipeline · [CHANGE_LEDGER.md](runbooks/CHANGE_LEDGER.md) — the append-only production change ledger (split out of CICD.md 2026-08-06) · [DB_MIGRATIONS.md](runbooks/DB_MIGRATIONS.md) — schema-gated, auto-applied to prod (Neon) · [ROLLBACK.md](runbooks/ROLLBACK.md) — Railway image rollback · [LOCAL_DEV.md](runbooks/LOCAL_DEV.md) — `pnpm dev:up` (one command to a running app) and `pnpm preflight` (the whole gate, locally)
-  · [BROWSER_PROBE.md](runbooks/BROWSER_PROBE.md) — rendering a page in real Chromium to see what a text scan cannot
-  · [TEST_ACCOUNTS.md](runbooks/TEST_ACCOUNTS.md) · [PRE_PRODUCTION_OPS_ROUTINES.md](runbooks/PRE_PRODUCTION_OPS_ROUTINES.md)
-  · [PROD_ACCEPTANCE_TEST.md](runbooks/PROD_ACCEPTANCE_TEST.md) — the F1 launch-gate checklist
-  · [PHASE_0_TECH_READINESS.md](runbooks/PHASE_0_TECH_READINESS.md) — the evidence-backed technical gate for production truth, recovery, security, regulated data integrity, provider honesty, reliability and exact-build acceptance
-  · [EXTRACTION_EVALUATION.md](runbooks/EXTRACTION_EVALUATION.md) — run the production document extractors against a protected human-reviewed set with immutable hashes, bounded provider use and private resumable checkpoints
-  · [NEON_PREVIEW_DB.md](runbooks/NEON_PREVIEW_DB.md) — PII-free preview databases: the preview-seed branch + founder cutover
-  · [BETA_GO_LIVE_READINESS.md](runbooks/BETA_GO_LIVE_READINESS.md) — dated beta-readiness snapshot (verified workflows + founder decisions)
-- [support-playbooks/](runbooks/support-playbooks/) — locked-out user, discrimination/credit-error escalation.
-
-### Specs — L3 feature specs · [`specs/`](specs/)
-- [_TEMPLATE.md](specs/_TEMPLATE.md) — the L3 spec skeleton (cite L1 loop + L2 invariants).
-- [FREE_DATA_MOAT.md](specs/FREE_DATA_MOAT.md) — HMDA + Fannie loan-performance data pipelines.
-- [UNIVERSAL_ADAPTATION_LAYER_PROGRAM.md](specs/UNIVERSAL_ADAPTATION_LAYER_PROGRAM.md) — program charter + 8 build prompts: complex-tax-return intelligence, multi-path income engine, non-QM/halal product lanes (broker-safe).
-- [LO_ADVISOR_PROGRAM.md](specs/LO_ADVISOR_PROGRAM.md) — LO Advisor program charter — six build prompts wiring the advisory cockpit (what-if simulator, client reports, proactive signals, comms lint, lock-desk completion) onto existing engines.
-- [PARTNER_HUB_PROGRAM.md](specs/PARTNER_HUB_PROGRAM.md) — COI PartnerHub program charter — six build prompts unifying the existing partner rails (CPA channel, agent co-branding, referral codes, waitlist) into one identity/attribution spine + persona toolkits, with binding doctrine corrections (§5) to the 2026-07-11 partner-tools draft.
-
-### Feature Review — the durable QA program · [`feature-review/`](feature-review/)
-The re-runnable QA teams (agents in `.claude/agents/`) that review every feature vs intended use.
-- [CHARTER.md](feature-review/CHARTER.md) — program rules, severity scale, the Reality Map.
-- [Core intelligence audit](feature-review/CORE_INTELLIGENCE_AUDIT_2026-09-08.md) — current
-  Homi, document extraction, complex-income, underwriting and lender-delivery reality; fixes,
-  benchmark evidence and ordered build gates.
-- [DOMAINS.md](feature-review/DOMAINS.md) — the 13 domain charters + UX lens.
-- [design-identity/ILLUSTRATION_BRIEF.md](design-identity/ILLUSTRATION_BRIEF.md) — what to commission for the animated scenes, and the mechanism that already exists.
-- [design-identity/LEDGER.md](design-identity/LEDGER.md) — Design Identity Engine cross-run memory: what each run raised, what it proved it on, and the directions it refused.
-- [FINDINGS.md](feature-review/FINDINGS.md) — the verified findings register (seeded from the audit).
-- [journey-walks/](feature-review/journey-walks/) — dated persona-walk reports parked outside the register while it is claimed; fold in and delete.
-- [WORKFLOWS.md](feature-review/WORKFLOWS.md) — the ~14 E2E workflow scripts + wiring status.
-- [JOURNEYS.md](feature-review/JOURNEYS.md) — the client-journey charters walked in the browser.
-- [STAFF_JOURNEYS.md](feature-review/STAFF_JOURNEYS.md) — the 5 staff-desk charters: one file crossing many hands, walked as the seat and its counterpart.
-
-### Routines — the autonomous operating cadence · [`routines/`](routines/)
-The contract binding the scheduled routines into one pipeline: the shared clock, the shared facts, the claim lock, the decision authority matrix, and the corrected escalation runbook. Job descriptions live in `~/.claude/scheduled-tasks/` for the local fleet — unreadable from a cloud session — and in [`.claude/skills/`](../.claude/skills/) for the CCR-fired routines (CHARTER §3a). **In-repo is the home for anything new**: a definition only one machine can see is one nobody can audit. **This directory wins wherever they disagree.**
-- [CHARTER.md](routines/CHARTER.md) — the contract: two acceptance questions, the launch sequence (§1a), the decision authority matrix (§1b), the clock, the hand-off chain, write territory, the `RELEASABLE` verdict, escalation, honesty rails.
-- [REGISTER.md](routines/REGISTER.md) — the claim lock: who is writing which file right now (humans claim here too).
-- [TEAM.md](routines/TEAM.md) — the seating chart: which hiring-plan role each routine occupies, why only
-  three seats were added rather than one per role, the working day in clock order, and the rule that makes
-  it a team — **no seat signs off its own work**.
-- [HANDOFF.md](routines/HANDOFF.md) — the team's shared queue: `DECISIONS` / `ASKS` / `VERDICTS` / `WAITING`.
-  Not the claim lock — every row names the seat that acts next.
-- [LESSONS.md](routines/LESSONS.md) — the shared lessons register: what one session learned that the next would otherwise re-learn, every row citing evidence. Feeds CHARTER §10; may never loosen a compliance rail.
-- [reports/](routines/reports/) — dated run reports; the proof-of-life record.
-- [feature-completion/LEDGER.md](routines/feature-completion/LEDGER.md) — the Feature Completion Engine's cross-run memory: the domain rotation, the gap taken, and — the load-bearing column — every gap it **refused** and why, so the next run does not re-derive the refusal.
-- [primary-engineer/LEDGER.md](primary-engineer/LEDGER.md) — the Primary Engineer's own work queue (Phase 1 source d); rows cite their source or are invalid.
-- [compliance-watch/STATE_LADDER.md](compliance-watch/STATE_LADDER.md) — the state-launch licensing ladder (Illinois → California → national); every row cited or `UNVERIFIED`, drafts for signature in [compliance-watch/drafts/](compliance-watch/drafts/).
-
-### UI Conformance Sweep — autonomous design-standard propagation · [`ui-conformance/`](ui-conformance/)
-- [LEDGER.md](ui-conformance/LEDGER.md) — cross-run memory for
-  [`/ui-conformance-sweep`](../.claude/skills/ui-conformance-sweep/SKILL.md): converted surfaces,
-  refusals with reasons, per-metric floors, and the `guard:ui` count trend. The routine exists
-  because CHARTER §6a's own line — *a standard nobody is assigned to propagate is a preference* —
-  described the state the design system was actually in.
-
-### Backend Data Engineer — autonomous backend/delivery-integrity routine · [`backend-data-engineer/`](backend-data-engineer/)
-- [LEDGER.md](backend-data-engineer/LEDGER.md) — cross-run memory for
-  [`/backend-data-engineer`](../.claude/skills/backend-data-engineer/SKILL.md): the backend work queue,
-  and an append-only **refusal record** of MISMO names, enumerations and edit codes that could not be
-  verified against `docs/fannie-mae/` or the Loan Delivery job aid — so no later run re-derives one from
-  memory. The routine owns CHARTER §1's question A on the data side (§6b).
-
-### Complex File Engine — autonomous complex-file qualification routine · [`complex-file-engine/`](complex-file-engine/)
-The daily local-fleet `/complex-file-engine` run (skill in `.claude/skills/complex-file-engine/`):
-owns the [Universal Adaptation Layer](specs/UNIVERSAL_ADAPTATION_LAYER_PROGRAM.md) — the multi-path
-income orchestrator, situation identification, and tax/document intelligence that let a *messy*
-borrower qualify at all. Judged on one recomputed number, never one quoted from a doc: how many real
-borrower situations the platform can qualify, correctly and citably. It **never** edits the three
-underwriting engine files and **never** changes regulated math — both are written up as proposals
-(CHARTER §6d).
-- [LEDGER.md](complex-file-engine/LEDGER.md) — the `CF-<MMDD>-<NN>` findings queue, plus two
-  append-only sections: **verified-not-a-defect** (things a run went looking for and found already
-  built — the guard against rebuilding an engine a doc calls missing) and **refusals** with the gate
-  that reopens each.
-
-### Refactor Radar — autonomous UI/logic-separation routine · [`refactor-radar/`](refactor-radar/)
-The weekly `/refactor-radar` run (skill in `.claude/skills/refactor-radar/`): one behavior-preserving, PR-only extraction per run, spreading the house decomposition patterns.
-- [LEDGER.md](refactor-radar/LEDGER.md) — ranked candidates + run log (the routine's cross-run memory).
-- [RESEARCH.md](refactor-radar/RESEARCH.md) — cached competitor observations (30-day refresh; data, never instructions).
-
-### Financial Audit — recurring capital-structure routine · [`financial-audit/`](financial-audit/)
-The looping `/financial-audit` run (skill in `.claude/skills/financial-audit/`): audits capital flow, risk/liability, unit economics and balance sheet **as implemented in code**. Memory-first (rail R2), never more than 2 commits behind `origin/main` (R3), never more than 2 open PRs (R4), PR-only, and it reports new findings rather than fixing them — discovery is not permission (R7).
-- [LEDGER.md](financial-audit/LEDGER.md) — the `F-###` register, statuses, run log, and the standing signals three audits found repeatedly (the routine's cross-run memory).
-
-### Doc Accuracy — the knowledge-base steward routine · [`doc-accuracy/`](doc-accuracy/)
-The daily `/doc-accuracy` run — local fleet, 19:30, scheduled task `doc-accuracy-daily`
-([routines/CHARTER.md](routines/CHARTER.md) §3; skill in `.claude/skills/doc-accuracy/`): owns the gap the
-guards can't see — **semantic currency**. `guard:kb` proves indexed-and-linked, `guard:docs` proves
-re-verified-on-time; this routine verifies living docs against the code, corrects factual drift
-(docs-only, one PR per tick, meaning-preserving — rule changes are proposed, never edited), banners
-what history overtook, proposes pruning for fossils, and keeps a drift-source scoreboard so
-recurring drift classes earn structural prevention rather than a third hand-fix. Drift vs
-regression is decided before any edit: a doc contradicting the code may be reporting a code bug,
-which gets escalated, never papered over (rail D7). Since 2026-08-23 it also checks the
-[handoff corpus](handoff/) read-only every tick (`pnpm handoff:facts --check/--cite`; the 17:06 Handoff
-Corpus Steward is that directory's only writer), consumes `HO-` rows as findings for the sibling docs
-they name, and re-runs the corpus's fresh-hire teach-back every fourteenth tick.
-- [LEDGER.md](doc-accuracy/LEDGER.md) — the `DA-<MMDD>-<NN>` register, drift-source scoreboard, rotation cursor, exclusion table (the routine's cross-run memory).
-
-### Logs — dated, immutable snapshots · [`logs/`](logs/)
-> Point-in-time records. Never rewritten; supersession goes in a top banner (TEAM_PRACTICES §2).
-- [logs/2026-07-12-external-strategy-adjudication.md](logs/2026-07-12-external-strategy-adjudication.md) — external L1 critique + broker-bottleneck memo adjudicated against code: verdicts, the AUS-gate fix, the Reg N binding correction, and what stays deliberately unbuilt.
-- [logs/2026-07-17-external-agentic-mortgage-artifacts-evaluation.md](logs/2026-07-17-external-agentic-mortgage-artifacts-evaluation.md) — IBM / Confluent / Lendtrain "agentic mortgage" artifacts adjudicated against code: nothing vendored, four gaps extracted (risk-brief narration, coach input guard + disclosure, licensed-state footprint), seven house designs validated, binding rejections for LLM-in-decision-path proposals.
-- [logs/2026-07-17-underwriter-splitscreen-vendor-pitch-adjudication.md](logs/2026-07-17-underwriter-splitscreen-vendor-pitch-adjudication.md) — vendor pitch (split-screen underwriter doc review, OCR bounding boxes, Textract + WebSockets) adjudicated against code: schema/OCR-vendor/WebSockets rejected as already-shipped-or-barred, three gaps adopted (staff doc-review workbench A6, docs-ready signal A7, missing-docs nudge A8), bounding boxes and SMS parked with reopen gates.
-- [logs/2026-07-17-prod-api-outage-uuid-esm-postmortem.md](logs/2026-07-17-prod-api-outage-uuid-esm-postmortem.md) — ≈16-minute prod `/api` outage: a newly-activated `pnpm.overrides` **floor** resolved to ESM-only uuid@14 and crashed gaxios's CJS require in the Vercel function loader, behind READY/aliased deploys; timeline, why every safety net missed it, the #222 forward fix, and the binding lessons now enforced in [runbooks/CICD.md](runbooks/CICD.md) (post-deploy health check; no floors in overrides). *[Predates the 2026-08 migration to Railway: the failure **mechanism** (a serverless function loader) no longer exists, the two lessons still bind — and the 2026-08-06 stale-deploy incident is the second proof that a green/READY status is not evidence a merge shipped.]*
-- [logs/2026-07-19-modular-architecture-pitch-adjudication.md](logs/2026-07-19-modular-architecture-pitch-adjudication.md) — external "plug-and-play micro-pipelines" pitch (queues, PostGIS, Docker scrapers, speculative JSONB) adjudicated against code: the modularity already exists repo-native (adapters, rules-as-data, moat pipeline, provenance gating); infra prescriptions rejected with reopen gates; "no speculative schema" restated; plus the measured UI-velocity investigation (2,586 unused `data-testid` hooks, zero component tests) and the minimal-intervention plan.
-- [logs/2026-08-04-rate-com-competitive-pitch-adjudication.md](logs/2026-08-04-rate-com-competitive-pitch-adjudication.md) — external "beat Rate.com on complex borrowers" pitch adjudicated against code: the pitched SAM/1084 engine already ships (deliberately human-gated — MR-2); instant pre-underwrite, live borrower math, realtor letter hub, CPA attestation portal, and the 50+ investor matrix engine rejected under standing rulings (with reopen gates); the one extraction is the Borrower Clarity program (contextual doc requests, honest milestones, post-decision income transparency); four defects found in passing feed the hardening leg.
-- [logs/2026-08-04-sovereign-underwriting-stack-pitch-adjudication.md](logs/2026-08-04-sovereign-underwriting-stack-pitch-adjudication.md) — external "sovereign underwriting stack" pitch (Cloudflare R2/Workers, direct IRS IVES A2A, Google Document AI, Python microservice, SAM + Non-QM router) adjudicated against code: the "core IP" it says to build first already ships richer (its SAM formula would overstate income); R2/Document-AI/new-stack rejected under standing rulings; the one extraction is roadmap **F12 — IRS IVES transcript access** (founder-enrollment + counsel gated, then a simulated adapter); defects found in passing: the borrower-reachable legacy calculation routes (→ hardening leg), the `documents.notes` overload, four stale briefing claims (→ supersession banner), and the new §9 PII sub-processor trigger.
-- [logs/2026-08-04-cross-sector-fintech-frameworks-pitch-adjudication.md](logs/2026-08-04-cross-sector-fintech-frameworks-pitch-adjudication.md) — external "cross-sector fintech frameworks" pitch (Stripe/Shopify revenue telemetry, MCA bank-statement forensics, brokerage-API asset depletion, DeFi live proof-of-funds certificates) adjudicated against code: every mechanism is shipped, chartered under the adopted #238 plan, or doctrine-barred; **nothing adopted for build** (a null program); the one new idea — debit-side MCA-stacking detection — parked at the §5.2 activation gate; new binding restatement: **no machine-issued financial attestations to third parties**; defects found in passing feed the letters hardening leg (pre-approval PDF regeneration drift + ungated no-row minting; zero-writer letter status lifecycle).
-- [logs/2026-08-04-renter-incubation-pitch-adjudication.md](logs/2026-08-04-renter-incubation-pitch-adjudication.md) — external "Renter Incubation & Access Engine" pitch adjudicated against code: the pitched path-to-purchase simulator already ships as the Incubator (readiness /100, gap analysis, coach action plans); rent-history-to-DU deferred behind the missing Fannie authority corpus (never from memory); nationwide DPR matrix rejected as pitched (IL footprint + vendor doctrine); 1099 program numbers held in Appendix-A quarantine and Truv-for-gig rejected under the §5.5 ruling; "$420"/"60 days away" borrower math rejected — binding (C2, Reg N); "never flat-deny" rejected (ECOA adverse action is mandatory and unburiable — new binding) with the post-notice re-entry kernel adopted; the **Renter Ramp** legs fix eight defects found in passing (wizard honesty + DPA route hardening, the unreachable adverse-action notice, the denied-borrower dead end, coach DPA grounding).
-- [logs/2026-08-04-financial-architecture-capital-structure-audit.md](logs/2026-08-04-financial-architecture-capital-structure-audit.md) — financial architecture & capital structure audit of the business model as implemented in code: 16 findings across capital flow, risk/liability, unit economics and balance sheet; F-1…F-13 remediated same-day (dual compensation, the QM points-and-fees floor, the phantom lock, cure baselines, counterparty gating, the comp/cost ledgers, the contingent-liability register), F-14 escalated to [CHANNEL_DECISION.md](governance/CHANNEL_DECISION.md), F-15/F-16 found sound.
-- [logs/2026-08-05-financial-architecture-reaudit-qm-loan-size-floor.md](logs/2026-08-05-financial-architecture-reaudit-qm-loan-size-floor.md) — one-day re-audit verifying the 08-04 remediation holds at HEAD (2,071 tests green; the F-3 lock and F-5 counterparty gates intact), and calculating the loan-size question that audit left open: the platform's fixed fees against a tiered percentage cap produce a **non-QM dead band — $101,951–$216,299 at the default comp plan, $90,623–$288,399 at the highest** — with viable amounts on both sides, sitting over the DPA/first-time-buyer segment the product targets (F-17); plus the sequencing defect that the QM check runs only after its own remedy is frozen by LE issuance (F-18) and the tax-service-fee numerator/denominator inconsistency (F-19). F-18 and F-19 are fixed in-branch; F-17 is a founder decision.
-- [logs/2026-08-08-financial-architecture-reaudit-commission-payouts.md](logs/2026-08-08-financial-architecture-reaudit-commission-payouts.md) — third financial re-audit, the first to walk the money going **out**. The prior passes audited lender compensation, the fee schedule and the QM cap; none read `broker_commissions`, a live payout table whose rows reached no margin figure, no balance sheet and no audit log while `costLedger.ts` asserted commissions were "not captured anywhere" (F-20, fixed: payouts now charged against gross margin by lifecycle state, approved-but-unpaid booked as a register payable, and disbursed commission inside a live EPO window reported as loss *on top of* the clawback rather than netted). F-21: the payout was struck as **0–10% of loan amount with no reference to the file's compensation and no funded gate** — permitting a $25,000 payable against $5,000 of revenue; the arithmetic is now bounded in `shared/commissionPayout.ts` (bounded by the file's compensation, preferring the recorded remittance; gated on a funded submission; refusals audited; a read side so staff learn the ceiling instead of tripping the 422), but its **Reg Z §1026.36(d)(1) / RESPA §8 posture still needs counsel** — ledger `regz-1026-36d1-referral-commission-payout`, 14-day interval, roadmap 1.10, and roadmap 3.7 is blocked on it. F-23 fixed: `daysToCash` now measures `funded → compensation_received` off a column nothing read, and stays **null** rather than collapsing to the funding cycle when the wire lag is unmeasured; a working-capital position sits beside unit economics. F-24 fixed: money-out routes are audited (four-eyes on disbursement left as a founder call). **Open:** borrower-paid platform fee income (~$2,000/file) is absent from the revenue line, so with F-20 **both sides of the margin were wrong in opposite directions** — policy decided 2026-08-08 (**recognize on receipt**), implementation is roadmap 3.14 (F-22). The **surety bond and minimum net worth** remain the largest unpriced items on the balance sheet.
-- [logs/2026-08-08-rent-reporting-pitch-adjudication.md](logs/2026-08-08-rent-reporting-pitch-adjudication.md) — external rent-reporting / "renters-to-homebuyers" pitch adjudicated against code, and the first pitch to arrive **with** founder direction (direct furnisher; licensed-partner rails with zero custody). The founder's own addition — rent paid *through* the platform — is adopted as the evidentiary basis, because a first-party payment record is the only thing that survives an FCRA §1681s-2(a) accuracy duty; the pitch's own verification design (scan Plaid for an outflow within 5% of rent matching 'Rent'/'Venmo'/'Zelle') is **rejected binding**, since its false negative furnishes a *missed* payment for someone who paid. `Metro2Compiler` deferred as a **missing document, not a missing feature** (the CDIA manual is licensed, not downloadable, so it cannot be fetched at all) behind a self-releasing citation gate; "Account Type 3A" and "100+ active lines" quarantined as uncited external claims; **collect-revenue-while-queued rejected binding** (CROA §1679b(b) + UDAAP — the guard is the absence of a processor, not a boolean), as is retroactive 24-month furnishing and the borrower-facing score-threshold "intercept" (no permissible-purpose model exists; IL-only footprint). Ships **Rent Ledger Phase 0** in six legs — two authority corpora (`docs/cdia-metro2/`, `docs/fcra/`) with four flagged ledger entries, the `leases`/`rent_payments`/`rent_furnishing_queue` schema + migration, the Metro 2 seam, the `/rent-reporting` waitlist that says on-surface that nothing is being reported yet, the previously-**dead** `emitCreditEvent` socket wired staff-side, and the §9 money-movement + furnishing triggers that did not exist.
-- [logs/2026-08-07-financial-architecture-reaudit-counterparty-receivable-disclosure-coupling.md](logs/2026-08-07-financial-architecture-reaudit-counterparty-receivable-disclosure-coupling.md) — third financial-architecture pass, at `33adbc8` (2,767 tests green; F-1…F-19 remediation holds; asset-light, no-money-movement and RESPA §8 postures re-verified sound). Four new findings sharing one shape — **every money-bearing control fires at the end of its funnel while the economics are decided at the beginning**: the counterparty gate does not exist at price formation, so quotes, the borrower's `lenderCount` and the anti-steering `singleCreditor` flag are built from any live lender row including the real Target-5 at `approvalStatus: "target"` (F-20); funding and payment are one event, so broker compensation has no receivable and keying expected-as-received silently zeroes the short-pay control forever (F-21); a staff-keyed cost entry is the disclosure source for four **zero-tolerance** TRID lines and is written with no changed-circumstance gate, manufacturing the cures the register then measures (F-22); and the contingent-liability register has no denominator because company capital is representable nowhere (F-23). Each fix is one filter, one split, one gate already written elsewhere in the codebase.
-- [logs/2026-08-09-financial-architecture-reaudit-revenue-recognition.md](logs/2026-08-09-financial-architecture-reaudit-revenue-recognition.md) — re-audit at HEAD verifying the 08-04/08-05 waves hold, then examining the seam both prior passes assumed settled — **what the platform books as revenue**: the flat application + underwriting fees are charged on every file regardless of compensation model, so the §1026.36(d)(2) guard covers one charge out of three while the QM numerator counts all three (F-20, flagged to counsel via ledger entry `regz-1026-36d2-consumer-paid-platform-fees`); the revenue ledger sees lender remittance only, hiding 20–31.5% of a funded loan's revenue and reporting a **negative margin on a profitable borrower-paid file** (F-21); recorded vs. charged compensation diverge 2× under a borrower-paid election (F-22); and the ledger has no credit side or cash-conversion figure (F-23). Balance-sheet integrity re-confirmed sound.
-- [logs/2026-08-10-financial-architecture-reaudit-counterparty-enforceability.md](logs/2026-08-10-financial-architecture-reaudit-counterparty-enforceability.md) — five-day re-audit at HEAD `2444950` (2,782 tests green; F-1…F-19 hold, and the #417 lender refactor made the F-5 counterparty gate stronger than the audit that created it). Six new findings, all sharing one root — **the #417 refactor made counterparty reality a per-row fact (`approvalStatus`, `isDemo`) and only the submission path asks**: a `simulated` confirmation still classifies as `confirmed_lock`, so borrower copy says "confirmed by the lender" and the register reports **$0 honor exposure where $120,000 is exposed on a $6.0M book** (F-20); the rate-lock route accepts the fictional demo lenders submission hard-blocks (F-21); nothing anywhere writes `approvalStatus` or `epoClawbackDays`, so the revenue switch the F-5 message points at does not exist (F-22); the compensation report and the reserve page compute EPO over different windows (F-23); over-paid compensation books as revenue with no liability (F-24); and the cost and revenue ledgers are never joined on time, so working capital — the number a broker fails on first — is unmeasured (F-25). Reported, not remediated.
-- [logs/2026-08-11-financial-architecture-revenue-representation-audit.md](logs/2026-08-11-financial-architecture-revenue-representation-audit.md) — third financial-architecture pass, auditing the surfaces the first two *created*: the F-17 fee trim makes our own fees the QM shock absorber, so **total revenue per file is pinned by the Reg Z cap rather than by pricing** — $4,038 at $120k across every comp plan from 175 to 275 bps, making the "one remaining lever" worth ~$0 under ~$250k (F-20); the trim itself is an unrecorded concession (up to 87% of the fee line, ~$192k/yr at 40 files/mo — F-21); revenue is modeled as lender compensation only, so the platform's own fees are revenue nowhere (F-22); funding and remittance are forced to be one event, so the broker's only receivable has no aging (F-23); the comp ledger is model-blind, reporting every borrower-paid file as a lender short-pay (F-24); plus the cost ledger's missing payer/recovery dimension (F-25) and unrecorded fee-schedule provenance (F-26). F-1…F-19 verified holding (182 money-path tests green); counterparty capacity still zero.
-- [logs/2026-08-14-financial-architecture-reaudit-revenue-fix-propagation.md](logs/2026-08-14-financial-architecture-reaudit-revenue-fix-propagation.md) — two-day re-audit asking whether the 08-12 revenue remediation reached the *other* surfaces. It did not, and all four findings share that root. `evaluateCompensationVariance` has three call sites and **only one passes `compensationModel`** — the function's own source documents that omitting it "reads every borrower-paid file as a lender short-pay", and the two sites that omit it are the staff **discrepancy worklist** and the **funding status machine**, so the same HTTP response reports $0 variance in the roll-up and $8,000 owed in the worklist, dispatching staff to collect from a lender that owes nothing (`F-0814-01`). `getAdminStats` never selects `compensationModel` and never calls `recognizeRevenue`, so the company's headline financial panel still shows the pre-fix single-channel picture with the phantom short-pay at portfolio scale, while the fixed two-channel figure lives only in the reports route (`F-0814-02`). Lender **over-payment is recognized as revenue in full and registered as no liability** — `revenueRecognition.ts`, written on 08-12 *after* the finding was raised, inherited the behaviour, and there is no `overPaidCount` mirroring `shortPaidCount` (`F-0814-03`, superseding `F-0810-05`). And `compensationReceivedAt` is stamped **equal to `fundedAt`** by its only writer, so the remittance lag is a fabricated zero that defeats the guard `cycleTimeReport.ts` exists to raise — days-to-cash collapses to the funding cycle and the protective note never fires, understating the broker's entire working-capital float, order of **$75k–$110k reported as $0** (`F-0814-04`). All four confirmed by executing the repo's own functions; **79 money-path tests pass through every one of them**, because the suite exercises the correct call shape and cannot see a caller that omits the argument. F-16 asset-light re-verified sound by direct grep — no payment rail, warehouse line, or custodial account anywhere, so there is no duration mismatch and no borrower funds in custody. No fix this tick: no ledger row was authorized.
-- [logs/2026-08-12-financial-architecture-reaudit-counterparty-integrity.md](logs/2026-08-12-financial-architecture-reaudit-counterparty-integrity.md) — one-week re-audit: all prior remediation holds at HEAD (2,782 tests green, QM gates intact, delivery-stack freeze at baseline, no regressions). Four new findings, all one root — #417 made the lender row the single source of truth, but `evaluateLenderSubmissionEligibility` has only **one** consumer, so the other money paths re-derive counterparty truth permissively: "confirmed" is a four-column presence test rather than a counterparty test, so a lock against a seeded **demo** lender is booked as the lender's obligation and the liability register prices its honor exposure at **$0** (F-20); the revenue ledger and clawback register never read `lender_submissions.simulated` while the cost ledger beside them is fully simulation-aware, so gross margin subtracts de-simulated cost from contaminated revenue (F-21); `approvalStatus`/`isDemo` are writable through the generic lender PATCH and audited by field *name* only, the weakest trail of the three admin money surfaces (F-22); and `epoClawbackDays` has no write surface at all, pinning the clawback reserve to the assumed 180-day window permanently (F-23). **F-20 and F-22 remediated the same day** — confirmation now requires an approved, non-demo counterparty (so the register's `lock_honor` line stops reporting $0 and the reserve goes up), and lender authorization moved out of the generic PATCH into an audited, evidence-bearing approval endpoint that also captures the contracted EPO term; a §9 security pass on that gate found and fixed a pre-authorization disclosure on the rate-lock route. **F-21 fixed the same day** — the revenue ledger, pull-through and clawback reserve now read `lender_submissions.simulated` and segregate it the way `costLedger.ts` always did, which on today's book moves gross margin from a fabricated **+$15,290 to the true −$710**. **F-23 fixed** — an audited contract-terms correction path, plus the surface all of this was missing: `/admin/lenders`, the counterparty onboarding screen, since the approval endpoint and `POST`/`PATCH /api/wholesale-lenders` had no UI at all and a real lender would otherwise have been onboarded by direct DB write. Company identity/licensing deliberately stays compile-time. A shadowed duplicate of `GET /api/wholesale-lenders` (the dead copy returned `apiConfig`) was removed while wiring the page. Also cites the NMLS guidebook (pp. 120/122) for why minimum net worth is not closable from this repo, and notes the reserve floor moves discontinuously with multi-state expansion.
-- [logs/2026-08-16-financial-architecture-reaudit-lock-lapse-and-remittance-float.md](logs/2026-08-16-financial-architecture-reaudit-lock-lapse-and-remittance-float.md) — twelfth financial-architecture pass, at HEAD `1f520b1`. **`main` had not moved since the 08-14 audit branched from it**, so the diff-driven pass had an empty input and the tick ran instead on a question no prior audit had asked: what the platform believes *after* a deadline passes. Two High findings share one root — **the measurement stops at exactly the point the exposure becomes real** (standing signal #2, third audit running). `F-0816-01`: a confirmed rate lock **past its expiry** on a file that has not closed is dropped from the contingent-liability register as carrying "no forward commitment" — true of the lender's obligation, false of ours; expiry is computed not stored so lapsed rows still read `active`, the alert sweep is future-only and dedups to one notification per lock, and executed against the register's own functions a book with **2 of 3 locks lapsed reports $900 where the healthy book reports $2,700** — the worse position produces the smaller reserve. `F-0816-02`: committed working capital excludes every **funded-but-unremitted** file, the exact cohort it exists to size — `costLedger.ts` specifies "files that have not reached cash" and the only caller filters on `status === "funded"`, a **~47% understatement** that also makes the Little's-Law projection internally inconsistent (the cost base excludes a period `daysToCash` explicitly includes), and which conceals and is concealed by `F-0814-04`. `F-0816-03`: **counterparty concentration is measured nowhere in dollars** — `lenderId` rides every submission and clawback entry, nothing aggregates by it, so the register presents every lender's obligations as one undifferentiated pool. **Audit-only — no ledger row was at `authorized`** (R7). Verified sound: the reports route does pass both revenue channels into `computeUnitEconomics`, so the 08-12 fix completes the circuit on the surface it reached.
-- [logs/2026-08-13-financial-architecture-receivable-and-recognition-trigger.md](logs/2026-08-13-financial-architecture-receivable-and-recognition-trigger.md) — re-audit at HEAD `1f520b1` one day after the 08-12 pass ("The Receivable That Cannot Exist"): the diff-driven input came back empty, so the tick audited the receivable/recognition seam directly. **Rescued 2026-08-20** from the unlanded branch `claude/fervent-mayer-uqcv21` (close-out session); its LEDGER.md edits were deliberately NOT rescued — the ledger on `main` is the consolidated truth, and re-importing dated ledger states is how the duplicate-F-20 collision happened.
-- [logs/2026-08-15-financial-architecture-recognition-trigger-coupling.md](logs/2026-08-15-financial-architecture-recognition-trigger-coupling.md) — re-audit at base `1f520b1` ("the recognition trigger has no borrower-paid branch"); 244 money-path tests green through every finding, same caller-shape blindness as the 08-14 pass. **Rescued 2026-08-20** from `claude/fervent-mayer-w2dx4y`; ledger edits not rescued (same reason as above).
-- [logs/2026-08-18-financial-architecture-reaudit-vendor-order-cost-capture.md](logs/2026-08-18-financial-architecture-reaudit-vendor-order-cost-capture.md) — re-audit at HEAD `a846325` ("The Order That Costs Nothing"), four days after the 08-14 propagation pass. **Rescued 2026-08-20** from `claude/fervent-mayer-3ear33`; ledger edits not rescued (same reason as above).
-- [logs/2026-08-20-merge-queue-close-out.md](logs/2026-08-20-merge-queue-close-out.md) — the founder-directed merge-queue drain under the standing merge authority granted that day: 19 open PRs + ~30 bare branches → 21 PRs' content merged and deployed (all locally gated through the Actions billing outage), 14 dead branches tombstoned, the #615 stacked-base incident (caught, recovered as #630, `baseRefName` now a mandatory pre-merge check), the parked founder-decision list, and the standing anti-drain rules (drain before build · done = merged + health-verified · no bare branches).
-
-- [logs/2026-08-18-session-closeout-local-development.md](logs/2026-08-18-session-closeout-local-development.md) — the fleet-state close-out for the move to local development: what #574 put on `main` (the Backend Data Engineer, §5's decide-or-close clock, and §6c's founder-authorized L3 dependency-merge carve-out — **all live in the charter while every trigger that would execute them is off**), the six local-setup traps measured against a running stack, and why `.github/workflows/cron-jobs.yml`'s seven production sweeps were deliberately **left running** (two are compliance watchdogs — `adverse-action-delivery` is an ECOA §1002.9 30-day statutory alarm). Recovered from a session archived mid-push; carries a note saying what that cost and two ✅ corrections.
-- [logs/2026-08-18-parked-branches.md](logs/2026-08-18-parked-branches.md) — the branch inventory written when the cloud fleet was stood down for local-first development: which parked branches became PRs (#579/#581/#582), which two are parked on a founder decision rather than on readiness (the calm-emerald palette proposal, which contradicts the binding Royal Blue Emerald standard and edits two now-archived docs; and the routine-governance remainder, moot while every trigger is disabled), the five branches that share **no merge base** with `main` and can only be extracted file-by-file, and where closed-PR content lives (`archive/*` tags).
-- [logs/2026-08-18-knowledge-file-audit.md](logs/2026-08-18-knowledge-file-audit.md) — founder-commissioned knowledge-file audit (operating-playbook Step 1, manifest only): the five-upload Better-teardown corpus classified against the repo KB at `3287f3c` — incoming corpus canonical but shipping one stale duplicate (the standalone knowledge doc is the older revision) and four code-refuted claims (the "-subtle tokens unmapped" premise its components are built on is false at HEAD; the nested-control defect is real but wider — 12 sites, different mechanism; the "404" hero images exist and are wired at HEAD, stale-deploy class; the CTA flash is a deliberate skeleton); repo KB clean by its own guards (150 docs indexed, no dead links, 6 living docs fresh; rename residue historical-only, `apr.ts` a domain-term false positive); the four stale app-UI routines confirmed gone from the CCR trigger list; the two new world-copy triggers flagged for rewrite (monthly-financial must invoke `/financial-audit` instead of re-deriving the ledger; weekly-UX must cite FINDINGS.md and drop `push` access), with the financial-audit scheduling-ownership question put to the founder; Step-2 consolidation staged and founder-gated.
-
-> The launch-era operational logs (founder-routines, lo-audit) and one-time platform assessments (2026-07-02 → 07-06) were archived 2026-07-08 — see the Archive section below.
-
-### Research — scratch + strategy collateral · [`research/`](research/)
-- [research/my-research/](research/my-research/) — scratch (nothing load-bearing).
-- [research/better-teardown/](research/better-teardown/) — the 2026-08-18 live logged-in Better.com teardown, landed per the [knowledge-file audit](logs/2026-08-18-knowledge-file-audit.md) Step 2: [HOMIQUITY-PROJECT-KNOWLEDGE.md](research/better-teardown/HOMIQUITY-PROJECT-KNOWLEDGE.md) (standing competitive/design context — tokens, patterns, anti-patterns, component API, the four-question standard §12 — with a code-wins correction banner) + [better-teardown-raw-notes.md](research/better-teardown/better-teardown-raw-notes.md) (append-only walkthrough evidence). The desktop Claude-Project copies mirror these; the repo wins on conflict.
-- [research/gtm/](research/gtm/) — GTM battlecards + competitive briefs.
-- [research/islamic-finance/](research/islamic-finance/) — alternative / Shariah-compliant (Musharaka/Ijara/Murabaha) "Universal Adaptation Layer" as a **broker-triage** lane: feasibility + compliance-gap map (§3 payment-decomposition table = the citation authority for the P7 translation calculators) + lender-channel validation (route is the Ijara-CDC/CMG ecosystem; the 2 founder calls are the channel gates) + Shariah-governance validation (structure cert = the funder's). Productized as UAL program prompt P7 — funder-agnostic build only until a founder-call "yes".
-- [research/NON_W2_LENDING_RESEARCH_BRIEFING.md](research/NON_W2_LENDING_RESEARCH_BRIEFING.md) — dated (2026-07-17, pinned to `main` @ `98a9674`) inventory of everything built for the non-W2 / self-employed beachhead — the UAL income engine, document intelligence, decisioning→delivery pipeline, surfaces, the real-vs-simulated vendor map, and code-verified gaps — plus the research questions handed to the outside research team. Code wins over this snapshot.
-- [research/NON_W2_TECH_OPTIMIZATION_PLAN.md](research/NON_W2_TECH_OPTIMIZATION_PLAN.md) — **ADOPTED (2026-07-17): the governing plan for the non-W2 program**, adjudicated and code-corrected from the returned outside research. Four corrected phases (income-engine wiring → tax-reconciliation depth + new paths → vendor activation → commercial un-gating), a Phase-0 citable-artifacts pipeline, and an Appendix-A quarantine of every externally claimed program number pending in-repo sources. Supersedes conflicting prior non-W2 framing; the briefing's §1 box and KB precedence still bind.
-
-### Archive — obsolete, quarantined · [`archive/`](./archive/)
-Superseded docs kept for provenance. Never act on these. Includes the launch-era
-operational logs quarantined 2026-07-08: [archive/founder-routines/](archive/founder-routines/),
-[archive/lo-audit/](archive/lo-audit/), [archive/assessments/](archive/assessments/); the dead
-UX-audit routine archived 2026-08-06: [archive/ux-audit/](archive/ux-audit/); the two design docs
-superseded by the merged standard on 2026-08-18: [archive/design/](archive/design/); and the
-pre-rewrite roadmap: [archive/roadmap/](archive/roadmap/).
-
-## The rule (continuous update)
-
-Per **TEAM_PRACTICES.md**: every new doc lives in this tree, gets one line in this index (or sits
-under an indexed section directory), and — for `compliance/`/`governance/` docs — cites its L1/L2
-authority. Dated snapshots are archived, never rewritten. The doc + its index line land in the
-**same commit**. `scripts/kb-index-guard.cjs` (run by `pnpm checkup`) fails the build on an
-un-indexed doc or a dead index link.
+[document-register.json](document-register.json) records every tracked Markdown file and its
+disposition. Retired files contain only redirects; their original text is recoverable by Git blob.
+Historical logs, reports and research remain byte-for-byte intact and are excluded from normal
+searches by `.ignore`. They are available for explicit historical investigation, not agent startup.

@@ -1,7 +1,6 @@
 # DB Migrations — schema-gated, auto-applied to prod
 
-**Authority:** this runbook is the *how*; the binding rule is [CLAUDE.md](../../CLAUDE.md) §Database
-("Schema changes are migration-gated and auto-applied to prod"). Where they disagree, CLAUDE.md wins.
+Implementation reference. Shared working practices live in [AGENTS.md](../../AGENTS.md).
 
 ## Why this exists
 
@@ -26,7 +25,7 @@ PR touches shared/schema/**
     pnpm check · pnpm test · pnpm guard:schema   ← schema-without-migration ⇒ RED, cannot merge
         │  green
         ▼
-   merge to main  (merge-on-green policy — TEAM_PRACTICES §6)
+   merge to main  (when authorized by the user)
         │
         ▼
   migrate-prod job (.github/workflows/ci.yml, on: push to main)
@@ -87,7 +86,7 @@ PR touches shared/schema/**
    re-applied **from this table** (which is why it stays maintained verbatim) and verified
    by probe PR #262. If `gh api …/branches/main/protection` ever 403s/404s again,
    enforcement is OFF: use watch-then-merge and flag the founder
-   ([TEAM_PRACTICES](../governance/TEAM_PRACTICES.md) §6). Current rule
+   ([shared working practices](../../AGENTS.md)). Current rule
    (`gh api repos/OWNER/REPO/branches/main/protection` to read it back):
 
    | Setting | Value | Why |

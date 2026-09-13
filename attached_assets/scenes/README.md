@@ -26,8 +26,8 @@ a half-finished one. Add loops later without touching code.
 - **webm**, VP9, **muted**, seamless loop, 2–5s, **under 300 KB**.
 - Motion small and looping: one or two elements move, the scene does not travel.
 
-Full reasoning, and the measurements these come from, are in
-[`knowledge-base/design-identity/ILLUSTRATION_BRIEF.md`](../../knowledge-base/design-identity/ILLUSTRATION_BRIEF.md).
+The illustration brief these came from was retired on 2026-09-13; recover it from
+`knowledge-base/document-register.json` if you need the original reasoning.
 
 ## Checking your upload landed
 

@@ -60,8 +60,7 @@ cd "$(git rev-parse --show-toplevel)" || exit 1
 
 # TOOLING PRE-FLIGHT — WARN, never block.
 #
-# Every routine in knowledge-base/routines/CHARTER.md works in a `git worktree`,
-# and a fresh worktree has NO node_modules of its own. An uninstalled checkout is
+# Work happens in a `git worktree`, and a fresh worktree has NO node_modules of its own. An uninstalled checkout is
 # a statement about the tooling, not about the code, and a hook that blocks a
 # push for a reason the author cannot act on teaches exactly one habit —
 # `--no-verify` — which disables the control permanently.

@@ -1,6 +1,6 @@
 # Design System — Homiquity
 
-**Status:** binding on every client surface. **Owner:** founder (Amr).
+**Status:** internal design choices for client surfaces. **Owner:** founder (Amr).
 **Last verified against the code:** 2026-08-22 at `074899e3`.
 
 > **Freshness:** last verified 2026-08-22 · review every 30 days
@@ -19,12 +19,12 @@
 >
 > **Supersedes** `design_guidelines.md` (the *language*) and `visual-consistency-standard.md`
 > (the *checklist*), merged into this file on 2026-08-18 and archived at
-> [`archive/design/`](../../archive/design/). They were split as why-vs-what on 2026-08-06; the
+> Git history. They were split as why-vs-what on 2026-08-06; the
 > split cost more than it bought, because a rule and its rationale drifted apart and **both
 > halves went stale in the same five weeks** (§0). One file, one truth.
 >
 > **Scope:** visual and structural. Copy, terminology and voice are a separate,
-> compliance-gated track and are not covered here — except where §13 makes an honesty claim
+> separately sourced track and are not covered here — except where §13 makes an honesty claim
 > about a specific control.
 
 ---
@@ -533,7 +533,7 @@ out of autonomous scope — flag it.
 
 **What is not verifiable here, and must not be claimed:** the client test lane is happy-dom,
 which has **no layout engine**. There is no Playwright, no Storybook and no axe in this repo, and
-`CHARTER.md` §6 forbids adding dependencies. So no automated check in this repo can prove a
+AGENTS.md keeps dependency changes within the user-authorized scope. So no automated check in this repo can prove a
 rendered layout, a contrast ratio in situ, or a mobile viewport. Say what you actually ran.
 
 ---
@@ -754,5 +754,5 @@ template literals or cva variants are invisible: **every count is a floor, not a
   The predecessors went five weeks without that pass, and every number in them drifted.
 
 **Historical:** `knowledge-base/archive/ux-audit/` is a quarantined 2026-07 snapshot — do not act
-on it; its `design-tokens.json` describes the retired "Obsidian Indigo" palette. The successor
-defect register is [`feature-review/FINDINGS.md`](../../feature-review/FINDINGS.md).
+on it; its `design-tokens.json` describes the retired "Obsidian Indigo" palette. The findings
+register that succeeded it was retired on 2026-09-13; open defects live in GitHub issues and PRs.

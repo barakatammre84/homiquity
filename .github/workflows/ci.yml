@@ -290,8 +290,7 @@ jobs:
         run: pnpm test
       - name: Dependency vulnerabilities (prod deps, high+)
         if: steps.scope.outputs.code == 'true'
-        # Blocking scan — vulnerability-management program in
-        # knowledge-base/governance/security/INFORMATION_SECURITY_POLICY.md §8.
+        # Blocking scan — vulnerability management.
         # High/critical only; moderates stay visible via `pnpm checkup`. (The job
         # `name:` above deliberately does not mention this step — it is the verbatim
         # required-check string; see the rename warning.)

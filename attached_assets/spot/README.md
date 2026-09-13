@@ -14,6 +14,6 @@ fatal** — it simply never appears.
 Until a drawing exists for a concept, `SpotArt` renders that concept's Lucide
 glyph. Each file you add upgrades exactly one spot.
 
-**These must read at 36px.** Judge them zoomed out. Full spec, palette, subject
-list and the compliance constraints on what may be depicted:
-`knowledge-base/design-identity/ILLUSTRATION_BRIEF.md`.
+**These must read at 36px.** Judge them zoomed out. The illustration brief holding
+the full spec, palette, subject list and the constraints on what may be depicted was
+retired on 2026-09-13; recover it from `knowledge-base/document-register.json` if needed.
