@@ -754,5 +754,5 @@ template literals or cva variants are invisible: **every count is a floor, not a
   The predecessors went five weeks without that pass, and every number in them drifted.
 
 **Historical:** `knowledge-base/archive/ux-audit/` is a quarantined 2026-07 snapshot — do not act
-on it; its `design-tokens.json` describes the retired "Obsidian Indigo" palette. The successor
-defect register is [`feature-review/FINDINGS.md`](../../feature-review/FINDINGS.md).
+on it; its `design-tokens.json` describes the retired "Obsidian Indigo" palette. The findings
+register that succeeded it was retired on 2026-09-13; open defects live in GitHub issues and PRs.
