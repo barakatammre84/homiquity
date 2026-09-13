@@ -19,3 +19,8 @@ and reviewer when working as a pair. -->
 ## Limits
 
 <!-- Remaining manual step, external dependency or unverified outcome; any review needed. -->
+
+## Handoff
+
+<!-- Owner; next agent and action; current commit; review evidence or explicitly pending.
+The receiving agent records its result on that commit before the handoff is considered complete. -->

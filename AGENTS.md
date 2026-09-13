@@ -24,11 +24,20 @@ or research, name the workflow protected or decision resolved. Follow the user's
 Check the existing implementation first; reuse and repair it before adding another subsystem.
 Do not start from an old worktree's charter: check current main and its shared instructions.
 Carry forward only relevant changes into an up-to-date isolated branch, preserving others' work.
+Verify the remote is `barakatammre84/homiquity-mortgage-broker` and use `origin/main` explicitly;
+a cached `origin/HEAD` is not proof of GitHub's default branch.
 
 Record one implementation owner and file scope in REGISTER. When both agents work on a task,
 one implements and the other reviews; either can fill either role. Parallel implementation uses
 separate worktrees and non-overlapping files. Handoffs name the issue, branch, commit, checks
 and remaining blocker. Continue the existing change rather than starting another plan.
+
+At each run, check the other agent's open work and pending handoffs before choosing new work.
+Review or unblock its ready change first when that advances the assigned outcome; otherwise
+take a complementary, non-overlapping slice. Keep owner, next agent/action, commit, evidence and
+blocker visible in the existing issue or PR. A handoff stays pending until the receiving agent
+records its result against that commit. Never claim the other agent reviewed or ran something
+without evidence. If it is unavailable, leave the handoff pending and continue independent work.
 
 Clean duplicate logic, dead paths and obsolete instructions in the touched area after checking
 callers and preserving supported behavior. Report when none needs changing. Put unrelated cleanup
