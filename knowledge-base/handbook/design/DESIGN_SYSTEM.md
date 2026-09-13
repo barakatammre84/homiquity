@@ -93,7 +93,9 @@ indistinguishable palette from a bank in the same sector is trade-dress risk, no
 Every neutral now carries the brand hue. Audit notes, screenshots or docs describing stark-white
 surfaces over a slate structure with royal-blue dark surfaces describe the *previous* system.
 
-White ground · **green-black dark surfaces** (sidebar, footer, hero gradients) · **one mint
+White ground · **white navigation containers** (sidebar and footer, separated by a hairline —
+founder decision 2026-09-12; they were green-black, and royal blue before that) · **green-black
+dark surfaces** now limited to hero gradients · **one mint
 tint** · **green-black primary actions** (founder decision 2026-09-12; this replaced emerald and
 its "green means Go" rationale) · **one orange `--flare`** as the single warm accent.
 
@@ -169,7 +171,9 @@ provider ever applies the class. Keep it coherent; do not invest in tuning it.
 - **Layer 1** — white cards + 1px hairline (`border-card-border`). Near-flat on the white
   canvas; on `bg-surface` they carry `shadow-card`, supplied automatically (§5).
 - **Layer 2** — green-black primary actions (`bg-primary`); hover deepens via the elevate system.
-- **Sidebar** — deep royal-blue dark nav container.
+- **Sidebar** — WHITE nav container, separated from the canvas by the standard hairline
+  (`--sidebar-border`), not by a change of ground. The active item is the mint `--sidebar-accent`
+  with type-colour text at 13.6:1 — *not* `--sidebar-primary`, which the component never reads.
 
 ### Semantic status (the ONLY non-ramp colour)
 

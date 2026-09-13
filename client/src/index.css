@@ -88,10 +88,16 @@
   --sidebar: 0 0% 100%;
   --sidebar-foreground: 165 45% 8%;
   --sidebar-border: 160 14% 90%;
-  /* Active nav item: the black primary pill, white text — 19.5:1 */
+  /* NOT the active nav item, despite the name. `SidebarMenuButton` renders
+     `data-[active=true]:bg-sidebar-accent` + `text-sidebar-accent-foreground`,
+     so the ACCENT pair below is what an active item actually paints. These two
+     have a Tailwind mapping and no consumer anywhere in `client/src`. Kept in
+     step with the palette so they are correct if something ever adopts them;
+     do not describe them as the active state. */
   --sidebar-primary: 165 45% 8%;
   --sidebar-primary-foreground: 0 0% 100%;
-  /* Hover/selected wash: the one mint tint, same as --secondary */
+  /* The real active/hover state: the one mint tint (same as --secondary) with
+     type-colour text — 13.6:1. */
   --sidebar-accent: 155 40% 94%;
   --sidebar-accent-foreground: 165 45% 8%;
   --sidebar-ring: 165 45% 8%;

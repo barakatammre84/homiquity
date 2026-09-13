@@ -13,29 +13,40 @@
  * and every check in this repo would stay green.
  *
  * That matters right now: the 2026-09-12 design decision moves the primary
- * action colour to black and removes dark chrome. Removing dark grounds
- * eliminates the only two contrast-legal uses of `--flare` as text (5.65:1 on
- * #0B1E19 and 4.59:1 on the sidebar #17302A); on white it is 3.06:1, a fail.
- * This is the net that catches that.
+ * action colour to black and turns the sidebar and footer white. That rewrites
+ * the foreground/background pair under every piece of text on a public page at
+ * once, which is precisely the change no existing check here would notice.
+ * This is the net under it.
+ *
+ * (An earlier version of this header claimed the restyle would eliminate the
+ * only contrast-legal uses of `--flare` as text. That was wrong and is
+ * withdrawn: prose uses `--flare-ink` #AD4000 at 15 call sites, and raw
+ * `--flare` appears as text in exactly two non-prose places — the logo mark,
+ * which WCAG 1.4.3 exempts, and one aria-hidden decorative SVG.)
  *
  * WHAT IT DOES NOT DO — and what you therefore may not claim from it
  * It measures **contrast only**, plus whatever the browser reports as a console
  * error or a failed request while the page loads. It is NOT an accessibility
  * audit: it does not check roles, names, focus order, keyboard operation, ARIA,
- * headings or landmarks. Those need axe-core, which is a dependency, and
- * `routines/CHARTER.md` §6 bars new dependencies without a founder decision.
- * Saying "accessibility verified" on the strength of this is the exact kind of
- * claim §10 forbids. Say "AA contrast measured on N public routes".
+ * headings or landmarks. Those need axe-core, and AGENTS.md says to use the
+ * existing dependencies unless the user authorizes a change.
+ * AGENTS.md also states the standard this tool is held to: "a static guard is
+ * not proof of behavior, accessibility, source meaning or legal compliance."
+ * So do not say "accessibility verified" on the strength of this run. Say
+ * "AA contrast measured on N public routes".
  *
- * It also sees only what renders without signing in. Authenticated staff
- * screens are not covered.
+ * It also sees only what renders WITHOUT SIGNING IN, and that gap has already
+ * cost something real: this harness reported a clean restyle while the Homi
+ * launcher's icon was invisible on every authenticated screen, because the
+ * launcher only exists behind a login. A private surface is not covered here
+ * and must be checked in a real signed-in browser.
  *
  * NO NEW DEPENDENCY. Chromium is already on disk (Playwright's cache, which
  * `browser-probe.cjs` already relies on) and Node ships a WebSocket client, so
  * the DevTools Protocol is reachable with `node` and nothing else. The browser
  * discovery below is deliberately duplicated from `browser-probe.cjs` rather
- * than shared: that file is named in CHARTER §10 as the evidence standard, and
- * refactoring it to save 60 lines risks the one tool routines depend on.
+ * than shared: `browser-probe.cjs` is the existing browser-evidence tool other
+ * routines depend on, and refactoring it to save 60 lines risks all of them.
  *
  *   pnpm ui:contrast                 # verify against the recorded baseline
  *   pnpm ui:contrast --update        # re-record after a deliberate change
@@ -110,7 +121,8 @@ if (!CHROME) {
   console.error(
     "ui-contrast-baseline: no Chromium found. Looked at $CHROMIUM_PATH, $PLAYWRIGHT_BROWSERS_PATH,\n" +
     "  the default Playwright caches, PATH, and the macOS app bundles.\n" +
-    "  Run where a browser already exists. Do NOT install one — CHARTER §6."
+    "  Run where a browser already exists. Do NOT install one: AGENTS.md says to use\n" +
+    "  the existing dependencies unless the user authorizes a change."
   );
   process.exit(1);
 }
@@ -214,6 +226,22 @@ const CONTRAST_AUDIT = `(() => {
     }
     return { colour: acc || { r: 255, g: 255, b: 255, a: 1 }, image: false };
   };
+  // CSS \`opacity\` fades an element and its whole subtree against what is behind
+  // it, and it COMPOUNDS down the ancestor chain. Reading only the element's own
+  // colour therefore measures a value the user never sees: black text at
+  // opacity 0.1 on white renders as near-white and was scored 21:1 — a clean
+  // pass on text nobody can read. Only \`opacity: 0\` was skipped; every partial
+  // value was treated as fully opaque.
+  const effectiveOpacity = (el) => {
+    let node = el, acc = 1;
+    while (node && node.nodeType === 1) {
+      const o = parseFloat(getComputedStyle(node).opacity);
+      if (!Number.isNaN(o)) acc *= o;
+      if (acc === 0) return 0;
+      node = node.parentElement;
+    }
+    return acc;
+  };
   const selector = (el) => {
     const id = el.id ? "#" + el.id : "";
     const cls = (el.getAttribute("class") || "").trim().split(/\\s+/).filter(Boolean).slice(0, 3).map((c) => "." + c).join("");
@@ -221,17 +249,30 @@ const CONTRAST_AUDIT = `(() => {
   };
   const out = new Map();
   let examined = 0;
+  let unmeasured = 0;
   for (const el of document.querySelectorAll("body *")) {
     const text = Array.from(el.childNodes).filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join(" ").trim();
     if (!text) continue;
     const s = getComputedStyle(el);
-    if (s.visibility === "hidden" || s.display === "none" || +s.opacity === 0) continue;
+    if (s.visibility === "hidden" || s.display === "none") continue;
     const box = el.getBoundingClientRect();
     if (box.width === 0 || box.height === 0) continue;
-    const fg = parse(s.color);
-    if (!fg || fg.a === 0) continue;
+    const op = effectiveOpacity(el);
+    if (op === 0) continue;
+    const fg0 = parse(s.color);
+    if (!fg0 || fg0.a === 0) continue;
+    // Fold the cumulative opacity into the text's alpha so the ratio is computed
+    // from what actually reaches the screen.
+    const fg = { ...fg0, a: fg0.a * op };
+    if (fg.a === 0) continue;
     const bg = bgOf(el);
     if (bg.image || !bg.colour) continue;
+    // LIMIT, stated rather than papered over: when a faded element paints its
+    // OWN background, that background fades too, and bgOf reads it at full
+    // strength — which would overstate the ratio. Report it as unmeasured
+    // instead of scoring it, so it can never contribute to a clean result.
+    const ownBg = parse(s.backgroundColor);
+    if (op < 1 && ownBg && ownBg.a > 0) { unmeasured += 1; continue; }
     examined += 1;
     const size = parseFloat(s.fontSize);
     const weight = parseInt(s.fontWeight, 10) || 400;
@@ -249,7 +290,7 @@ const CONTRAST_AUDIT = `(() => {
       sample: text.slice(0, 40),
     });
   }
-  return { examined, findings: Array.from(out.values()) };
+  return { examined, unmeasured, findings: Array.from(out.values()) };
 })()`;
 
 /**
@@ -306,6 +347,7 @@ async function waitForReady(cdp, sessionId, deadlineMs) {
   await cdp.ready;
   let checked = 0;
   let examinedTotal = 0;
+  let unmeasuredTotal = 0;
 
   // One listener each, dispatching through a mutable cursor. Registering inside
   // the per-route loop leaked a handler per page and made attribution depend on
@@ -336,6 +378,39 @@ async function waitForReady(cdp, sessionId, deadlineMs) {
     if (url && !url.startsWith(BASE)) return;
     const where = url ? new URL(url).pathname : (p.type || "request");
     add({ route: cursor.route, viewport: cursor.viewport, kind: "request", id: `${p.type || "request"} ${where}`, detail: `${p.type}: ${p.errorText} (${where})` });
+  });
+  // `Network.loadingFailed` fires only when the TRANSPORT fails — DNS, refused
+  // connection, abort. An HTTP 500 is a perfectly successful transport, so the
+  // page could fetch a route that answered 500 on every load and this harness
+  // printed PASS while its own summary line claimed it measured "failed
+  // requests". A successful transport is not a successful response.
+  cdp.on("Network.responseReceived", (p) => {
+    if (!cursor || p.sessionId !== cursor.sessionId || !p.response) return;
+    const url = p.response.url || "";
+    if (!url.startsWith(BASE)) return;          // same-origin only, as above
+    const status = p.response.status;
+    if (!status || status < 400) return;
+    // EXPECTED statuses, excluded deliberately rather than recorded as noise:
+    //
+    //  401/403  This harness drives public routes while signed out, and the app
+    //           asks `/api/auth/user` on every page to find out whether anyone
+    //           is logged in. The honest answer to that question is 401. Gating
+    //           on it would fail every run for working behaviour — and, worse,
+    //           recording it into the baseline would train the reader to ignore
+    //           auth failures, which is the opposite of what this is for.
+    //  404 on a Document  The app's own not-found route: a product decision.
+    //
+    // Everything else counts. A 5xx is always a finding: a page that renders
+    // beautifully while its data call returns 500 is broken, and the transport
+    // succeeded so `Network.loadingFailed` never fires.
+    if (status === 401 || status === 403) return;
+    if (p.type === "Document" && status === 404) return;
+    const where = new URL(url).pathname;
+    add({
+      route: cursor.route, viewport: cursor.viewport, kind: "request",
+      id: `HTTP ${status} ${where}`,
+      detail: `HTTP ${status} ${p.response.statusText || ""} on ${p.type || "request"} ${where}`.trim(),
+    });
   });
   const waitForLoad = (sessionId) => new Promise((resolve) => {
     const t = setTimeout(() => { loadWaiters.delete(sessionId); resolve(); }, TIMEOUT_MS);
@@ -372,12 +447,13 @@ async function waitForReady(cdp, sessionId, deadlineMs) {
           expression: CONTRAST_AUDIT, returnByValue: true, awaitPromise: false,
         }, sessionId);
         if (res.exceptionDetails) throw new Error(`${route.path}: ${res.exceptionDetails.text}`);
-        const audit = res.result.value || { examined: 0, findings: [] };
+        const audit = res.result.value || { examined: 0, unmeasured: 0, findings: [] };
         // Coverage is reported alongside the verdict, always. "0 findings" and
         // "looked at nothing" are indistinguishable without it, and this
         // harness has already produced the second while reporting the first.
         if (audit.examined === 0) throw new Error(`${route.path} (${viewport.name}): the audit examined 0 text elements — refusing to record a clean result from an empty measurement`);
         examinedTotal += audit.examined;
+        unmeasuredTotal += audit.unmeasured || 0;
         for (const v of audit.findings) {
           add({
             route: route.path, viewport: viewport.name, kind: "contrast",
@@ -407,9 +483,10 @@ async function waitForReady(cdp, sessionId, deadlineMs) {
       base: BASE,
       routes: routes.length,
       textElementsExamined: examinedTotal,
+      textElementsUnmeasured: unmeasuredTotal,
       findings,
     }, null, 2) + "\n");
-    console.log(`Recorded ${findings.length} finding(s) from ${checked} page load(s), ${examinedTotal} text element(s) examined.`);
+    console.log(`Recorded ${findings.length} finding(s) from ${checked} page load(s), ${examinedTotal} text element(s) examined` + (unmeasuredTotal ? `, ${unmeasuredTotal} skipped as unmeasurable (faded element with its own background).` : "."));
     return;
   }
 
@@ -432,8 +509,9 @@ async function waitForReady(cdp, sessionId, deadlineMs) {
     process.exitCode = 1;
     return;
   }
-  console.log(`PASS  ${routes.length} route(s) x ${VIEWPORTS.length} viewport(s) = ${checked} load(s); ${examinedTotal} text element(s) examined; ${findings.length} recorded finding(s), 0 new.`);
-  console.log("Measured: AA text contrast, console errors, failed requests. NOT an accessibility audit (no axe).");
+  console.log(`PASS  ${routes.length} route(s) x ${VIEWPORTS.length} viewport(s) = ${checked} load(s); ${examinedTotal} text element(s) examined` + (unmeasuredTotal ? `, ${unmeasuredTotal} unmeasurable` : "") + `; ${findings.length} recorded finding(s), 0 new.`);
+  console.log("Measured: AA text contrast (opacity composited), console errors, failed requests and HTTP >=400 responses, same-origin only.");
+  console.log("NOT measured: roles, names, focus order, keyboard, ARIA, landmarks — and nothing behind a login. Not an accessibility audit.");
 })().catch((error) => {
   console.error(`ui-contrast-baseline: ${error.message}`);
   process.exit(1);
