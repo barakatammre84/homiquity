@@ -11,6 +11,21 @@ Onboarding, or building through a Claude loop? [knowledge-base/handoff/](knowled
 is the Feynman layer over the app-guide — every chapter proves its claims with a command you
 can run — and `handoff/prompts/` carries the loop rails and templates.
 
+## Product direction
+
+Follow [CTO_ROADMAP.md — The goal](CTO_ROADMAP.md#the-goal): Homiquity runs the loan process,
+with an accountable licensed loan officer and automation handling the routine work and preparing
+the officer's reviews and actions. The first funded loan is a milestone toward that operating
+model. Build complete, useful automated workflows as the pilot is proven.
+
+For each step, run automatically, prepare for an authorized approval, or explain and route the
+exception. Do not turn a temporary manual fallback, a research assumption, or a restriction on
+development agents into a permanent product limitation. Distinguish external requirements from
+internal risk policy and current implementation gaps. Verify a claimed legal restriction against
+its governing source. Existing production controls remain enforced until a reviewed change
+implements their replacement. Development permissions live in TEAM_PRACTICES and the routines
+charter; they do not define the product's runtime automation ceiling.
+
 ## Domain skills (loaded on demand)
 
 Four `.claude/skills/*/SKILL.md` router skills carry each domain's non-negotiable rules

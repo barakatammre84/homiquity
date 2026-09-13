@@ -93,7 +93,6 @@ When your intended work meets a live claim, the answer is rarely "stop":
 
 | routine / session | target | worktree | branch | claimed (UTC) | intent |
 |---|---|---|---|---|---|
-| codex founder-directed automation direction | `CTO_ROADMAP.md` · `CLAUDE.md` · `knowledge-base/routines/CHARTER.md` · `knowledge-base/governance/AI_GOVERNANCE_POLICY.md` · `knowledge-base/compliance/SAFE_MLO_COMPLIANCE_MAP.md` · `knowledge-base/handbook/DEVELOPER_PLAYBOOK.md` · `tests/complianceInvariants.test.ts` (labels/comments only) · this file | `.worktrees/automation-direction` | `codex/automation-direction` | 2026-09-13T14:12Z | Simplify the founder's goal to an accountable LO with automated loan operations and approval preparation. No runtime changes. Coordination note for #805 owner: its CLAUDE/roadmap changes already landed through #806 and match main; this work follows those changes and preserves the one-application decision. No callable Claude-session messenger is available. Sequence any further edits to these sections after this direction change; #805's UI and identity work is untouched. |
 
 
 ## Recently released

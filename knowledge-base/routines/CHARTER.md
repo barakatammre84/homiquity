@@ -1,6 +1,10 @@
 # Routines — the autonomous operating cadence
 
 **Status:** binding on every scheduled routine. **Owner:** founder (Amr).
+**Product-direction amendment, 2026-09-13:** §1/§1a follow the founder's automation goal in
+[CTO_ROADMAP.md](../../CTO_ROADMAP.md#the-goal). This charter governs the agents developing and
+maintaining Homiquity. Its permissions for those agents do not define what the loan product may
+automate; product actions follow the applicable consent, authority and runtime controls.
 **Last verified against the code:** 2026-08-18 (§1 question B, §3 second-fleet note, §6a and §10 amended that day; the preamble, §4, §6 and the new §6b amended that evening to register the Backend Data Engineer — its §3a row and the CCR-table restructure came from `main` and were taken on merge; §5's decide-or-close clock and §6c's dependency-triage carve-out added the same evening; §1b's L3 merge row amended by the founder that evening to permit a green patch/minor bump under §6c, with §8 narrowed to match). **§3, §3a, §4 and §6's Doc Accuracy rows amended 2026-08-23 by the founder** (the seat moved to the local fleet, daily 19:30, on 2026-08-20; the handoff corpus `knowledge-base/handoff/` made its read-only check and teach-back, never its writer, added to the steward's lane). **§2 and §3/§3a were also re-verified 2026-08-20 by `/doc-accuracy`** (scheduler read live with `list_scheduled_tasks`; skill presence with `git cat-file -e origin/main:<path>`; prod `commit` with a Railway-host `/api/health` probe). **§3a, §6 and §6's always-off-limits list amended 2026-08-23 to register the Selling Guide Steward** (daily 05:30 UTC, CCR; the Guide fact layer and its watch state get their single writer — founder-approved plan of the same day; the CCR trigger is registered in the session that sees the corpus PR merge, per §11).
 
 Each routine runs in a **fresh session with no memory of any other run**. Its job description
@@ -38,12 +42,13 @@ that checkable.
 
 ## 1. The two acceptance questions
 
-Every routine ranks every finding, ticket, and PR by these, in this order. They are the product,
-not a lens on it.
+Every routine ranks every finding, ticket, and PR by these, in this order. The durable product
+goal and milestone sequence live in [CTO_ROADMAP.md](../../CTO_ROADMAP.md#the-goal).
 
-> **A. Does it deliver a clean, complete, valid mortgage package to the lender?**
-> Does an *organic* borrower file — not the demo seed — reach a wholesale lender with valid
-> ULDD/UCD/URLA/MISMO, no invented field names, and every delivery edit satisfied?
+> **A. Does it move a real loan toward funding with less manual work and reliable evidence?**
+> A real borrower file must advance through the required review, lender delivery, conditions,
+> closing and post-close work. Use the lender's required formats, no invented fields, and valid
+> evidence. Prepare the loan officer's work as well as automating routine coordination.
 >
 > **B. Is the borrower and partner experience best-in-class?**
 > Lowest friction, highest capture quality, design-system-conformant, WCAG AA. A borrower who
@@ -79,48 +84,33 @@ a single closed row. Green delivery suites hide it because **the fixture is the 
 
 ---
 
-## 1a. The mission, and why launch is no longer the ranking input
+## 1a. The mission and the next milestone
 
-Homiquity is an **online end-to-end mortgage brokerage**.
+**Founder direction, 2026-09-13:** Homiquity operates the mortgage workflow with a licensed loan
+officer accountable for each file. Software does the routine work, prepares required reviews and
+approvals, and routes exceptions. Follow the roadmap's three product behaviors: run automatically,
+prepare for approval, resolve an exception.
 
-> ### ⛔ Founder directive, 2026-08-19 — the prove-it-first rule
->
-> **We do not launch until the webapp is proven: every feature performing best-in-class for its
-> industry, and a UX that genuinely serves our clients.**
->
-> This **replaces the launch sequence as the suite's shared ranking input.** From 2026-08-17 to
-> 2026-08-19 that input was "Illinois first, California second, national on performance," and at
-> equal §1 rank *work that advances the Illinois launch won the tiebreak*. **That tiebreak is
-> withdrawn.** No routine ranks work by what it unblocks for a state launch.
+Fund the first complicated mortgage as a controlled proof of that model, then improve and repeat
+it. Build automation and measure its results during the pilot. Neither a completed manual cohort
+nor a separate human hire for every workflow role is a prerequisite for useful automation.
 
-The tiebreak at equal §1 rank is now **client-facing completeness and quality**, resolved in the
-order §1 already gives: a client who cannot finish beats a client whose data is wrong, which beats
-a client whose experience is merely adequate.
+This replaces the 2026-08-19 ranking directive that required every feature to be best-in-class
+before launch and de-ranked launch progress. Rank work by the complete borrower-to-funding path,
+reliable evidence and reduced borrower/staff effort. Unrelated feature expansion does not become
+a pilot prerequisite. Quality and accessibility remain requirements for the workflow in use.
 
-**Deferred launch is not permission to defer work — it is the opposite.** The time pressure that
-justified shipping something merely adequate is gone, so *"good enough to launch"* is no longer an
-acceptable standard for anything. A routine that slows down because there is no launch date has
-misread this section exactly backwards.
-
-**The launch sequence itself is not cancelled, only de-ranked.** Illinois → California → national
-on business performance remains the intended order whenever go-live is taken up again, and the
-state-licensing posture and filing ladder still live in
-`knowledge-base/compliance-watch/STATE_LADDER.md`, maintained by Compliance Watch — every row cited
-to a source in `docs/` or marked `UNVERIFIED`, never asserted from memory. **Licensing lead time
-runs in parallel with engineering and is therefore still worked**, weekly, at its existing cadence:
-paperwork that takes sixty days does not get sixty days shorter because the launch moved. What
-changed is that no *engineering* seat is ranked by it.
-
-**Nothing in this directive relaxes a rail.** §6 write territory, §9 security triggers, the
-compliance gates, the citation requirement for regulated math, and the L3/L4 rows of §1b are
-untouched. A directive that raises the quality bar cannot be read as lowering a safety one.
+Pilot readiness still follows the roadmap's Phase 0 gate, applicable licensing, approved lender
+process and founder go-live decision. This direction authorizes no deployment, outbound action,
+license expansion or production flag change by a routine. §1b and the engineering controls retain
+their scope; legal and lender requirements are verified for the actual operating model.
 
 ---
 
 ## 1b. The decision authority matrix — what "automatic mode" means
 
-The suite is the company's autonomous execution layer. Authority is graded by **how far the machine
-takes an artifact before a human touches it**, not by topic:
+This table grants authority to the **development and maintenance routines**, not to Homiquity's
+loan workflow. Authority is graded by how far a routine may take its work before review:
 
 | Level | Meaning | Covers |
 |---|---|---|
@@ -128,6 +118,12 @@ takes an artifact before a human touches it**, not by topic:
 | **L2 — acts, then flags** | Ships, but the PR/report flags it for explicit review | expand-only schema migrations (same-PR, hand-authored, idempotent); any §9-tripping diff — ships as a **draft PR** with ⛔ "write the security review or reject", the review itself always human-authored; wide cross-cutting refactors; verified-dead-code removal |
 | **L3 — prepares, human signs** | The machine does everything except the signature/click | merging any PR (a merge to `main` is a production deploy) — **one carve-out, §6c: a green patch/minor dependency bump, by the one routine that owns it, which then owns the deploy**; contract migrations; license filings and regulator correspondence; contracts and vendor commitments; disclosure-policy changes; any outbound or external communication; money movement; production variables; each state's launch go/no-go |
 | **L4 — human-only** | The decision itself is human, not preparable into a signature | being the licensee / control person; credit-decision policy beyond cited deterministic rules; anything statute assigns to a person |
+
+The L3 outbound restriction concerns a routine sending a message on the company's behalf. It is
+not a requirement for a person to click every request sent by an approved product workflow.
+Implementing product messaging still requires the applicable consent, content, security and
+release controls. A required human decision may still have its evidence and draft prepared by
+software; accountability does not require manual preparation.
 
 **L1/L2 is where automatic mode lives:** routines select their own work, ship without
 pre-approval, and are judged by their reports. The L3/L4 rows map to legal accountability (NMLS

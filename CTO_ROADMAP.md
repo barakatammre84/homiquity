@@ -10,24 +10,62 @@ deployment pointer.
 
 ## The goal
 
-**Fund one real mortgage for a complicated borrower through one approved wholesale lender, using
-Homiquity from the first public application through post-close.**
+**Homiquity runs the mortgage process from application through post-close, automating all work
+that can be performed reliably within the applicable requirements, with a licensed loan officer
+accountable for every file. It also prepares and executes the supporting work for the loan
+officer's advice, reviews and approvals.**
 
-The borrower should enter information once, upload each document once, understand what is
-preliminary and what is verified, and always know the next action and the person responsible. The
-loan officer should work from the same evidence-linked file, complete the complex-income review,
-deliver an accepted lender package, manage every condition, and close without rebuilding the file
-in spreadsheets or disconnected systems.
+**Founder direction, 2026-09-13.** The borrower enters information and supplies evidence once,
+sees accurate progress, and can reach the responsible loan officer. Homiquity keeps the file
+moving: it collects and checks information, prepares analysis and documents, coordinates the
+lender and service providers, follows up, and brings decisions or exceptions to the right person.
+The loan officer spends time on advice, judgment and relationships, with the evidence and proposed
+next action already prepared. The wholesale lender retains its approval and funding authority.
 
-This is the shortest path from a broad software product to a proven mortgage business. It also
-creates the foundation for future lenders, states, providers and borrower segments.
+**The first funded complicated mortgage is the first business milestone.** The lasting goal is
+to repeat that outcome with less borrower effort and less staff work per file. A pilot manual
+step is a temporary fallback or a specific required human act, not the default future workflow.
+
+## How automation works
+
+Use three behaviors throughout the existing loan workflow:
+
+| Behavior | What Homiquity does | When a person is involved |
+|---|---|---|
+| **Run automatically** | Collect information, organize documents, check completeness, calculate from accepted inputs, prepare packages, track deadlines, and send approved routine requests and follow-ups through enabled channels. | A named owner supervises the process; each routine action need not require a click. |
+| **Prepare for approval** | Assemble the relevant evidence, calculation, draft communication and proposed action together; execute the approved step through the authorized workflow. | The authorized person makes the required judgment or approval, including the loan officer's review and advice. |
+| **Resolve an exception** | Explain what is missing, conflicting, unsupported or overdue; identify the responsible party and next action; resume automation once resolved. | The loan officer or other authorized party resolves the issue. |
+
+These are product behaviors, not three new task states or a second workflow engine. Use existing
+tasks, evidence and approval records. Automate within each person's work as well as between people:
+a required review is a reason to prepare a complete review, not to leave the whole step manual.
+External lenders, appraisers, title companies and other parties still perform their own work;
+Homiquity automates the request, exchange, tracking and follow-up wherever supported.
+
+For any step kept manual, state the specific reason: an applicable legal or lender requirement,
+an adopted internal policy, an unavailable provider connection, or insufficient evidence of
+reliability. Cite the governing source for a claimed external restriction. A research assumption
+or a restriction on development agents is not a permanent product limit. Revisit temporary gaps
+as the evidence or integration changes. Internal policy changes still require their documented
+review and implementation; product intent alone does not open a runtime gate.
+
+Build useful automation while proving the pilot. Measure it as it runs; do not require an entire
+manual cohort or a complete 115-node catalog before automating a clear, bounded task. The Loan
+Factory lifecycle map is a coverage reference, not a required staffing model or build sequence.
+Prioritize a complete outcome, such as detecting a missing document, requesting it, recording its
+arrival and stopping the follow-up. A tracking ledger supports that outcome; it is not the outcome.
+
+Current deployment and provider facts remain in
+[ACTIVE_CONTEXT.md](knowledge-base/ACTIVE_CONTEXT.md). The automation above is the target, not a
+claim that every path is live. Existing consent, access, evidence, human-verification, decision and
+release controls remain enforced until a separately reviewed change replaces them.
 
 ## Product position
 
 Homiquity should match Better.com's speed, continuity, transparency and self-service experience.
 It should win where a broker can create more value: self-employed, multi-business, 1099, rental
-income and other complicated returns, combined with a choice of wholesale lenders and high-touch
-human service.
+income and other complicated returns, combined with a choice of wholesale lenders and a loan
+officer who has time to advise because Homiquity handles the routine work.
 
 Core remains part of Homiquity. A separate Core product would duplicate identity, applications and
 uploads while leaving the real lender, provider and operating gaps unresolved — confirmed 2026-09-12.
@@ -47,103 +85,18 @@ lender results never satisfy a verified decision or lender-acceptance gate.
 
 ## What is real today
 
-Production served the exact `main` commit above on 2026-09-11. Health and the scheduled core-proof
-route returned successfully, and the service reported SendGrid email configured. The repository
-has a strict required test gate, automatic production migrations and post-deploy commit
-verification. On that exact build, a borrower-data-free sweep passed Homi's grounded status turn,
-the real image-only pay-statement extraction path with page evidence, private object-storage
-write/read/delete, mixed W-2/business/rental analysis and deterministic underwriting in 5.167 s,
-9.269 s, 0.728 s, 0.008 s and 0.976 s. The Homi check uses the production prompt and context
-builder, requires the real status tool schema, grounds the reply in fixed server truth and passes
-outbound compliance lint without reading a borrower file.
+The 2026-09-11 evidence review recorded a deployed application, document extraction with source
+pages and restart recovery, complex-income workpapers, deterministic calculations, and an
+internally tested borrower-to-loan-officer journey. Those technical proofs do not establish a
+funded loan or acceptance by a real lender. Detailed evidence remains in the dated reviews linked
+below; current provider and deployment facts belong in
+[ACTIVE_CONTEXT.md](knowledge-base/ACTIVE_CONTEXT.md).
 
-The current build closes the most important gap between extraction and a mortgage decision.
-Financial workpapers cite the exact human-reviewed numeric facts and their source pages, and a
-correction to one of those facts invalidates the affected workpaper and memo. Pay-statement income,
-bank balances, leases and supported tax figures are reconciled against the structured values the
-calculation actually uses. A difference is visible to the reviewer and must be acknowledged with a
-reason; it cannot be accepted silently. Staff can create an append-only bank-statement analysis
-from reviewed deposit evidence while explicitly removing transfers, refunds, duplicates and other
-ineligible deposits.
-
-The current production build extends that evidence chain across a complicated household. It
-keeps credit, employment and other income attributed to the correct borrower; carries real-estate
-owned, housing costs and subordinate financing through the decision; and records tax treatment,
-continuance and virtual-currency exclusions for other income. Business liquidity must tie its
-current assets, current liabilities and inventory to reviewed Schedule L facts. Each current and
-prior self-employment year must tie to reviewed Schedule C or K-1 income. A 12- or 24-month
-bank-statement analysis cannot be saved or approved until reviewed, dated statements prove the
-selected consecutive period. Plaid-normalized withdrawals cannot be mistaken for large deposits.
-These changes passed the complete local and GitHub release gates, all eight production migrations,
-and exact-commit deployment verification. They remain **Built** where the capability map requires
-real borrower, provider, licensed-reviewer or lender proof beyond deployment.
-
-The underwriting release now keeps the mortgage program explicit from URLA through pricing,
-qualification, decision fingerprints, loan-option comparisons and preapproval letters. The fast
-application still produces a clearly identified preliminary conventional candidate without asking
-a novice borrower to select a program. That self-reported candidate remains a preliminary plan: it
-cannot set pre-approval status, persist issued options or send pre-approval messages. A verified
-decision requires the application-selected program. Veteran status can establish possible VA eligibility but cannot silently convert another
-program to VA. Conventional and VA are the only automated policy families; FHA, USDA, jumbo, ARM,
-HELOC and unknown products route to a loan officer before a conventional result can be reused.
-Every mutable eligibility threshold used by a conventional or VA decision is now retained in the
-policy snapshot, while the evaluated program and its selection basis are first-class decision-history
-fields even when no policy JSON exists. Conventional maximum sizing uses the cap already captured by
-the decision rather than reading mutable policy twice. VA maximum sizing is not extrapolated with
-the conventional DTI calculator, and a VA evaluation no longer loads unrelated conventional policy.
-The current VA automation is limited to a fixed-purchase residual screen; VA refinance and ARM
-requests route to review before fixed-purchase pricing.
-
-Every binding or customer-visible verified status is now recalculated from current proof. Pricing,
-loan options, Homi, approval statuses and underwriting advancement require a current approved
-financial memo, current approved income and asset workpapers, and a completed real bureau report
-that is neither simulated, archived nor expired. Stored flags remain audit history; they cannot keep
-a file verified after its supporting evidence changes. Income, asset and credit progress counts are
-derived from those same current proofs so staff, the borrower and Homi receive one answer.
-
-The intelligence release following that proof removes two large-packet bottlenecks. Tax work now
-loads a source once, sends each field pass only the classifier's exact non-overlapping page range
-of at most 25 pages and maps every retained field back to the original source page. A separate
-serial tax worker prevents a long return from delaying ordinary borrower documents, while keeping
-paid tax work bounded. Provider-pass
-failures fail the durable job instead of becoming an empty “completed” analysis; incomplete
-page-backed evidence requires human review. Classification and every form pass hold active consent
-through the provider call, so calls already dispatched finish before revocation succeeds and no
-later provider use begins after it succeeds.
-
-The ordinary-document recovery proof now starts with pixels rather than an embedded PDF text layer.
-The fixed synthetic pay statement is rendered to one PNG and embedded in a one-page PDF; a runtime
-guard verifies that PDF.js can extract no text before the production provider sees it. The first
-deployment on exact commit `513ab8c1a7abb67d3bb2163336006f8f8fd29313` completed the real provider
-read, verified five exact financial values, page evidence, classification and model/prompt lineage,
-then stopped before persisting pages, facts, confidence or readiness. Railway replaced it with
-deployment `cb7a11d5-126f-4fc4-9972-fe636c93c905` on the same commit. After the lease expired, the
-replacement reclaimed the job on attempt two, repeated the provider read, committed one page graph
-and ten grounded facts, and removed every temporary database row and private object. This proves
-the clean image-only provider path and ordinary-document recovery without duplicate evidence. It
-does not measure accuracy across real scans, image degradation, handwriting or varied layouts.
-
-The same recovery boundary is now proven for the complex path. On exact production commit
-`e6ae28ae4e221caf8554d58c6e2cc3dce0fb4619`, the first deployment classified a fixed synthetic
-100-page tax packet, completed four real form reads and validated eight exact grounded facts, then
-stopped before filing any evidence. Railway replaced the process with deployment
-`47d11a62-d8ed-43f6-a22b-bd1d81165736` on the same commit. Attempt two reclaimed the expired
-lease, explicitly closed one abandoned run, repeated provider work, persisted one graph containing
-100 pages, four forms and 28 grounded facts, and removed every synthetic row and private object.
-This proves deployed large-packet capacity and interruption recovery. It does not prove accuracy on
-a protected human-labeled set or lender acceptance.
-
-The internal complex-borrower journey is proven. Fictional multi-business, rental and mixed W-2
-plus side-business borrowers moved through the public application, full URLA, database
-persistence, personalized document work, borrower corrections and the loan-officer file. Reported
-household income is reconciled once, while every detailed source survives into the appropriate
-workpaper. Homiquity correctly refuses to present self-reported or simulated evidence as verified
-qualifying income, an approval or a lender-ready submission.
-
-No approved wholesale lender, current lender receiver, production credit/AUS/verification suite,
-real lender acceptance or funded Homiquity loan has been proven. A completed protected human-labeled
-extraction evaluation, including representative real scanned returns, and the complete operating handoff between
-licensed loan officer, processor, underwriter and closer also remain unproven.
+The remaining business proof is one approved wholesale lender, real verification and pricing
+sources, the responsible licensed loan officer, accepted submission and correction exchanges,
+and an actual closing. Extraction accuracy across representative real scans and the complete
+operating handoff also remain to be proven. Simulated or self-reported results cannot substitute
+for accepted evidence, lender approval or a recorded funding event.
 
 ## Core capability map
 
@@ -159,81 +112,28 @@ licensed loan officer, processor, underwriter and closer also remain unproven.
 | Deliver to a lender | **Built · XSD proven internally** | One approved lender accepts the multi-borrower MISMO, income and final AUS artifacts and completes an acknowledgement/correction exchange. |
 | Close, fund and service | **Built** | One real closing, funding record, borrower update sequence and post-close handoff. |
 
-## Core intelligence build order
+## Technical work supporting the pilot
 
-1. **Prove durable evidence ingestion in production:** database-backed extraction jobs, leased
-   restart recovery and staff-visible failures are built for ordinary documents and consented
-   multi-form tax packages. Document status, confidence, extracted facts and readiness commit
-   atomically, demonstration extraction fails closed in production, and tax-consent cleanup
-   preserves unrelated work. The canary ledger is live; Homi, the real pay-statement pipeline,
-   private storage, mixed-income analysis and underwriting remain operable across a controlled
-   process replacement. A provider-backed ordinary-document job now survives interruption before
-   persistence and produces one evidence set after reclaim. Large tax work now runs independently
-   from ordinary documents, and each field pass receives no more than 25 non-overlapping classified
-   form pages. Every tax-provider handoff also holds the borrower's active consent through the call,
-   so completed revocation blocks any later external use. A two-deployment production proof now
-   recovers the provider-classified 100-page tax path on attempt two with one exact evidence graph
-   and complete cleanup. The ordinary proof also starts from a verified text-free raster PDF,
-   survives a same-commit process replacement and preserves exact values, evidence and lineage.
-   Keep both proofs current and move the internal focus to measured accuracy across representative
-   real scans before changing inference settings.
-2. **Calibrate page-level evidence:** ordinary and consented tax uploads normalize pages, split or
-   link logical documents, retain field-level source pages and support field and boundary review.
-   A representative 100-page packet completes both the local page pipeline and the live
-   provider/restart path inside the current capacity envelope, and a clean text-free one-page raster
-   pay statement completes the live provider/restart path. The protected evaluator now runs the exact
-   production adapters outside the product database, verifies private source/label hashes, reserves
-   a bounded provider-call budget before each call, resumes from private checkpoints and blocks a
-   claim when any case, lineage or threshold is incomplete. It also requires two reviewers per case,
-   non-empty critical truth, a separate critical-field score and a 0.98 minimum production-claim
-   threshold; dry-run exposes blockers and the runner will not spend provider calls on an ineligible
-   production dataset. Populate its independently reviewed set across born-digital and varied real
-   scanned/raster documents, freeze acceptance targets, run it, then set product review-routing
-   thresholds from measured errors before treating extraction as hands-off.
-3. **Prove decision delivery:** underwriting, AUS and pre-approval letters carry input/policy
-   fingerprints; stale output is blocked; out-of-scope files take a manual-underwrite path; and the
-   multi-borrower MISMO plus final dual-AUS artifact passes the committed XSD. Retain provider-native
-   findings and reproduce the package through the live path before receiver certification. The
-   scheduled core proof now checks mixed W-2, Schedule C and rental analysis plus repeatable
-   underwriting against deployed policy rows. Current workpapers cite the reviewed numeric facts,
-   reconcile them to the calculation inputs, and invalidate downstream decisions when evidence
-   changes. Schedule L business liquidity, current/prior Schedule C or K-1 income and the complete
-   dated 12/24-month statement period now have explicit evidence gates; other-income tax treatment,
-   continuance and virtual-currency exclusions remain borrower-specific. Pricing, options, approval
-   and stage advancement independently re-resolve that proof.
-   Program intent now remains explicit across the same chain: a preliminary conventional candidate
-   preserves fast intake, verified/outward decisions require the URLA selection, veteran status
-   cannot switch the product, equal-payment offers remain policy-distinct, and unsupported product
-   families route to review. The policy fingerprint captures the FICO floor, conforming limit,
-   occupancy LTV cell and VA constants actually used. Implement a new automated family only from
-   its current governing handbook and a lender-backed acceptance matrix.
-   This does not replace a live credit report, AUS result, rate sheet or lender acknowledgement.
-4. **Activate one live stack:** production storage, real credit and verification, current approved
-   pricing, required AUS, and one lender receiver.
-5. **Prove Homi's value:** production response canaries pass and the mortgage scenario and
-   prompt-attack regression suite is built. Homi now refreshes the readiness panel from the saved
-   server file after a successful chat capture and records completed and failed turns, exact-repeat
-   detection, server-truth reads, actual saved fields and staff secure-message response after a
-   handoff. Its document-evidence tool now reads a bounded allowlist of server-written OCR and tax
-   facts, separates machine-read values from individually human-verified fields, reports only a
-   current fully approved workpaper package as approved, and excludes raw OCR, filenames, account
-   identifiers, borrower notes and staff review notes. Low confidence routes to staff review and
-   does not create a borrower re-upload request unless the real checklist says the document was
-   rejected. Evidence and shared file reads are bounded and reused within a turn, and a file with
-   more documents than the response window is labeled as a bounded view so Homi cannot mistake an
-   omitted older return, statement or lease for an absent document. The staff report separates
-   legacy turns, measurement coverage and operational exceptions. The borrower floor now counts
-   only client-role people with a current turn and two valid server snapshots; failed/legacy users
-   cannot pad it, and staff/unknown-role turns are reported separately. A staff message is matched
-   to one open Homi handoff at most and cannot be counted after task completion. Complete the
-   30-turn/10-eligible-borrower instrumentation pilot, then use the
-   [Homi outcome study protocol](knowledge-base/feature-review/HOMI_OUTCOME_STUDY_2026-09-10.md) to
-   register and power the comparison before enrollment. Change guidance only when the measured
-   journey shows less borrower or loan-officer effort without worse safety outcomes.
+These priorities support Phases 0–2; they are not a second roadmap:
 
-The dated [core intelligence audit](knowledge-base/feature-review/CORE_INTELLIGENCE_AUDIT_2026-09-08.md)
-contains the evidence and acceptance tests. This order is part of Phase 0 and Phase 1; it does not
-create another product or a parallel roadmap.
+- **Reliable evidence:** maintain ingestion and recovery proofs, complete the protected extraction
+  evaluation across representative documents, and resolve errors before changing review controls.
+  Keep source evidence, consent, corrections and downstream invalidation connected.
+- **Useful loan-officer preparation:** assemble current workpapers, policy-backed calculations,
+  supported options and an explanation of what needs review. Keep unsupported programs visible
+  as exceptions and preserve the current verification requirements.
+- **A working lender path:** connect the selected real verification/pricing sources and lender
+  receiver, retain their original responses, and prove an accepted package and correction cycle.
+- **A file that keeps moving:** connect existing tasks, deadlines, outstanding work and approved
+  follow-up workflows. Show who owes the next action, prepare the LO's approval work, stop resolved
+  requests and escalate failures. Tracking and automation should serve the same completed task.
+- **Measured assistance:** evaluate Homi against borrower effort, staff effort and errors using the
+  existing [outcome study protocol](knowledge-base/feature-review/HOMI_OUTCOME_STUDY_2026-09-10.md).
+  Keep its file access and statements grounded in the current evidence.
+
+The [core intelligence audit](knowledge-base/feature-review/CORE_INTELLIGENCE_AUDIT_2026-09-08.md)
+and the linked runbooks retain the detailed acceptance criteria. Shortening this roadmap does
+not change the evaluator's acceptance thresholds, study protocol or technical readiness gate.
 
 ## Phase 0 — establish a safe operating floor
 
@@ -274,10 +174,12 @@ unknown provider result can satisfy an approval, disclosure, lock or lender-read
 - Obtain its current product, eligibility, submission, acknowledgement, correction, lock and
   closing instructions, including a test receiver when available.
 - Choose the first-file path for credit, asset, employment, tax, AUS, property valuation and live
-  pricing. Use a controlled manual step when permitted and record its result in Homiquity; build an
-  integration only where it removes measured friction or is required by the lender.
-- Name the licensed loan officer, processor, underwriting reviewer and closer for the pilot, with
-  service hours, handoff ownership and escalation rules.
+  pricing. Automate supported exchanges as the pilot is built. Where a provider or approved
+  workflow is unavailable, use a permitted, documented fallback and record what would remove it.
+- Name the accountable licensed loan officer and assign processing, underwriting-review and
+  closing responsibilities, with service hours and escalation rules. These are responsibilities,
+  not a requirement to hire four separate people. Allocate human roles according to applicable
+  requirements and the actual lender process; automate their supporting work.
 - Confirm the licensed-state intake boundary and obtain counsel or compliance sign-off on the
   pilot process and borrower communications.
 
@@ -311,8 +213,9 @@ for borrowers and loan officers.
 - Run a small cohort through the same operating model and review the metrics after every file.
 - Fix the largest borrower wait, repeated question, duplicate upload, staff rekey and unclear-status
   causes in that order.
-- Turn recurring manual lender and provider steps into integrations only after the cohort shows
-  their volume, error rate and time cost.
+- Expand the automation already used in the pilot, using volume, errors and time cost to choose
+  the next lender or provider exchange. Use manual work where it is specifically needed, with an
+  explicit reason and owner.
 - Standardize the complicated-borrower playbook, service recovery, file review and lender package
   quality checks.
 
@@ -348,6 +251,8 @@ state and file volume increase.
 | Conditions reopened because systems disagree | Zero. |
 | Application → clear to close → funded | Faster, with delays attributed to an owner or dependency. |
 | Loan-officer touches and active minutes per file | Lower without reducing review quality. |
+| Routine work completed without a staff touch | Higher, with the measured task set and successful outcome stated. |
+| Manual exceptions and work redone after an error | Lower; each has a reason and responsible party. |
 | Borrower effort and satisfaction | Better after each file. |
 
 Baseline these measures on the first real file. Set numeric targets with the operating team after
@@ -362,7 +267,8 @@ spend materially on growth until Phase 2 proves a funded file.
 The next decisions are:
 
 1. Which wholesale lender will be the first approved receiver?
-2. Who owns the loan-officer, processing, underwriting-review and closing seats for the first file?
+2. Which licensed loan officer owns the file, and who covers the human responsibilities automation
+   cannot yet perform or is not authorized to perform?
 3. Which verification and pricing steps must be contracted for file one, and which may use a
    controlled documented manual process?
 4. What borrower profile and licensed state define the pilot boundary?
@@ -374,7 +280,7 @@ The next decisions are:
 - Paid growth and large partner acquisition.
 - Realtor, homebuyer accelerator, homeowner, refinance-alert and retention expansion.
 - AI coaching and adjacent financial products that do not shorten the funded-mortgage path.
-- Automation justified by hypothetical scale instead of measured file friction.
+- Speculative platform expansion that does not improve the application-to-funding workflow.
 
 ## Evidence and maintenance
 

@@ -1,6 +1,8 @@
 # AI Governance Policy
 
-**Status:** ADOPTED 2026-07-04 (v1.0) — annual review due 2027-07-04.
+**Status:** ADOPTED 2026-07-04 · current version 1.3 · annual review due 2027-07-04.
+**Latest amendment:** 2026-09-13 (v1.3), product-automation scope and policy attribution; existing
+decision-path and human-verification controls remain in force.
 **Owner:** Principal (founder/operator) — see §3 for role assignments.
 **Frameworks:** Fannie Mae Lender Letter LL-2026-04 (AI/ML governance for sellers/servicers), Freddie Mac equivalent Guide update, FHFA AB 2022-02, SR 11-7, NIST AI RMF 1.0, ECOA/Reg B, FCRA.
 **Companion document:** [MODEL_RISK_GOVERNANCE.md](./MODEL_RISK_GOVERNANCE.md) is the living model inventory and technical-control evidence. This document is the *policy*: the normative rules, lifecycle procedures, and role assignments the inventory is governed by. When they disagree, this policy controls and the inventory must be corrected.
@@ -29,6 +31,13 @@ LL-2026-04 and the Freddie Mac equivalent require any approved seller/servicer t
 
 Each principle is enforced by a named mechanism. A principle without an enforcement mechanism is a gap and must appear in §9.
 
+**Automation is the product goal; generative AI is one tool used to achieve it.** Follow
+[CTO_ROADMAP.md](../../CTO_ROADMAP.md#how-automation-works): run routine work automatically,
+prepare work needing approval, and route exceptions to an accountable person. P1 and P2 constrain
+credit decisioning and promotion of AI-derived evidence; they do not require a human click for
+every document request, calculation from accepted inputs, status update or follow-up. AI may
+assist with extraction, summaries and draft preparation inside those controls.
+
 | # | Principle | Enforcement |
 |---|-----------|-------------|
 | P1 | **AI never decides.** No AI system may sit in the credit-decision path or produce an approve/deny/counteroffer outcome. Decisioning is deterministic and matrix-driven. | CI invariant: `tests/complianceInvariants.test.ts` fails the build if any decision-path module imports an AI service (`AI_IMPORT_PATTERNS`), and separately proves the intake decision path is fully deterministic |
@@ -37,6 +46,19 @@ Each principle is enforced by a named mechanism. A principle without an enforcem
 | P4 | **Adverse outcomes are explainable in regulator vocabulary, not model vocabulary.** Denial reasons come from an enumerated ECOA/bureau reason-code taxonomy; free-text reasons are rejected. | `creditService.generateAdverseAction` + `validateAdverseActionReason` |
 | P5 | **Simulation never grounds a real decision.** Simulated vendor output is flagged (`simulated: true` / `is_simulated`) and hard-throws in production unless explicitly enabled. | `server/mcp/vendors.ts` flags; `simulateCreditPullCompletion` production guard (MR-5) |
 | P6 | **AI systems degrade, never fabricate.** On model failure or low confidence, systems return low-confidence output with warnings and raise human-review tasks — they do not substitute guesses. | Extraction degradation path + `DOCUMENT_OCR_ISSUE` tasks (MRG §3) |
+
+**Policy attribution, verified 2026-09-13.** P1's exclusion of AI services from Homiquity's
+decision path is an internal model-risk control. It is not a categorical prohibition stated by
+Regulation B: [§1002.2(p)(1)](https://www.consumerfinance.gov/rules-policy/regulations/1002/2/#p-1)
+defines mechanical credit evaluation. [§1002.9(b)(2)](https://www.consumerfinance.gov/rules-policy/regulations/1002/9/#b-2)
+requires specific principal reasons for adverse action; a failed qualifying score alone is
+insufficient. These sources do not authorize a particular Homiquity workflow or resolve its other
+obligations. Label a restriction as law, lender requirement or internal policy accurately.
+
+The current human-verification ceiling in P2 is also an adopted control, not a reason to keep
+all supporting work manual. A proposal to replace a review step must identify the controlling
+policy, prove the replacement, and complete the applicable approval and implementation process.
+This amendment does not grant AI outputs binding provenance or enable automatic decision delivery.
 
 ## 3. Roles and responsibilities
 
@@ -131,6 +153,7 @@ Open items required for full LL-2026-04 conformance. Same status legend as MRG �
 
 | Date | Version | Change |
 |------|---------|--------|
+| 2026-09-13 | 1.3 | Clarified that routine automation and assistance to the accountable LO are the product goal. Identified P1 as internal model-risk policy, with current CFPB sources for the narrower Reg B claims. Preserved all decision, evidence-promotion and deployment controls. |
 | 2026-07-04 | 1.0 | Initial adoption. Prompted by LL-2026-04 scope analysis: the MCP tool surface (M-6) put Homiquity's own platform in scope independent of any vendor AI. |
 | 2026-07-04 | 1.1 | AG-1 closed (MCP actions chained into `credit_audit_log`; hash canonicalization + chain-head serialization fixed en route). AG-2 closed (per-agent identity handshake, env-scoped credential registry, identity stamped on all MCP-persisted rows and audit entries, unauthenticated production deployments blocked). |
 | 2026-08-05 | 1.2 | **Vendor correction, overdue under §4.** Recorded the 2026-07-17 Gemini→Anthropic migration that §1's M-1 inventory row captured but this policy and MRG §5 did not — leaving the corpus self-contradictory for ~3 weeks and pointing an open gap at a vendor that processes nothing. §1 scope table: M-1 renamed to Anthropic, M-5 amended to name the generative coach chat, M-7 added (was absent). §6/§7 re-scoped to Anthropic across M-1/M-5/M-7. AG-3 re-scoped and **kept OPEN** — the obligation transfers with the data, and only an executed DPA closes it. Flagged three things a doc edit cannot fix: the "vendor register" both docs point at does not exist; §5.5's golden-set review was unmeetable for the migration (AG-4 concedes no harness); §5.6 credential removal is unverified (`AI_INTEGRATIONS_GEMINI_API_KEY` still recorded as provisioned). Found by the feature-review programme (Domain 3), compliance-auditor verdict recorded in the PR. |
