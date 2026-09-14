@@ -70,6 +70,17 @@ const TIMEOUT_MS = Number(arg("timeout", "30000"));
 const ROUTES_FILE = path.join(__dirname, "..", "tests", "ui", "contrast-routes.json");
 const BASELINE_FILE = path.join(__dirname, "..", "tests", "ui", "contrast-baseline.json");
 
+// Endpoint + status pairs that are correct behaviour on a signed-out public
+// page, so they must not be reported as failures. Exact paths only: an
+// unexpected 401/403 anywhere else is a finding.
+//
+//   /api/auth/user 401 — the client asks this on every page to find out whether
+//   anyone is signed in (client/src/hooks/useAuth.ts). 401 IS the answer when
+//   nobody is. This harness never signs in, so it happens on every load.
+const EXPECTED_RESPONSES = [
+  { path: "/api/auth/user", status: 401 },
+];
+
 const VIEWPORTS = [
   { name: "desktop", width: 1280, height: 900 },
   { name: "phone", width: 390, height: 844 },
@@ -214,17 +225,50 @@ const CONTRAST_AUDIT = `(() => {
     a: 1,
   });
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  // Resolves the backdrop by climbing until something opaque is found, and
+  // reports whether a partial \`opacity\` sits anywhere between the text and that
+  // backdrop — because if one does, the number here is not what renders.
+  //
+  // Why this is refused rather than computed. Opacity fades a group AS A UNIT,
+  // so text and any background painted INSIDE the same group fade together and
+  // then blend with whatever is outside it. For
+  // \`<div style="opacity:.5;background:black"><p style="color:white">\` on a white
+  // body, the text pixel stays 255 (white over black, then half-blended with
+  // white) while the backdrop becomes 127.5 — about 4.0:1, a FAIL. Reading the
+  // parent's black at full strength scores it 21:1 and passes.
+  //
+  // The tempting fix — multiply each background layer's alpha by the opacity
+  // product above it — is WRONG, and worth naming so nobody re-derives it: it
+  // fades the text against the already-composited backdrop and returns 191 for
+  // a pixel that renders 255. Getting this exactly right means compositing each
+  // opacity group internally and recursing outward. A measurement tool that
+  // reports a plausible wrong number is worse than one that admits a gap, so
+  // these are counted as unmeasured and excluded from the clean result.
+  // A faded group is only unmeasurable when a background is painted INSIDE it.
+  // Fading with the backdrop OUTSIDE the group is exact: the text alpha carries
+  // the opacity and composites over an unfaded colour, which is how a bare
+  // \`<p style="opacity:.1">\` on a white body correctly scores 1.25:1.
+  //
+  // Climbing from the text upward, a node's opacity fades that node and
+  // everything already passed (its subtree). So the measurement is refused when
+  // a node with opacity < 1 either paints a background itself, or sits above a
+  // background already accumulated from its descendants.
   const bgOf = (el) => {
     let node = el, acc = null;
     while (node && node !== document.documentElement.parentNode) {
       const s = getComputedStyle(node);
+      const o = parseFloat(s.opacity);
       const c = parse(s.backgroundColor);
+      const contributes = !!(c && c.a > 0);
+      if (!Number.isNaN(o) && o < 1 && (contributes || acc)) {
+        return { colour: null, image: false, faded: true };
+      }
       // A background image can be anything; refuse to guess rather than pass it.
-      if (s.backgroundImage && s.backgroundImage !== "none") return { colour: null, image: true };
-      if (c && c.a > 0) { acc = acc ? over(acc, c) : c; if (acc.a >= 0.999) return { colour: acc, image: false }; }
+      if (s.backgroundImage && s.backgroundImage !== "none") return { colour: null, image: true, faded: false };
+      if (contributes) { acc = acc ? over(acc, c) : c; if (acc.a >= 0.999) return { colour: acc, image: false, faded: false }; }
       node = node.parentElement;
     }
-    return { colour: acc || { r: 255, g: 255, b: 255, a: 1 }, image: false };
+    return { colour: acc || { r: 255, g: 255, b: 255, a: 1 }, image: false, faded: false };
   };
   // CSS \`opacity\` fades an element and its whole subtree against what is behind
   // it, and it COMPOUNDS down the ancestor chain. Reading only the element's own
@@ -266,13 +310,10 @@ const CONTRAST_AUDIT = `(() => {
     const fg = { ...fg0, a: fg0.a * op };
     if (fg.a === 0) continue;
     const bg = bgOf(el);
+    // Checked BEFORE the null-colour guard below: a faded group returns no
+    // colour, so testing it second would drop these on the floor uncounted.
+    if (bg.faded) { unmeasured += 1; continue; }
     if (bg.image || !bg.colour) continue;
-    // LIMIT, stated rather than papered over: when a faded element paints its
-    // OWN background, that background fades too, and bgOf reads it at full
-    // strength — which would overstate the ratio. Report it as unmeasured
-    // instead of scoring it, so it can never contribute to a clean result.
-    const ownBg = parse(s.backgroundColor);
-    if (op < 1 && ownBg && ownBg.a > 0) { unmeasured += 1; continue; }
     examined += 1;
     const size = parseFloat(s.fontSize);
     const weight = parseInt(s.fontWeight, 10) || 400;
@@ -390,22 +431,21 @@ async function waitForReady(cdp, sessionId, deadlineMs) {
     if (!url.startsWith(BASE)) return;          // same-origin only, as above
     const status = p.response.status;
     if (!status || status < 400) return;
-    // EXPECTED statuses, excluded deliberately rather than recorded as noise:
+    const where = new URL(url).pathname;
+    // EXPECTED, by exact endpoint AND status — never by status alone.
     //
-    //  401/403  This harness drives public routes while signed out, and the app
-    //           asks `/api/auth/user` on every page to find out whether anyone
-    //           is logged in. The honest answer to that question is 401. Gating
-    //           on it would fail every run for working behaviour — and, worse,
-    //           recording it into the baseline would train the reader to ignore
-    //           auth failures, which is the opposite of what this is for.
-    //  404 on a Document  The app's own not-found route: a product decision.
+    // A blanket 401/403 exemption was the first attempt, justified by the
+    // signed-out auth probe. It also silently swallowed a 403 on any PUBLIC
+    // endpoint, which is a real defect this tool exists to surface. Scope the
+    // exemption to the request that actually expects the status.
+    //
+    // A 404 on a Document is the app's own not-found route: a product decision.
     //
     // Everything else counts. A 5xx is always a finding: a page that renders
     // beautifully while its data call returns 500 is broken, and the transport
     // succeeded so `Network.loadingFailed` never fires.
-    if (status === 401 || status === 403) return;
+    if (EXPECTED_RESPONSES.some((e) => e.path === where && e.status === status)) return;
     if (p.type === "Document" && status === 404) return;
-    const where = new URL(url).pathname;
     add({
       route: cursor.route, viewport: cursor.viewport, kind: "request",
       id: `HTTP ${status} ${where}`,
