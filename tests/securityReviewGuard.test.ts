@@ -9,17 +9,8 @@ const {
   parseChangedLines,
 } = require("../scripts/security-review-guard.cjs");
 
-// -----------------------------------------------------------------------------
-// The §9 security-review gate.
-//
-// The evidence fixtures below are the VERBATIM headings from merged PRs that did
-// the review properly (#305, #328, #336, #337). They are the calibration: a guard
-// that rejects a PR which actually ran the pass is worse than no guard, because the
-// next author learns to route around it. House style prefixes the heading
-// ("## TEAM_PRACTICES §9 security review — outcome"), so matching only a heading
-// that STARTS with "Security review" would have failed two of these four.
-// -----------------------------------------------------------------------------
-
+// Legacy PR headings are compatibility fixtures, not current instructions.
+// The matcher continues to accept prefixed/suffixed Security review headings.
 const REAL_HEADINGS = [
   "## TEAM_PRACTICES §9 security review (binding trigger: borrower-data response shaping)",
   "## Security review (§9 — role/permission-gate trigger)",
@@ -32,7 +23,7 @@ const REAL_CONTENT =
   "`/security-review` structured pass run on this branch: zero findings. Verified fail-closed role dispatch.";
 
 describe("hasReviewEvidence", () => {
-  it.each(REAL_HEADINGS)("accepts the real house-style heading: %s", (heading) => {
+  it.each(REAL_HEADINGS)("accepts a legacy or current heading: %s", (heading) => {
     expect(hasReviewEvidence(BODY(heading, REAL_CONTENT)).ok).toBe(true);
   });
 
@@ -63,7 +54,7 @@ describe("hasReviewEvidence", () => {
   });
 });
 
-describe("detectTriggers — §9 path triggers", () => {
+describe("detectTriggers — security-review path triggers", () => {
   const cases: [string, string][] = [
     ["server/services/ssnVault.ts", "PII vault / field encryption"],
     ["server/services/piiVault.ts", "PII vault / field encryption"],
@@ -76,22 +67,18 @@ describe("detectTriggers — §9 path triggers", () => {
     ["server/services/emailService.ts", "outbound messaging"],
     ["server/services/smsCompliance.ts", "outbound messaging"],
     ["server/routes/webhooks.ts", "webhook receivers & signature verification"],
-    // Added 2026-08-06. Each of these was UNCOVERED until the post-Railway audit; the
-    // cases exist so a future edit to PATH_TRIGGERS cannot silently drop them again.
+    // Include security delegates even when their calling route is unchanged.
     ["server/services/accountRecovery.ts", "auth & sessions"],
     ["server/services/twilioSignature.ts", "webhook receivers & signature verification"],
     ["server/services/twilioMessageStatus.ts", "webhook receivers & signature verification"],
     ["server/clientIp.ts", "request identity & trust boundary"],
     ["server/trustProxy.ts", "request identity & trust boundary"],
     ["server/services/rateLimitPolicy.ts", "rate-limit policy"],
-    // Added 2026-08-08 with the rent-reporting program. Furnishing inverts every other
-    // credit path in this repo: elsewhere we READ a consumer report, here we WRITE to a
-    // consumer's file at a bureau. §9 carried no CRA/furnisher trigger before this.
+    // Include report-furnishing paths.
     ["server/services/rentFurnishing.ts", "consumer-data furnishing (CRA)"],
     ["shared/lib/metro2/compiler.ts", "consumer-data furnishing (CRA)"],
     ["shared/lib/metro2/format.ts", "consumer-data furnishing (CRA)"],
-    // Added 2026-08-19. loginLockout.ts is the per-account brute-force control and it
-    // sat outside every auth path §9 named — detectTriggers() on it returned [].
+    // Include the per-account lockout control.
     ["server/services/loginLockout.ts", "auth & sessions"],
   ];
 
@@ -100,21 +87,13 @@ describe("detectTriggers — §9 path triggers", () => {
     expect(got.map((t: { label: string }) => t.label)).toContain(label);
   });
 
-  // The bug this trigger was widened to catch: routes/webhooks.ts only CALLS
-  // evaluateTwilioWebhookAuth. With the route covered but the delegate not, a PR could
-  // weaken the signature check — the actual auth boundary — and pass the gate. #433 was
-  // that class of bug (the inbound SMS webhook trusted anyone who found the URL).
+  // A delegate-only edit must trigger without a route edit.
   it("flags the signature-verification delegate on its own, not just the route that calls it", () => {
     expect(detectTriggers(["server/services/twilioSignature.ts"], [])).toHaveLength(1);
   });
 
-  // loginLockout.ts is §9 for what depends on it, the same shape as clientIp.ts.
-  // server/app.ts's authLimiter caps ONE IP at 20 auth requests / 15 min, so against a
-  // DISTRIBUTED credential-stuffing attacker rotating source IPs the per-account lockout
-  // in this file is the only control still applying. A PR raising LOCKOUT_THRESHOLD or
-  // shortening the backoff window touches nothing else — so if this file alone does not
-  // trigger, that PR merges with no security review. It did not, until 2026-08-19.
-  it("flags the per-account lockout control on its own, with no other §9 file in the PR", () => {
+  // Lockout is covered even when it is the only sensitive file in the diff.
+  it("flags the per-account lockout control on its own, with no other triggering file in the PR", () => {
     const got = detectTriggers(
       ["server/services/loginLockout.ts", "tests/loginLockout.test.ts", "CHANGELOG.md"],
       [],
@@ -122,9 +101,7 @@ describe("detectTriggers — §9 path triggers", () => {
     expect(got.map((t: { label: string }) => t.label)).toEqual(["auth & sessions"]);
   });
 
-  // clientIp.ts is §9 because of its consumers: rateLimitKey (abuse control) and
-  // clientIpForRecord, which lands in every audit row and in leads.ts's `consentIp` —
-  // the TCPA consent provenance. Changing it alone must still demand a review.
+  // Request-identity changes are covered independently of their consumers.
   it("flags request-identity resolution even when nothing else in the PR is a trigger", () => {
     const got = detectTriggers(["server/clientIp.ts", "README.md", "client/src/pages/borrower/Tasks.tsx"], []);
     expect(got.map((t: { label: string }) => t.label)).toEqual(["request identity & trust boundary"]);
@@ -171,8 +148,7 @@ describe("detectTriggers — content triggers", () => {
   });
 
   it("does NOT flag merely NAMING the allowlist outside server/app.ts", () => {
-    // §9 scopes this trigger to server/app.ts. Unscoped, the guard flagged its own
-    // source and tests for containing the word — a live false positive on its own PR.
+    // Mentions outside server/app.ts must not trigger this content check.
     const lines = [
       { file: "scripts/security-review-guard.cjs", line: " *   RESPONSE_BODY_LOG_ALLOWLIST in server/app.ts" },
       { file: "tests/securityReviewGuard.test.ts", line: '  line: "RESPONSE_BODY_LOG_ALLOWLIST"' },
@@ -181,7 +157,7 @@ describe("detectTriggers — content triggers", () => {
     expect(detectTriggers([], lines)).toEqual([]);
   });
 
-  it("ignores a role-gate lookalike outside server/ (client gating is not the §9 trigger)", () => {
+  it("ignores a role-gate lookalike outside server/ (this trigger is scoped to server code)", () => {
     const lines = [{ file: "client/src/hooks/useAuthGuard.ts", line: "  const ok = isAdmin(user);" }];
     expect(detectTriggers([], lines)).toEqual([]);
   });
@@ -191,10 +167,7 @@ describe("detectTriggers — content triggers", () => {
     expect(detectTriggers([], lines)).toEqual([]);
   });
 
-  // Money movement (added 2026-08-08). This is a content trigger rather than a path one
-  // because the file that will carry it does not exist yet — a speculative path would be
-  // a trigger that can never fire. The dependency is the stable signal: money cannot move
-  // without a processor SDK, so the review is owed the moment one is added.
+  // Processor dependencies are detected by content rather than a service filename.
   it("flags a payment-processor dependency landing in package.json", () => {
     const lines = [{ file: "package.json", line: '+    "stripe": "^18.0.0",' }];
     expect(detectTriggers([], lines).map((t: { label: string }) => t.label)).toContain(
@@ -212,10 +185,7 @@ describe("detectTriggers — content triggers", () => {
   });
 
   it("does NOT flag a payment processor named in docs or client code", () => {
-    // Scoped to package.json + server/ deliberately. The adjudication log and the renter
-    // page both discuss processors in prose; neither moves money, and a guard that reds
-    // every PR mentioning Stripe converts the review section into boilerplate — the
-    // failure mode §9 explicitly warns about ("keep the triggers narrow").
+    // The processor-name trigger is scoped to package.json and server/.
     const lines = [
       { file: "knowledge-base/logs/2026-08-08-rent-reporting-pitch-adjudication.md", line: "no stripe dependency exists" },
       { file: "client/src/pages/public/RenterReporting.tsx", line: "  // no Stripe, no checkout, nothing is sold" },
@@ -266,16 +236,7 @@ describe("detectTriggers — content triggers", () => {
   });
 });
 
-// -----------------------------------------------------------------------------
-// §9's "any `shared/schema/` column holding PII" — previously a documented blind
-// spot: nothing covered shared/schema/**, so a PII column passed with ZERO triggers.
-//
-// The negatives here matter as much as the positives. A path trigger on
-// shared/schema/** would have been trivial to write and would have fired on every
-// rename, index and comment in a 3,146-column corpus — and §9's doctrine, learned
-// from the RESPONSE_BODY_LOG_ALLOWLIST false positive, is that a guard which
-// over-fires trains people to route around it.
-// -----------------------------------------------------------------------------
+// Schema positives and negatives pin the current declaration/vocabulary matching.
 type Line = { file: string; line: string; added: boolean };
 const added = (file: string, line: string): Line => ({ file, line, added: true });
 const removed = (file: string, line: string): Line => ({ file, line, added: false });
@@ -284,8 +245,7 @@ const SCHEMA_PII = "PII / consent column in shared/schema";
 
 describe("detectTriggers — shared/schema PII columns", () => {
   it("flags the case that exposed the blind spot: a user_phones table with TCPA consent provenance", () => {
-    // Verbatim shape of the branch that ran detectTriggers() and got "no §9
-    // triggers detected" — a phone number plus its consent provenance columns.
+    // A phone table and its consent columns exercise both declaration shapes.
     const lines = [
       added("shared/schema/core.ts", 'export const userPhones = pgTable("user_phones", {'),
       added("shared/schema/core.ts", '  phone: varchar("phone", { length: 40 }).notNull(),'),
@@ -492,7 +452,7 @@ describe("CLI: empty vs unset CHANGED_FILES", () => {
   it("reports the file count on a clean pass, so the log proves it saw the diff", () => {
     const got = run({ CHANGED_FILES: "README.md\npackage.json" });
     expect(got.code).toBe(0);
-    expect(got.out).toMatch(/no §9 trigger among 2 changed file\(s\)/);
+    expect(got.out).toMatch(/no security-review trigger among 2 changed file\(s\)/);
   });
 
   // A `git diff -U0` bigger than Linux's MAX_ARG_STRLEN (131,072 bytes — the
@@ -516,7 +476,7 @@ describe("CLI: empty vs unset CHANGED_FILES", () => {
         CHANGED_FILES_FILE: tmp("files.txt", `README.md\n${padding}`),
       });
       expect(got.code).toBe(0);
-      expect(got.out).toMatch(/no §9 trigger among 4001 changed file\(s\)/);
+      expect(got.out).toMatch(/no security-review trigger among 4001 changed file\(s\)/);
     });
 
     it("reads CHANGED_LINES_FILE and still detects a content trigger inside a huge diff", () => {
@@ -539,7 +499,7 @@ describe("CLI: empty vs unset CHANGED_FILES", () => {
       // The role-gate trigger must still fire from deep inside the payload, and with
       // no `## Security review` section the gate must go red.
       expect(got.code).toBe(1);
-      expect(got.out).toMatch(/§9 trigger/);
+      expect(got.out).toMatch(/security-review trigger/);
     });
 
     it("prefers the file over an inline var when both are present", () => {
@@ -549,7 +509,7 @@ describe("CLI: empty vs unset CHANGED_FILES", () => {
       });
       // server/auth.ts would trigger; README.md does not. The file must win.
       expect(got.code).toBe(0);
-      expect(got.out).toMatch(/no §9 trigger among 1 changed file\(s\)/);
+      expect(got.out).toMatch(/no security-review trigger among 1 changed file\(s\)/);
     });
   });
 });
