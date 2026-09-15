@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Stand-in for the dead CI `gate` job: merge current origin/main into a PR branch
-# and run the gate's own step list against the RESULT. Branch protection has
-# strict:false, so a PR's recorded green gate never saw today's main — this is
-# what closes that gap while GitHub Actions billing is down.
+# Run local checks after merging origin/main into a temporary verification branch.
+# Use a disposable checkout: this script discards tracked changes and untracked
+# files under scripts/, checks out verify/<pr-number>, and installs dependencies.
+# Fetch the target PR branch and origin/main first. The checks below describe
+# this script's coverage; inspect current CI results separately.
 #
-# usage: verify-pr.sh <pr-number> <head-branch>
+# usage: bash scripts/verify-pr-against-main.sh <pr-number> <head-branch>
 set -uo pipefail
 PR="$1"; BR="$2"
 LOG="${SCRATCH:-/tmp}/pr-$PR.log"
@@ -51,13 +52,14 @@ step "doc staleness"        node scripts/doc-staleness-guard.cjs
 step "citations"            pnpm guard:citations
 step "query keys"           node scripts/query-key-guard.cjs
 
-# §9 security-review guard reads the PR BODY from the event payload in CI; feed it the real one.
+# The security-review guard reads the PR body from the event payload in CI;
+# supply that body here too.
 gh pr view "$PR" --json body --jq .body > "${SCRATCH:-/tmp}/body-$PR.txt" 2>/dev/null
 CHANGED_FILES="$(git diff --name-only origin/main...HEAD)" \
   PR_BODY="$(cat "${SCRATCH:-/tmp}/body-$PR.txt")" \
   bash -c 'node scripts/security-review-guard.cjs' >>"$LOG" 2>&1 \
-  && res+=("PASS  §9 security-review") && echo "  ok   §9 security-review" \
-  || { res+=("FAIL  §9 security-review"); echo "  FAIL §9 security-review"; }
+  && res+=("PASS  security review evidence") && echo "  ok   security review evidence" \
+  || { res+=("FAIL  security review evidence"); echo "  FAIL security review evidence"; }
 
 step "production build"     pnpm build
 step "bundle ratchet"       node scripts/bundle-size-guard.cjs
