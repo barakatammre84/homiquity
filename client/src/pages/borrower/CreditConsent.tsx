@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest, loanApplicationKeys } from "@/lib/queryClient";
+import { friendlyApiError } from "@/lib/errorMessage";
 import { useParams, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -81,8 +82,6 @@ export default function CreditConsent() {
   const [dob, setDob] = useState("");
   const [acknowledged, setAcknowledged] = useState(false);
   const [disclosureRead, setDisclosureRead] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [saving, setSaving] = useState(false);
   const [draftLoaded, setDraftLoaded] = useState(false);
 
   const {
@@ -117,19 +116,8 @@ export default function CreditConsent() {
     enabled: !!applicationId,
   });
 
-  // Identity fields resume from the saved draft — that is the convenience the
-  // draft exists for. The ACKNOWLEDGMENT deliberately does not.
-  //
-  // `acknowledged` is the only gate between this page and a posted
-  // `consentGiven: true`, and the checkbox beside that label is the
-  // e-signature evidence for an FCRA hard-inquiry authorization. Restoring it
-  // meant a borrower returning to a draft found the box already checked, and
-  // could authorize a hard credit pull in a session where they never
-  // affirmatively acknowledged anything — possibly against a disclosure
-  // version they never saw. So the acknowledgment is re-given, in the session
-  // that authorizes, every time (DESIGN_SYSTEM §13, Honesty: never
-  // pre-ticked). The draft still PERSISTS it — that record is untouched; it is
-  // only never restored into the live control.
+  // Restore draft identity fields, but keep the live acknowledgment unchecked.
+  // Returning borrowers must acknowledge again before submitting authorization.
   useEffect(() => {
     if (draftData?.draft && !draftLoaded) {
       const draft = draftData.draft;
@@ -163,24 +151,21 @@ export default function CreditConsent() {
     onError: (error: Error) => {
       toast({
         title: "Error",
-        description: error.message || "Failed to save progress",
+        description: friendlyApiError(error, "We couldn't save your progress. Please try again."),
         variant: "destructive",
       });
     },
   });
 
-  const handleSaveDraft = async () => {
-    setSaving(true);
-    await saveDraftMutation.mutateAsync();
-    setSaving(false);
-  };
+  const saving = saveDraftMutation.isPending;
+  const handleSaveDraft = () => saveDraftMutation.mutate();
 
   const submitConsentMutation = useMutation({
     mutationFn: async (consentGiven: boolean) => {
       const response = await apiRequest("POST", `/api/loan-applications/${applicationId}/credit/consent`, {
         consentType: "hard_pull",
         borrowerFullName: fullName,
-        borrowerSSNLast4: ssnLast4,
+        borrowerSSNLast4: ssnLast4 || undefined,
         borrowerDOB: dob,
         consentGiven,
       });
@@ -196,13 +181,14 @@ export default function CreditConsent() {
     onError: (error: Error) => {
       toast({
         title: "Error",
-        description: error.message || "Failed to submit consent",
+        description: friendlyApiError(error, "We couldn't record your authorization. Please try again."),
         variant: "destructive",
       });
     },
   });
 
-  const handleSubmitConsent = async () => {
+  const submitting = submitConsentMutation.isPending;
+  const handleSubmitConsent = () => {
     if (!fullName.trim()) {
       toast({
         title: "Required Field",
@@ -221,9 +207,16 @@ export default function CreditConsent() {
       return;
     }
 
-    setSubmitting(true);
-    await submitConsentMutation.mutateAsync(true);
-    setSubmitting(false);
+    if (ssnLast4 && !/^\d{4}$/.test(ssnLast4)) {
+      toast({
+        title: "Check SSN Digits",
+        description: "Enter exactly four SSN digits, or leave this optional field blank.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    submitConsentMutation.mutate(true);
   };
 
   const isLoading = appLoading || disclosureLoading || summaryLoading || draftLoading;
@@ -431,13 +424,7 @@ export default function CreditConsent() {
 
               <Separator />
 
-              {/* ux-20: the hard-inquiry fact must be visible AT the decision
-                  point, not only as item 2 of the disclosure document inside
-                  the scroll area above — especially because the pre-approval
-                  funnel deliberately set the opposite expectation ("a soft
-                  inquiry, which will not affect my credit score"). Wording
-                  mirrors the ratified FCRA disclosure item 2
-                  (server/services/creditCatalogs.ts); nothing new is asserted. */}
+              {/* Keep the existing inquiry explanation beside the authorization control. */}
               <Alert data-testid="alert-hard-inquiry">
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription>
@@ -448,13 +435,7 @@ export default function CreditConsent() {
                 </AlertDescription>
               </Alert>
 
-              {/* The authorization text below is e-signature evidence: it is
-                  what the borrower affirmatively agrees to, and the
-                  hard-inquiry sentence inside it is ux-20's ratified fix.
-                  Preserved BYTE-FOR-BYTE through this migration, label and
-                  testids included (DESIGN_SYSTEM §13 — compliance copy is
-                  load-bearing). It stays IN the label rather than moving to
-                  `consequence`, because what is signed must be what is read. */}
+              {/* Preserve the existing authorization text in the checkbox label. */}
               <ConsentField
                 id="acknowledge"
                 checked={acknowledged}
@@ -465,10 +446,7 @@ export default function CreditConsent() {
                 label="I have read and understand the Credit Authorization Disclosure above. I authorize Homiquity to obtain my credit report from one or more consumer reporting agencies for the purpose of evaluating my mortgage loan application. I understand this permits a hard credit inquiry, which may temporarily lower my credit score."
               />
 
-              {/* Declining costs the borrower nothing here — say so plainly
-                  rather than leaving the only exit as an unexplained "Cancel"
-                  (§13, Honesty: no penalty language, and no implied penalty
-                  either). */}
+              {/* Explain the existing option to save progress and return later. */}
               <p className="text-sm text-muted-foreground" data-testid="text-consent-optional">
                 You can leave this for later — nothing is submitted until you
                 authorize, and your saved progress will be here when you return.
