@@ -3,17 +3,11 @@
  * Migration ledger integrity guard — run by `pnpm guard:migrations` and in ci.yml's
  * gate job.
  *
- * Prod is migrate-only and the `migrate-prod` job applies pending migrations
- * automatically on every merge to `main` (CLAUDE.md, Database). That makes
- * `migrations/meta/_journal.json` a load-bearing ledger: drizzle applies migrations
- * in `idx` order, so a malformed ledger is not a lint problem, it is a prod-DDL
- * problem that surfaces only after the merge button.
- *
- * The failure this exists to prevent is documented in TEAM_PRACTICES.md §4: on
- * 2026-08-04 two branches independently authored migration `0038`. It was caught by
- * luck — the branch happened to be merged up before the PR opened. Had both landed,
- * the journal would have carried two entries with `idx: 38` and `migrate-prod` would
- * have applied them in an undefined order against the production database.
+ * Authoring and application procedures are in
+ * knowledge-base/runbooks/DB_MIGRATIONS.md. Shared working practices are in AGENTS.md.
+ * This guard checks migrations/meta/_journal.json against the SQL files before
+ * the migration job runs. Concurrent branches can choose the same migration slot;
+ * duplicate or missing ledger entries can prevent the intended SQL from being applied.
  *
  * Seven checks, all hard failures:
  *   1. duplicate `idx`           — two migrations claiming the same apply slot
@@ -62,13 +56,11 @@ function fail(problems) {
   console.error("migration-ledger-guard: FAIL — the migration ledger is not safe to apply:\n");
   for (const p of problems) console.error(`  • ${p}`);
   console.error(
-    "\nprod applies migrations/ automatically on merge to main (the `migrate-prod` job), in\n" +
-      "journal `idx` order. A duplicate or missing entry means the production DDL runs in an\n" +
-      "undefined order, or silently does not run at all.\n" +
-      "\nIf this is a collision with another branch: merge main, renumber YOUR migration to the\n" +
+    "\nCorrect the journal and SQL file mismatch before applying migrations.\n" +
+      "If this is a collision with another branch: merge main, renumber YOUR migration to the\n" +
       "next free index (rename the .sql AND update its journal entry's `idx` and `tag`), then\n" +
-      "re-run. Never hand-apply and never `db:push` — see CLAUDE.md (Database) and\n" +
-      "knowledge-base/runbooks/DB_MIGRATIONS.md.",
+      "re-run. Follow the migration procedure in\n" +
+      "knowledge-base/runbooks/DB_MIGRATIONS.md, Adding a migration.",
   );
   process.exit(1);
 }

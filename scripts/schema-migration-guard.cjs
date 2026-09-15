@@ -146,10 +146,10 @@ function main() {
   console.error("schema-migration-guard: FAIL — NEW schema columns with no migration (db:push drift):\n");
   for (const d of newDrift) console.error(`  ${d.key}   (${d.file})`);
   console.error(
-    "\nThese columns are in shared/schema but no migrations/*.sql creates them, so prod\n" +
-      "(migrate-only) will 500 on any select of the table. Hand-author a migration adding each\n" +
+    "\nThese columns are in shared/schema but no migrations/*.sql creates them.\n" +
+      "Hand-author a migration adding each\n" +
       "(ALTER TABLE ... ADD COLUMN IF NOT EXISTS) + a journal entry, then re-run.\n" +
-      "Never rely on `db:push` — it only touches the shared dev DB. See CLAUDE.md (Database).",
+      "The `pnpm db:push` command is blocked. See knowledge-base/runbooks/DB_MIGRATIONS.md, Adding a migration.",
   );
   process.exit(1);
 }

@@ -1,8 +1,8 @@
 # Running Homiquity locally (Antigravity / any terminal)
 
-The whole app runs on your machine, database included — that is the default and
-what day-to-day work should use (CLAUDE.md, *Local is the default verification
-target*). A hosted Postgres is a supported fallback, not the recommendation.
+This runbook covers running the app with a local database and an optional hosted
+Postgres setup. Shared working practices are in [AGENTS.md](../../AGENTS.md);
+schema changes follow [DB_MIGRATIONS.md](DB_MIGRATIONS.md#adding-a-migration-every-schema-pr).
 
 ## Quick start — one command *(added 2026-08-18)*
 
@@ -119,8 +119,9 @@ and destroy freely without touching data another branch or session depends on.
 The app already uses Neon's driver, so this Just Works. The app still runs on
 your machine — only the database is hosted. ⚠️ **A hosted dev branch is shared**:
 `pnpm db:push` against it drops columns owned by other branches (which is why
-that script is blocked — see CLAUDE.md, *Database*), and a destructive local
-experiment is no longer local.
+that script is blocked — see
+[the migration runbook](DB_MIGRATIONS.md#adding-a-migration-every-schema-pr)), and a
+destructive local experiment is no longer local.
 
 ## 4. Create your `.env`
 ```bash
