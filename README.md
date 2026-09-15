@@ -1,7 +1,7 @@
 # Homiquity
 
-Automated loan operations from application through funding, with an accountable loan officer
-involved and assisted throughout.
+A mortgage operation designed for one loan officer, with software performing routine work
+and coordinating the journey from lead capture through closeout.
 
 Start with [AGENTS.md](AGENTS.md), [product direction](CTO_ROADMAP.md), and
 [current implementation context](knowledge-base/ACTIVE_CONTEXT.md).
