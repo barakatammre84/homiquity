@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync, readdirSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runRecon, parseRobots, robotsVerdict, classify } = require("../scripts/selling-guide-recon.cjs");
+const { runRecon, parseRobots, robotsVerdict, classify, UA } = require("../scripts/selling-guide-recon.cjs");
 
 // -----------------------------------------------------------------------------
 // The one-off Selling Guide site recon, on injected fetch — "runs on a plane",
@@ -262,5 +262,34 @@ describe("selling-guide recon — the report a human has to read", () => {
       // Bodies are never inlined into the report — they are files beside it.
       expect(JSON.stringify(report)).not.toContain("<html>");
     });
+  });
+});
+
+describe("selling-guide recon — the User-Agent identifies a repository that exists", () => {
+  // This string is the only thing a Fannie Mae maintainer reading their access log
+  // has to identify the caller by, which is what the comment above `UA` promises.
+  // It silently went stale when the repository was renamed away from
+  // `homiquity-mortgage-broker` (#839): nothing here, in the guards, or in the gate
+  // asserted the name, and `oldRepoRefs` in doc-staleness-guard only matches
+  // `MortgageStream`. The report assertion below already said `toContain("Homiquity")`
+  // — which the RETIRED name also satisfies, so it could never have caught it.
+  // These two assertions are the ones that can.
+
+  const RETIRED = "homiquity-mortgage-broker";
+
+  it("points at the current repository, not the retired name", () => {
+    expect(UA).toContain("https://github.com/barakatammre84/homiquity;");
+    expect(UA).not.toContain(RETIRED);
+  });
+
+  it("is the same string in the render probe, which has no exports to check", () => {
+    // selling-guide-recon-render.cjs duplicates the constant rather than importing it,
+    // so the two can drift; a rename that fixes one and misses the other is the case.
+    const render = readFileSync(
+      join(__dirname, "..", "scripts", "selling-guide-recon-render.cjs"),
+      "utf8",
+    );
+    expect(render).toContain("https://github.com/barakatammre84/homiquity;");
+    expect(render).not.toContain(RETIRED);
   });
 });
