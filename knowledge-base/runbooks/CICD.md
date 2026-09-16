@@ -363,6 +363,30 @@ change is only exercised by an integration test, run it by hand against a live
 worktree server and record that in the PR
 ([shared working practices](../../AGENTS.md)).
 
+### `happy-dom` is pinned to an exact version, on purpose
+
+`package.json` carries `"happy-dom": "20.11.15"` with no range. The client lane runs
+every component test in happy-dom, and **20.12.0 added a Web Animations implementation**
+(`Element.prototype.animate`, `Animation`, `KeyframeEffect`). With it present,
+`framer-motion` takes its native-WAAPI path, and unmounting an animated component calls
+`Animation.cancel()`. happy-dom's `cancel()` rejects the animation's eagerly created
+`finished` promise and — unlike a browser, which marks it handled per the Web Animations
+spec — leaves the rejection unhandled. Nothing attaches a handler to that promise
+(`motion-dom`'s `NativeAnimation` resolves its own), so each cancelled animation becomes an
+**unhandled rejection**: on 2026-09-16 that was five of them out of
+`client/src/pages/lending/preApproval/FunnelChrome.test.tsx`, with all 995 client
+assertions passing and the lane still exiting 1. Measured on both lanes: 20.11.14 and
+20.11.15 clean, 20.12.0 / 20.13.0 / 20.14.5 red, `framer-motion` 13.2.0 not implicated
+(#844).
+
+A caret range floats to the newest 20.x on any lockfile regeneration, so before this pin
+only `pnpm-lock.yaml` was keeping the lane green — a red gate with no source change to
+point at. Before widening the range, run `pnpm test` against the candidate version and
+confirm the client lane exits 0 with zero unhandled errors; if the newer happy-dom is
+wanted, the alternative is a client `setupFiles` shim that wraps `Element.prototype.animate`
+and attaches a no-op `catch` to `finished` (including happy-dom's re-assignment of it on
+`play()`), which was measured green on 20.14.5.
+
 ### A test that does not run still reports success
 
 Two ways a file goes unrun while the gate stays green. Both are now gated by
