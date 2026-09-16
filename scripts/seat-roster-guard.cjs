@@ -18,7 +18,7 @@
  * WHAT IT CANNOT DO, stated plainly: CI cannot read either scheduler. `SEATS.tsv` is therefore
  * a SNAPSHOT, and its `Registry read` freshness line is what forces a session that CAN read
  * them to re-take it. That check is calendar-driven, so it is `--no-freshness` in the required
- * gate and full in checkup — `.github/workflows/doc-freshness.yml:10-19` is the in-repo
+ * gate and full in checkup — `.github/workflows/source-records.yml:10-19` is the in-repo
  * precedent for keeping calendar checks out of the required check.
  *
  * Paths are env-overridable so the tests can prove the FAILING directions; a guard only ever
