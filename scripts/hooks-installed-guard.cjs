@@ -7,10 +7,15 @@
  * setting lives in `.git/config`, which is per-clone and NOT tracked. A fresh clone
  * therefore starts with the gate silently OFF.
  *
- * That was tolerable while CI was the real gate. It is not tolerable now: CI is down on
- * an Actions billing failure, `main` no longer requires a status check, and the pre-push
- * hook is the ONLY thing standing between a broken diff and `main`. An unarmed clone is
- * an unguarded one, and nothing would say so.
+ * ⚠️ The paragraph that used to sit here said "CI is down on an Actions billing failure,
+ * `main` no longer requires a status check, and the pre-push hook is the ONLY thing
+ * standing between a broken diff and `main`." That was true when written and is FALSE now:
+ * the `gate` job runs on every pull request and is the required check. Corrected
+ * 2026-09-15 after a gate run was watched green.
+ *
+ * So an unarmed clone is not unguarded — but it is unchecked until push time, which is the
+ * slowest and most expensive place to find out. That is reason enough to arm it, and it is
+ * the honest reason. An availability claim is a thing to test, never a thing to assert.
  *
  * Same failure shape as the silent skip this hook used to do, and as the routine
  * definitions that sat on disk unregistered: a control that is present but not wired is
@@ -55,9 +60,9 @@ if (problems.length) {
   console.error("");
   console.error(`  fix:  ${FIX}`);
   console.error("");
-  console.error("  This matters more than usual right now: CI is down and `main` has no");
-  console.error("  required status check, so this hook is the only gate. Without it a push");
-  console.error("  is checked by nothing at all, and nothing would tell you.");
+  console.error("  The PR `gate` job still checks every pull request, so this is not your");
+  console.error("  only gate — but unarmed, nothing is checked until you push, which is the");
+  console.error("  slowest and most expensive place to find out.");
   process.exit(1);
 }
 

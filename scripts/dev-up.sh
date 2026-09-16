@@ -68,8 +68,13 @@ case "$CMD" in
 # OFF and nothing says so. This script exists to make one-time setup correct, and that
 # is one-time setup. Idempotent; safe to re-run.
 #
-# It matters more than it used to: CI is down and `main` carries no required status
-# check, so the pre-push hook is currently the only gate there is.
+# CORRECTED 2026-09-15. This used to read "CI is down and `main` carries no required
+# status check, so the pre-push hook is currently the only gate there is." True for the
+# 2026-08-19..22 Actions outage, false since. vitest.config.ts was corrected on 2026-08-24
+# and hooks-installed-guard.cjs on 2026-09-15; this was the last copy still asserting it.
+# What is true: the `gate` job runs on every PR and is the required check. The pre-push
+# hook is an early warning — worth arming because push time is the slowest place to learn
+# you broke something, not because nothing else is watching.
 if [ "$(git config --get core.hooksPath 2>/dev/null)" != ".githooks" ]; then
   git config core.hooksPath .githooks
   echo "armed the pre-push gate (core.hooksPath -> .githooks)"

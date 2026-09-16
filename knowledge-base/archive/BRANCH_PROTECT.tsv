@@ -8,7 +8,7 @@
 #
 # WHY IT CANNOT BE DERIVED. A GitHub Actions runner cannot read the Claude session API. A branch
 # can be `in-main` — the safest bucket there is — and still be the outcome branch of a running
-# session. feat/landing-coach-first is exactly that: PR #595 merged, and sessions still name it.
+# session.
 #
 # HOW TO REFRESH, and it MUST be refreshed before any deletion run:
 #   list_sessions -> session_context.outcomes[].git_repository.git_info.branches
@@ -16,24 +16,27 @@
 #   "barakatammre84/Homiquity" there and 14 report an empty string; reading the wrong field
 #   returns a plausible list of nothing.
 #
-# TWO RULES THIS LIST NOW FOLLOWS, both learned by getting them wrong on 2026-08-31:
+# TWO RULES THIS LIST FOLLOWS, both learned by getting them wrong on 2026-08-31:
 #
 #   1. ONLY BRANCHES THAT EXIST ON ORIGIN. The first version was written straight from
 #      list_sessions without checking, and 7 of its 15 rows named branches that were not on
 #      origin at all — four had NEVER been pushed. A row naming nothing protects nothing while
 #      reading as protection, which is the config-key-matches-nothing shape (d390dcacf3fe,
-#      95770d4e56a7). branch-cleanup.cjs now WARNS on such a row rather than ignoring it.
+#      95770d4e56a7). branch-cleanup.cjs WARNS on such a row rather than ignoring it.
 #
 #   2. ONLY SESSIONS ACTIVE WITHIN 7 DAYS. An IDLE session is not a working one; it is a session
-#      that has not touched its branch since. Four branches idle 7-10 days were dropped on
-#      2026-09-01 and deleted — every one of them already reachable from
-#      archive/2026-08-31-orphan-tips or from main, so the work survives and only the name went.
+#      that has not touched its branch since.
 #
 # Sessions whose status is ARCHIVED are never listed: an archived session is not coming back.
 #
-# Read 2026-09-01T03:45Z · 60 sessions · idle age measured from the newest NON-archived session.
+# ⚠️ A COUNT IS NOT EVIDENCE OF LIFE. The 2026-09-01 version kept feat/landing-coach-first on the
+# strength of "14 sessions". Fifteen of those sixteen were already ARCHIVED — rule 3 above, not
+# applied to the number that was doing the arguing. One non-archived session touched it, idle 6
+# days then and 22 by 2026-09-16. Count the sessions that rule 3 admits, then apply rule 2.
+#
+# Read 2026-09-16T16:09Z · 45 sessions · 10 non-archived, of which EIGHT name a branch and
+# exactly ONE of those branches exists on origin. The other seven were never pushed or were
+# auto-deleted on merge — rule 1 drops them rather than letting them read as protection.
 #
 # branch	sessions	idleDays	note
-claude/mortgage-broker-launch-features-nbc74b	1	0	touched today; PR #710 closed but the session is live
-feat/landing-coach-first	14	6	PR #595 merged, bucket in-main — the case that proves a safe bucket is not an idle branch
-docs/handoff-refresh-0823	1	6	no PR; orphan, covered by the archive ref
+claude/eager-hamilton-8bd0mk	1	0	PR #805 open and the session was active today. Belt-and-braces: branch-cleanup.cjs already refuses any open-PR head (rule 2 of five), so this row is a second lock on a door that is shut.

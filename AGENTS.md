@@ -24,10 +24,11 @@ or research, name the workflow protected or decision resolved. Follow the user's
 Check the existing implementation first; reuse and repair it before adding another subsystem.
 Do not start from an old worktree's charter: check current main and its shared instructions.
 Carry forward only relevant changes into an up-to-date isolated branch, preserving others' work.
-Verify the remote is `barakatammre84/homiquity`. GitHub folds case and still redirects the former
-`homiquity-mortgage-broker` name, so `.../Homiquity` or an old-name remote is the same repository,
-not the wrong one. Use `origin/main` explicitly; a cached `origin/HEAD` is not proof of GitHub's
-default branch.
+Verify the remote is `barakatammre84/homiquity` and use `origin/main` explicitly; a cached
+`origin/HEAD` is not proof of GitHub's default branch. The repository was renamed from
+`homiquity-mortgage-broker`, which this line named until 2026-09-15; GitHub folds case and still
+redirects the old name, so a `.../Homiquity` or old-name remote is the same repository, not the
+wrong one. `homiquity` is the canonical one.
 
 Record one implementation owner and file scope in REGISTER. When both agents work on a task,
 one implements and the other reviews; either can fill either role. Parallel implementation uses
