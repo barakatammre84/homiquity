@@ -6,4 +6,4 @@ and coordinate overlap. This table does not establish scheduler registrations or
 
 | routine / session | target | worktree | branch | claimed (UTC) | intent |
 |---|---|---|---|---|---|
-| file-router-organization (PR #841) | `knowledge-base/archive/BRANCH_{ARCHIVE,PROTECT}.tsv` · `knowledge-base/routines/REGISTER.md` | cloud checkout | `claude/file-router-organization-ol4k7i` | 2026-09-16T16:09 | Regenerate the branch census against `fe980a61` and refresh the protect list from a live session read, so the cleanup workflow will run (it refuses a list older than 24h). Released when #841 merges. |
+| keen-bell (PR pending) | `.github/workflows/{seat-roster,doc-freshness→source-records,selling-guide-recon}.yml` · `scripts/seat-roster-guard.cjs` · `knowledge-base/routines/REGISTER.md` | cloud checkout | `claude/keen-bell-x3uren` | 2026-09-16T17:30 | Finish #840's two owner's-call items: delete the retired seat-roster workflow and rename the misnamed doc-freshness one, updating the three references. Also releases #841's row, whose PR merged. Released in this PR. |
