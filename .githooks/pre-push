@@ -111,7 +111,7 @@ step "migration ledger"         node scripts/migration-ledger-guard.cjs
 step "delivery-stack freeze"    node scripts/delivery-stack-freeze-guard.cjs
 step "design tokens"            node scripts/design-token-guard.cjs
 step "UI standard ratchet"      node scripts/ui-standard-guard.cjs
-step "knowledge-base index"     node scripts/kb-index-guard.cjs
+step "document register + sources" node scripts/source-instructions-guard.cjs
 step "doc staleness ratchet"    node scripts/doc-staleness-guard.cjs
 step "query-key convergence"    node scripts/query-key-guard.cjs
 # The gate runs all three query-key scripts and the citation ratchet; this hook ran one of
@@ -124,10 +124,10 @@ step "query-key transport"       node scripts/query-key-transport-guard.cjs
 step "citation ratchet"          node scripts/citation-guard.cjs
 step "selling-guide corpus"      node scripts/selling-guide-corpus-guard.cjs
 step "selling-guide coverage"    node scripts/selling-guide-coverage.cjs --check
-# --no-freshness: the roster's registry-read date is calendar-driven and would block a push
-# for a reason no push caused. The structural half — tables match the roster, definitions
-# exist, no doc names an unknown seat — is deterministic and belongs here.
-step "routine seat roster"       node scripts/seat-roster-guard.cjs --no-freshness
+# "routine seat roster" used to run here with --no-freshness. It was the same script as
+# "document register + sources" above — #811 retired the seat checks and left main()
+# delegating — so this hook ran one guard twice under two names. The flag was inert too:
+# the delegating main() never read argv. Removed 2026-09-15 with the other six call sites.
 step "gating reality"            pnpm guard:gating
 step "vocabulary registry"       pnpm guard:vocab
 

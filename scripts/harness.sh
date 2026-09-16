@@ -1,27 +1,15 @@
 #!/usr/bin/env bash
 #
-# The harness tiers, one token each.
+# Short commands for the repository's local checks.
 #
-# `knowledge-base/handoff/prompts/_RAILS.md` R14 defines a proof hierarchy: each tier
-# proves one thing and is blind to the rest, and a loop may claim completion only by
-# citing tier output. Until now the rails carried the COMMANDS as prose, so a loop
-# retyped a nine-guard chain from a markdown table — and the table and the gate could
-# drift apart with nothing to notice.
+#   pnpm harness:t0    static — types, script syntax, selected structural guards
+#   pnpm harness:t1    unit   — both vitest lanes, with the collection floor
+#   pnpm harness:t2    fast   — preflight --fast; skips build, boot and integration
+#   pnpm harness:t3    full   — preflight; includes build, boot and integration when available
 #
-# This file is now the executable definition. The rails describe what each tier proves
-# and cannot see; the commands live here, once.
-#
-#   pnpm harness:t0    static      — types, guard scripts parse, ratchets not regressed
-#   pnpm harness:t1    unit        — both vitest lanes, with the collection floor
-#   pnpm harness:t2    integrated  — T0 + T1 + audit + the §9 guard as CI computes it
-#   pnpm harness:t3    full        — + build, bundle ratchet, prod-mode boot, integration lane
-#
-# T-1 (standing checks), T4 (browser) and T5 (post-merge prod) are deliberately absent:
-# each needs a judgement or a running service that a single command cannot honestly
-# assert. Their definitions stay in R14. Do not add a `harness:t4` that boots a server
-# and calls silence success.
-#
-# A tier that CANNOT run must fail, never pass quietly — the same rule the gate follows.
+# These are engineering checks. AGENTS.md describes project validation expectations.
+# Inspect the individual results and skipped checks: preflight can exit 0 with
+# skips. Browser behavior and production deployment need separate verification.
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)" || exit 1
 
@@ -37,13 +25,12 @@ t0() {
   for f in scripts/*.cjs; do node --check "$f" || return 1; done
   step "T0 static — ratchets and structural guards"
   pnpm guard:schema && pnpm guard:migrations && pnpm guard:channel \
-    && pnpm guard:kb && pnpm guard:staleness && pnpm guard:citations \
+    && pnpm guard:sources && pnpm guard:staleness && pnpm guard:citations \
     && pnpm guard:querykeys && pnpm guard:tokens && pnpm guard:ui
 }
 
-# `pnpm test` IS scripts/test-collection-guard.cjs, which compares each lane's real
-# `include` against the files on disk and fails on a silent shortfall. R14 used to ask
-# for that comparison by hand; the guard is strictly stronger, so do not re-add it here.
+# `pnpm test` runs scripts/test-collection-guard.cjs, which compares each lane's
+# include patterns with the files on disk and fails on a collection shortfall.
 t1() { step "T1 unit — both lanes + the collection floor"; pnpm test; }
 
 t2() { step "T2 — preflight --fast"; bash scripts/preflight.sh --fast; }
@@ -60,8 +47,8 @@ esac
 rc=$?
 
 if [ $rc -eq 0 ]; then
-  printf '\n\033[32m✓ %s passed\033[0m — cite this line in the LOOP REPORT.\n' "$TIER"
+  printf '\n\033[32m✓ %s passed\033[0m — review the checks and any skips above.\n' "$TIER"
 else
-  printf '\n\033[31m✗ %s FAILED (exit %d)\033[0m — a red tier is terminal, not a reason to loosen it.\n' "$TIER" "$rc"
+  printf '\n\033[31m✗ %s FAILED (exit %d)\033[0m — see the failed checks above.\n' "$TIER" "$rc"
 fi
 exit $rc
