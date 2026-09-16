@@ -379,6 +379,8 @@ assertions passing and the lane still exiting 1. Measured on both lanes: 20.11.1
 20.11.15 clean, 20.12.0 / 20.13.0 / 20.14.5 red, `framer-motion` 13.2.0 not implicated
 (#844).
 
+`.github/dependabot.yml` carries a matching `ignore` entry for happy-dom minors and majors, so
+the pin is not walked forward automatically; patch updates inside 20.11.x still come through.
 A caret range floats to the newest 20.x on any lockfile regeneration, so before this pin
 only `pnpm-lock.yaml` was keeping the lane green — a red gate with no source change to
 point at. Before widening the range, run `pnpm test` against the candidate version and

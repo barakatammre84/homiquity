@@ -61,6 +61,27 @@ updates:
       - dependency-name: "@hookform/resolvers"
         update-types: ["version-update:semver-major"]
 
+      # happy-dom 20.12.0 added a Web Animations implementation (Element.animate,
+      # Animation, KeyframeEffect). With it present, framer-motion takes its native
+      # WAAPI path in the client test lane, and unmounting an animated component
+      # calls Animation.cancel(). happy-dom's cancel() rejects the animation's
+      # eagerly created `finished` promise without marking it handled the way a
+      # browser does per spec, and nothing attaches a handler to that promise —
+      # motion-dom's NativeAnimation resolves its own. Every cancelled animation
+      # becomes an unhandled rejection: the lane reports 995/995 passing and still
+      # exits 1 (#844, five of them out of FunnelChrome.test.tsx).
+      #
+      # Measured one version at a time: 20.11.14 and 20.11.15 clean, 20.12.0 /
+      # 20.13.0 / 20.14.5 red. package.json pins 20.11.15 exactly; this keeps
+      # dependabot from walking that pin forward into the same red. Patch updates
+      # inside 20.11.x still come through. Remove it when either happy-dom marks
+      # the rejection handled or the client lane carries the setupFiles shim
+      # described in knowledge-base/runbooks/CICD.md.
+      - dependency-name: "happy-dom"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
