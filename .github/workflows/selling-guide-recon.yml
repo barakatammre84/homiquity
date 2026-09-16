@@ -22,7 +22,8 @@
 # scripts/selling-guide-freshness.cjs.
 #
 # NOT in the merge gate, and never will be: a network probe must not decide whether
-# unrelated work can merge. Same argument as doc-freshness.yml and seat-roster.yml.
+# unrelated work can merge. Same argument as source-records.yml (formerly doc-freshness.yml;
+# seat-roster.yml ran the same guard and was deleted 2026-09-16).
 #
 # THE ARTIFACT IS THE POINT, AND IT NEVER LANDS IN THE TREE. Guide HTML is Fannie Mae's
 # copyrighted work — the same reason the extracted corpus is gitignored. Bodies go to
@@ -105,7 +106,7 @@ jobs:
 
       - name: Upload the artifact (raw bodies + metadata)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: selling-guide-recon
           path: ${{ runner.temp }}/sg-recon
