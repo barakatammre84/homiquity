@@ -2,6 +2,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { randomUUID } from "node:crypto";
 import pg from "pg";
 import { BASE_URL } from "./setup";
+import { expectNoAccountLast4 } from "./helpers/workpaperAccountMasking";
 
 const applicationId = randomUUID();
 const outsideApplicationId = randomUUID();
@@ -242,8 +243,7 @@ describe.sequential("financial workpapers and cited memo", () => {
     expect(selfEmployed.sources.some((source: { documentId: string }) => source.documentId === documentIds[2])).toBe(true);
     expect(selfEmployed.sources.some((source: { documentId: string }) => source.documentId === documentIds[6])).toBe(false);
     expect(assetPaper.sources.some((source: { documentId: string }) => [documentIds[2], documentIds[6]].includes(source.documentId))).toBe(false);
-    expect(JSON.stringify(current.workpapers.map((row: { input: unknown }) => row.input))).not.toContain("1234");
-    expect(JSON.stringify(current.workpapers.map((row: { input: unknown }) => row.input))).not.toContain("9999");
+    expectNoAccountLast4(current.workpapers.map((row: { input: unknown }) => row.input), ["1234", "9999"]);
     expect(income.input.evidenceComparisons).toContainEqual(expect.objectContaining({ kind: "income", status: "match", evidenceValue: 6000, calculationValue: 6000 }));
     expect(assetPaper.input.evidenceComparisons).toContainEqual(expect.objectContaining({ kind: "asset", status: "match", evidenceValue: 90000, calculationValue: 90000 }));
     expect(rentalPaper.input.evidenceComparisons).toContainEqual(expect.objectContaining({ kind: "rental", status: "match", evidenceValue: 3000, calculationValue: 3000 }));

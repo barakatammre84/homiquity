@@ -2,35 +2,67 @@
 
 Founder direction, 2026-09-13. These are product choices, not legal requirements.
 
-**Automate the work needed to move a loan from application through funding, with an accountable
-loan officer involved and assisted throughout.**
+**Enable one loan officer to operate Homiquity from lead capture through funding, commission
+reconciliation and client follow-up. Automate routine execution and coordination, and assist the
+officer's decisions, borrower advice and exception handling.**
 
-The system should collect and organize information, extract and check documents, calculate
-supported scenarios, prepare submissions and communications, track conditions and deadlines,
-coordinate the parties, and keep the loan moving. Help the loan officer compare options,
-understand exceptions and complete required actions with the least repeated work.
+Aim to outperform Loan Factory on lead-to-close speed, officer effort and borrower experience.
+This is an ambition to measure, not a demonstrated comparison. Optimize the whole journey.
 
-Human involvement is not a reason to leave an entire stage manual. Automate its preparation,
-follow-up and recording. Use an applicable primary source to establish a required human action;
-keep product preferences distinct from that requirement.
+One internal operator works with external lenders, title/settlement companies, appraisers and
+contracted services. Automate those handoffs. Internal processor, assistant and closing role names
+organize work; they are not staffing prerequisites. Automate routine work or expose the specific
+integration, authorization or decision still needed and help the officer complete it.
 
-## Build toward one complete loan
+For each human action, state whether it is required by an applicable primary provision or chosen
+by the business; a business preference is not a legal or program requirement. Automate its
+preparation, follow-up and recordkeeping wherever possible. Internal governance programs and
+fixed manual cohorts are not standing prerequisites to building automation.
 
-1. Make application, documents and verified borrower facts reliable and reusable.
-2. Connect those facts to supported loan options, lender submission and condition resolution.
-3. Coordinate disclosures, closing and funding with the actual lender and service providers.
-4. Reduce repetitive work across the proven workflow, including the loan officer's work.
+## The workflow to serve
 
-The first funded loan is a milestone. The end goal is a repeatable operation that handles routine
-work automatically and shows people the specific action needed when progress depends on them.
-Measure time to the next stage, repeated borrower requests, manual touches, unresolved exceptions
-and successful funding. Do not invent performance targets before measuring a baseline.
+| Stage | Work the software should perform or prepare |
+|---|---|
+| Lead and application | Capture, follow up, schedule, collect the application and reuse verified borrower facts |
+| Qualification | Extract and check evidence, calculate supported scenarios, compare products and prepare the officer's recommendation |
+| Submission and processing | Assemble the actual lender's package, coordinate authorized disclosures and service orders, track acknowledgments |
+| Underwriting conditions | Read findings, turn conditions into specific requests, match evidence, follow up and prepare resubmission |
+| Closing and funding | Reconcile documents and figures, track signatures and funding conditions, confirm actual completion with counterparties |
+| Closeout and relationship | Reconcile commission receipt, chase trailing items, organize records and prepare authorized client follow-up |
 
-Prioritize current code gaps and actual lender/provider dependencies. There is no standing
-requirement to hire separate people for every historical desk, finish an internal governance
-program, or run a fixed manual cohort before building automation.
+Map these views to existing states and services. Competitor workflows are design input, not legal
+requirements or a staffing plan. Build for Homiquity's broker channel.
 
-[Current facts](knowledge-base/ACTIVE_CONTEXT.md) identify what has been checked.
-[Primary sources](knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md) establish applicable
-loan and legal requirements. Open PRs and issues hold implementation work; this file is not a
-second backlog.
+## Build order
+
+Prioritize the biggest verified cause of delay, repeated work or error. This sequence guides
+delivery; it does not require a dashboard-only phase or add release gates.
+
+1. Extend the existing officer workspace and task engine: show the next action, owner, blocker,
+   due-date basis and evidence. Distinguish completed work, running automation, external waits
+   and officer decisions across authorized loans.
+2. Complete a document/request loop: request or receipt, extraction, validation, matching,
+   completion or a precise exception, then the next authorized action. Prove safe retries and
+   visible failures.
+3. Extend that pattern through real lender submission, conditions, disclosures, closing and
+   funding. A provider acknowledgment establishes an external action; a simulated response
+   does not. Expose missing integrations and their actual dependencies.
+4. Finish commission/trailing-document closeout and routine CRM/administrative follow-up.
+   Improve the whole journey using observed time, rework and borrower experience.
+
+The officer should handle the day from one workspace. Status changes trigger the next supported
+action or expose the exact wait. Preserve consent, authorization and applicable source requirements.
+
+## What “best” means
+
+Measure lead-to-application and application-to-funded time, officer minutes and manual touches
+per funded loan, repeated borrower requests, aging exceptions, missed deadlines, errors/rework,
+funding success and borrower satisfaction. Track typical and slow cases, and distinguish internal
+execution time from borrower/lender/provider waits. Establish a baseline before setting numeric
+targets; compare competitors only with verifiable, comparable data. Count an automation as complete
+only when its promised action succeeds and is recorded; auto-created tasks are not completed work.
+
+GitHub issues are the work queue. [AGENTS.md](AGENTS.md) gives both agents the same build and
+cleanup process. [Current context](knowledge-base/ACTIVE_CONTEXT.md) records facts; the
+[source map](knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md) identifies primary
+authorities. Update these documents rather than adding another charter.

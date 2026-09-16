@@ -1,29 +1,21 @@
 #!/usr/bin/env bash
 #
-# Preflight — run the WHOLE CI gate locally, before it costs anything.
+# Preflight — run repository checks locally before opening a PR.
 #
-# `.githooks/pre-push` runs the typecheck and the twelve guards (the unit suite is
-# opt-in there: PREPUSH_TESTS=1) and is deliberately cheap enough to leave on.
-# This runs the whole gate — the count is deliberately not written here, because it was
-# wrong before anyone noticed (it said sixteen while running eighteen). It includes the
-# three that only ever ran in CI and are
-# the ones that catch a broken DEPLOY rather than a broken diff: the production
-# build, the self-host boot, and the integration lane.
-#
-# WHY IT MATTERS BEYOND MINUTES. A merge to `main` is a Railway deploy. The gate
-# is the last thing between a diff and production, and until now half of it was
-# unreproducible on a laptop — so the only way to find out whether the bundle
-# boots was to spend the minutes and wait. Roadmap KTLO-2 measures ~4 billed
-# minutes per push against a 2,000-minute allowance, and a red one costs the
-# re-run too; but the real saving is the loop time, not the money.
+# `.githooks/pre-push` runs the typecheck and inexpensive guards; its unit suite
+# is opt-in with PREPUSH_TESTS=1. This script also runs the unit suites, audit,
+# production build, self-host boot and integration lane, subject to the flags
+# and available dependencies below. Check .github/workflows/ci.yml for the
+# current CI job; this local run does not establish its result.
 #
 #   bash scripts/preflight.sh           # everything (needs a database)
 #   bash scripts/preflight.sh --fast    # skip build + boot + integration
 #   bash scripts/preflight.sh --no-db   # skip the two database stages explicitly
 #
-# A stage that cannot run is reported SKIPPED with the reason and does NOT pass.
-# Green here is not a promise CI is green — it is the same checks on the same
-# code, and the gaps are named at the bottom of the run.
+# Inspect skipped checks and their reasons: an exit of 0 can include skips.
+# Browser behavior and production deployment need separate verification.
+#
+# Required project checks and review expectations are in AGENTS.md.
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)" || exit 1
 
@@ -32,7 +24,7 @@ for a in "$@"; do
   case "$a" in
     --fast) FAST=1 ;;
     --no-db) NO_DB=1 ;;
-    -h|--help) sed -n '2,26p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,18p' "$0"; exit 0 ;;
     *) echo "preflight: unknown flag $a" >&2; exit 2 ;;
   esac
 done
@@ -86,9 +78,11 @@ step "migration ledger"               node scripts/migration-ledger-guard.cjs
 step "delivery-stack freeze"          node scripts/delivery-stack-freeze-guard.cjs
 step "design tokens"                  node scripts/design-token-guard.cjs
 step "UI standard ratchet"            node scripts/ui-standard-guard.cjs
-step "knowledge-base index"           node scripts/kb-index-guard.cjs
+# One step, not two: "knowledge-base index" and "routine seat roster" both ran this same
+# script after #811 replaced their guards with delegating shims, and `--no-freshness` was
+# inert because the shim never read argv.
+step "document register + sources"    node scripts/source-instructions-guard.cjs
 step "doc staleness ratchet"          node scripts/doc-staleness-guard.cjs
-step "routine seat roster"            node scripts/seat-roster-guard.cjs --no-freshness
 step "gating reality"                  pnpm guard:gating
 step "vocabulary registry"             pnpm guard:vocab
 # tsc covers the app; nothing covered scripts/*.cjs. #594 shipped a syntax error
@@ -113,7 +107,8 @@ else
   echo "  ~ selling-guide extraction        SKIPPED (no pymupdf — CI runs the pinned proof)"
 fi
 
-# §9 needs the PR's changed-file set, which CI computes from the pull request.
+# The security-review guard needs the PR's changed-file set, which CI computes
+# from the pull request.
 # Locally the equivalent is the diff against origin/main. If origin/main is not
 # fetched we cannot form that set, and the guard skips SILENTLY when
 # CHANGED_FILES is unset — so we report it skipped rather than let it lie.
@@ -132,24 +127,20 @@ selling_guide_authority() {
     PR_BODY="$(git log -1 --pretty=%B)" pnpm guard:authority
 }
 if ! git rev-parse --verify origin/main >/dev/null 2>&1; then
-  skip "security review (§9 triggers)" "origin/main not fetched — run: git fetch origin"
+  skip "security review evidence" "origin/main not fetched — run: git fetch origin"
 elif [ -z "$(git diff --name-only origin/main...HEAD 2>/dev/null)" ]; then
-  # Nothing COMMITTED yet on this branch, so there is no PR-shaped diff to audit
-  # and the guard correctly refuses to pass on an empty file set. That is a state,
-  # not a defect — reporting it FAIL sent three consecutive clean runs red on
-  # 2026-08-18 and trains people to read past a red §9 line, which is the one
-  # line that must never be read past. Working-tree changes are deliberately NOT
-  # substituted in: §9 audits what a PR would ship, and that means commits.
-  skip "security review (§9 triggers)" "nothing committed on this branch yet — commit, then re-run"
+  # There is no committed PR diff to audit. Report the missing input as skipped;
+  # working-tree changes are not substituted for what the branch would ship.
+  skip "security review evidence" "nothing committed on this branch yet — commit, then re-run"
 else
-  step "security review (§9 triggers)" security_review
+  step "security review evidence" security_review
 fi
 
 if git rev-parse --verify origin/main >/dev/null 2>&1 \
   && [ -n "$(git diff --name-only origin/main...HEAD 2>/dev/null)" ]; then
-  step "selling-guide authority (§10)" selling_guide_authority
+  step "selling-guide authority" selling_guide_authority
 else
-  skip "selling-guide authority (§10)" "no committed diff against origin/main"
+  skip "selling-guide authority" "no committed diff against origin/main"
 fi
 
 step "unit tests + collection floor" pnpm test
@@ -212,9 +203,8 @@ else
     skip "self-host boot (production mode)" "$DB_REASON"
     skip "integration lane"                 "$DB_REASON"
   else
-    # Same claim CI makes: the PRODUCTION bundle boots in PRODUCTION mode and
-    # serves /api/health. Build success is not boot success — that is the
-    # 2026-07-17 postmortem rule.
+    # Verify that the production bundle starts and serves /api/health in
+    # production mode. Building the bundle alone does not exercise startup.
     selfhost() { boot "$BOOT_PORT" production /tmp/preflight-selfhost.log; local r=$?; stop "$BOOT_PORT"; return $r; }
     step "self-host boot (production mode)" selfhost
 

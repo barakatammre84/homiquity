@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
- * SessionStart hook — the corpus-first rule made mechanical.
+ * SessionStart hook — shared instructions and pinned corpus availability.
  *
- * CLAUDE.md's compliance block says every session starts at the Selling Guide; this
- * hook makes that true without anyone remembering it. At the start of every Claude
+ * AGENTS.md supplies the shared task process and routes source questions. At the start of a Claude
  * Code session (local and web) it verifies the tracked fact layer is coherent and the
  * extracted content layer is materialized, materializing it when it can (~3s — the
  * PDF recovers from this repo's own git history, no network). What it prints lands in

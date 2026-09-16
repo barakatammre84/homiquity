@@ -1,22 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { loanApplicationKeys } from "@/lib/queryClient";
+import { ApiError, loanApplicationKeys } from "@/lib/queryClient";
 
-// ux-20: at the credit-pull ask, nothing visible said this is a HARD inquiry —
-// the fact existed once, as item 2 of the disclosure document inside a 256px
-// ScrollArea, while the checkbox label, the button fine print and the callouts
-// all omitted it. It also inverts the expectation the funnel deliberately set
-// ("a soft inquiry, which will not affect my credit score").
-//
-// These tests pin the fix: the hard-inquiry fact is visible AT the decision
-// point (callout, checkbox label, fine print) and does not depend on the
-// borrower having scrolled the disclosure document — proven by seeding the
-// disclosure text EMPTY and asserting the facts still render. The wording
-// mirrors the platform's own ratified FCRA disclosure item 2
-// (server/services/creditCatalogs.ts): "hard" inquiries "may temporarily
-// lower your credit score" — no new compliance language is invented here.
+// Preserve the existing disclosure, visible inquiry explanation and fresh acknowledgment.
 
 const apiRequest = vi.fn();
 const toast = vi.fn();
@@ -129,12 +117,7 @@ describe("ux-20 — the hard-inquiry fact is visible at the ask, not only inside
 });
 
 describe("a saved draft never pre-ticks the FCRA authorization", () => {
-  // The acknowledgment checkbox IS the e-signature evidence for a hard-inquiry
-  // authorization, and `acknowledged` is the only gate before the page posts
-  // `consentGiven: true`. Restoring it from a draft let a borrower return days
-  // later to a pre-checked box and authorize a hard credit pull in a session
-  // where they never affirmatively acknowledged anything — possibly against a
-  // disclosure version they never saw (DESIGN_SYSTEM §13, Honesty).
+  // A stored draft must not restore the live authorization checkbox.
 
   const SAVED_DRAFT = {
     borrowerFullName: "Alex Rivera",
@@ -188,12 +171,10 @@ describe("a saved draft never pre-ticks the FCRA authorization", () => {
 });
 
 describe("the authorization copy survives the ConsentField migration byte-for-byte", () => {
-  it("renders the ratified authorization sentence exactly", () => {
+  it("renders the existing authorization sentence exactly", () => {
     renderPage({ disclosureText: "" });
 
-    // Byte-for-byte: this string is what the borrower e-signs. DESIGN_SYSTEM
-    // §13 requires a redesign to preserve compliance copy exactly, so this
-    // asserts equality, not a loose match.
+    // The retry repair leaves the authorization text unchanged.
     expect(screen.getByTestId("label-acknowledge").textContent).toBe(
       "I have read and understand the Credit Authorization Disclosure above. I authorize " +
         "Homiquity to obtain my credit report from one or more consumer reporting agencies " +
@@ -208,5 +189,96 @@ describe("the authorization copy survives the ConsentField migration byte-for-by
     const note = screen.getByTestId("text-consent-optional").textContent!;
     expect(note).toMatch(/nothing is submitted until you\s+authorize/);
     expect(note).not.toMatch(/must|required to|will not be able/i);
+  });
+});
+
+describe("credit consent requests remain usable after failure", () => {
+  async function fillAuthorization() {
+    const user = userEvent.setup();
+    renderPage({ disclosureText: "Synthetic disclosure for this test" });
+    await user.type(screen.getByTestId("input-full-name"), "Alex Rivera");
+    await user.click(screen.getByTestId("checkbox-acknowledge"));
+    return user;
+  }
+
+  for (const action of [
+    { button: "button-authorize-credit", endpoint: "consent", success: "Consent Recorded" },
+    { button: "button-save-progress", endpoint: "draft", success: "Progress Saved" },
+  ]) {
+    it.each([
+      ["server failure", new ApiError(500, '500: {"error":"internal connection detail"}')],
+      ["forbidden response", new ApiError(403, '403: {"error":"Access denied"}')],
+      ["network failure", new TypeError("Failed to fetch")],
+    ])(`releases ${action.endpoint} after %s and permits an explicit retry`, async (_label, error) => {
+      let rejectRequest!: (error: Error) => void;
+      apiRequest.mockImplementationOnce(() => new Promise((_resolve, reject) => { rejectRequest = reject; }));
+      apiRequest.mockResolvedValue({ json: async () => ({}) });
+      const user = await fillAuthorization();
+      const button = screen.getByTestId(action.button) as HTMLButtonElement;
+
+      await user.click(button);
+      await waitFor(() => expect(button.disabled).toBe(true));
+      await user.click(button);
+      expect(apiRequest).toHaveBeenCalledTimes(1);
+
+      await act(async () => { rejectRequest(error); });
+      await waitFor(() => expect(button.disabled).toBe(false));
+      expect((screen.getByTestId("input-full-name") as HTMLInputElement).value).toBe("Alex Rivera");
+      expect(screen.getByTestId("checkbox-acknowledge").getAttribute("data-state")).toBe("checked");
+      expect(toast).toHaveBeenCalledWith(expect.objectContaining({ variant: "destructive" }));
+      expect(toast.mock.calls[0][0].description).not.toMatch(/500:|403:|internal connection|\{"error"/);
+
+      await user.click(button);
+      await waitFor(() => expect(toast).toHaveBeenCalledWith(expect.objectContaining({ title: action.success })));
+      expect(apiRequest).toHaveBeenCalledTimes(2);
+      expect(apiRequest.mock.calls[1][1]).toBe(`/api/loan-applications/app-1/credit/${action.endpoint}`);
+      await waitFor(() => expect(button.disabled).toBe(false));
+    });
+  }
+
+  it("omits blank optional SSN digits while retaining the affirmative consent payload", async () => {
+    apiRequest.mockResolvedValue({ json: async () => ({}) });
+    const user = await fillAuthorization();
+    await user.click(screen.getByTestId("button-authorize-credit"));
+    await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
+    const body = JSON.parse(JSON.stringify(apiRequest.mock.calls[0][2]));
+    expect(body).not.toHaveProperty("borrowerSSNLast4");
+    expect(body).toMatchObject({ consentType: "hard_pull", borrowerFullName: "Alex Rivera", consentGiven: true });
+  });
+
+  it("keeps valid last-four digits unchanged, including leading zeros", async () => {
+    apiRequest.mockResolvedValue({ json: async () => ({}) });
+    const user = await fillAuthorization();
+    await user.type(screen.getByTestId("input-ssn-last4"), "0012");
+    await user.click(screen.getByTestId("button-authorize-credit"));
+    await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
+    expect(apiRequest.mock.calls[0][2]).toMatchObject({ borrowerSSNLast4: "0012", consentGiven: true });
+  });
+
+  it("lets the borrower correct partial SSN digits before sending an authorization", async () => {
+    apiRequest.mockResolvedValue({ json: async () => ({}) });
+    const user = await fillAuthorization();
+    await user.type(screen.getByTestId("input-ssn-last4"), "12");
+    await user.click(screen.getByTestId("button-authorize-credit"));
+    expect(apiRequest).not.toHaveBeenCalled();
+    expect(toast).toHaveBeenCalledWith(expect.objectContaining({
+      description: "Enter exactly four SSN digits, or leave this optional field blank.",
+      variant: "destructive",
+    }));
+    await user.clear(screen.getByTestId("input-ssn-last4"));
+    await user.click(screen.getByTestId("button-authorize-credit"));
+    await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
+  });
+
+  it("can save incomplete identity fields as a draft without providing consent", async () => {
+    apiRequest.mockResolvedValue({ json: async () => ({}) });
+    const user = userEvent.setup();
+    renderPage({ disclosureText: "Synthetic disclosure for this test" });
+    await user.type(screen.getByTestId("input-ssn-last4"), "12");
+    await user.click(screen.getByTestId("button-save-progress"));
+    await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
+    expect(apiRequest.mock.calls[0][1]).toBe("/api/loan-applications/app-1/credit/draft");
+    expect(apiRequest.mock.calls[0][2]).toMatchObject({ borrowerSSNLast4: "12", acknowledged: false });
+    expect(apiRequest.mock.calls[0][2]).not.toHaveProperty("consentGiven");
   });
 });
