@@ -100,7 +100,7 @@ LienPriorityType	shared/mismo.ts	union	5	5339615d3f1f		2	ULAD	LienPriorityType
 LOAN_APP_APPROVED_GRADE_STATUSES	shared/loanApplicationStatus.ts	array	8	003cd4f73320		2	internal	
 LOAN_APP_STATUSES	shared/loanApplicationStatus.ts	array	16	ba4c0728175a	LoanAppStatus	16	internal	
 LOAN_APP_TERMINAL_STATUSES	shared/loanApplicationStatus.ts	array	4	b201e6f0da34		10	internal	
-LOAN_CONDITION_STATUSES	shared/statusVocabularies.ts	array	5	e4958a5d8cd4	LoanConditionStatus	2	internal	
+LOAN_CONDITION_STATUSES	shared/statusVocabularies.ts	array	5	e4958a5d8cd4	LoanConditionStatus	3	internal	
 LOAN_COST_CATEGORIES	shared/statusVocabularies.ts	array	10	a399edb2d522	LoanCostCategory	5	internal	
 LOAN_PRODUCT_FAMILIES	shared/loanProducts.ts	array	7	8bd226167604	LoanProductFamily	3	internal	
 LOAN_STAGES	shared/schema/lendingComms.ts	array	11	a9ca19f5c27a	LoanStage	0	internal	
@@ -166,7 +166,7 @@ SECTION_G_ESCROW_ITEM_TYPES	shared/fannieMae/ucdFeeEnumerations.ts	array	31	31d6
 SECTION_H_FEE_TYPES	shared/fannieMae/ucdFeeEnumerations.ts	array	59	800af2769222		0	internal	
 SELF_EMPLOYMENT_BUSINESS_STRUCTURES	shared/schema/lendingUrla.ts	array	5	a1c6c6548499	SelfEmploymentBusinessStructure	1	internal	
 SERVER_ONLY_DOCUMENT_COLUMNS	shared/borrowerDocumentView.ts	array	3	a1ea2f55c642		1	internal	
-SETTLED_CONDITION_STATUSES	shared/statusVocabularies.ts	array	3	f5155ebd109e		5	internal	
+SETTLED_CONDITION_STATUSES	shared/statusVocabularies.ts	array	3	f5155ebd109e		6	internal	
 SEVERITY_LEVELS	shared/schema/underwritingConditions.ts	array	3	1b29297528be	SeverityLevel	0	internal	
 SfcDeliveryType	shared/fannieMae/specialFeatureCodes.ts	union	2	d6e2f5022e55		0	internal	
 SfcExecution	shared/fannieMae/specialFeatureCodes.ts	union	3	f87e60e4d05b		0	internal	
