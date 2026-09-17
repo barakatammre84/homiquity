@@ -26,9 +26,21 @@ function parseAmount(raw: string | undefined): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-/** Null when the funnel hasn't collected enough to estimate yet (defensive —
- * the final gate's schema check should already guarantee this). */
-export function buildTeaserInputs(values: PreApprovalFormData): AffordabilityEstimateInputs | null {
+/**
+ * Null when the funnel hasn't collected enough to estimate yet (defensive —
+ * the final gate's schema check should already guarantee this).
+ *
+ * `advertised30YrRate` is the same live rate the advisory panel prices with
+ * (useAdvertised30YrRate). It used to be omitted, so the teaser silently used
+ * AFFORDABILITY_ESTIMATE_DEFAULTS.interestRate (6.5) while every question step
+ * beside it quoted "today's advertised" rate — two payments for one set of
+ * answers. Null falls back to the shared default, which the overlay labels as
+ * illustrative rather than as today's pricing.
+ */
+export function buildTeaserInputs(
+  values: PreApprovalFormData,
+  advertised30YrRate: number | null = null,
+): AffordabilityEstimateInputs | null {
   const baseAnnualIncome = parseAmount(values.annualIncome);
   if (baseAnnualIncome <= 0) return null;
 
@@ -52,6 +64,7 @@ export function buildTeaserInputs(values: PreApprovalFormData): AffordabilityEst
     downPaymentSaved: downPaymentSaved > 0 || !vaZeroDownEligible ? downPaymentSaved : Number.POSITIVE_INFINITY,
     creditScore: parseCreditScore(values.creditScore),
     ...AFFORDABILITY_ESTIMATE_DEFAULTS,
+    interestRate: advertised30YrRate ?? AFFORDABILITY_ESTIMATE_DEFAULTS.interestRate,
   };
 }
 
