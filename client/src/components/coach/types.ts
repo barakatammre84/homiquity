@@ -205,6 +205,8 @@ export interface LoanStatusView {
     daysInPipeline: number;
     conditionsOutstanding: number;
     conditionsTotal: number;
+    /** Conditions with a verdict (cleared | waived | not_applicable). */
+    conditionsSettled: number;
     percentComplete: number;
     targetCloseDate: string | null;
   } | null;
