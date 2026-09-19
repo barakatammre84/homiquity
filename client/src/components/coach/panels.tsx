@@ -486,8 +486,10 @@ export function StatusPanel({ status }: { status: LoanStatusView }) {
 
         {pipeline && pipeline.conditionsTotal > 0 && (
           <p className="text-sm text-muted-foreground" data-testid="text-conditions">
-            Conditions cleared: {pipeline.conditionsTotal - pipeline.conditionsOutstanding} of{" "}
-            {pipeline.conditionsTotal}
+            {/* The engine's verdict count. Subtracting outstanding from total
+                counted a condition the borrower had submitted and nobody had
+                reviewed as cleared. */}
+            Conditions cleared: {pipeline.conditionsSettled} of {pipeline.conditionsTotal}
           </p>
         )}
 

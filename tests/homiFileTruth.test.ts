@@ -123,6 +123,10 @@ function primeHappyPath() {
     targetCloseDate: null,
     conditionsOutstanding: 2,
     conditionsTotal: 5,
+    // 3 of 5 have a verdict — the engine's own count, which is what the
+    // borrower's journey line reads. It used to be inferred as
+    // total - outstanding, which counted submitted-but-unreviewed as cleared.
+    conditionsSettled: 3,
     percentComplete: 60,
     nextAction: "Clear conditions",
     priority: "urgent",
