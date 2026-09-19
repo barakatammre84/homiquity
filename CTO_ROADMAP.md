@@ -25,7 +25,8 @@ the connected business that explains the reasoning, teaches in context and helps
 prioritize.
 
 Second Look, Opportunity Watch and Homi are the three flagship experiences. Differentiation comes
-from the connected loop, not from any single feature.
+from the connected loop, not from any single feature: opportunity monitoring, document and income
+analysis, guideline chat and scenario tools already exist in the market.
 
 ## Build order
 
@@ -46,15 +47,27 @@ disclosures, lender submission, generic file management, closing coordination â€
 integration-independent fallback needs them. Re-keying or re-uploading data the connected system
 already holds is not the intended steady state.
 
+## Rules the pivot does not change
+
 Preserve existing consent, authorization, access, audit and loan-decision controls. Work already
 shipped is retained and reclassified, not discarded; defects that protect borrower truth, access
 control or auditability stay valid on their own merits.
 
+For each human action, state whether it is required by an applicable primary provision or chosen by
+the business; a business preference is not a legal or program requirement. The same distinction
+applies to what the product tells an officer: an explanation must separate a source-backed rule from
+a platform choice or an assumption.
+
+A provider acknowledgment establishes an external action; a simulated response does not. Simulated,
+stale or unverified data cannot be presented as a live borrower opportunity, a verified fact or a
+credit decision.
+
 Measure officer touches and time saved, actionable opportunities surfaced, supported alternatives
-found, unsupported suggestions produced, and evidence completeness. Do not invent performance targets
-before measuring a baseline.
+found, unsupported suggestions produced, and evidence completeness. Establish a baseline before
+setting numeric targets; compare competitors only with verifiable, comparable data.
 
 [Current facts](knowledge-base/ACTIVE_CONTEXT.md) identify what has been checked.
 [Primary sources](knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md) establish applicable
-loan and legal requirements. Open PRs and issues hold implementation work; this file is not a
-second backlog.
+loan and legal requirements. GitHub issues and open PRs are the work queue and hold implementation
+work; this file is not a second backlog. [AGENTS.md](AGENTS.md) gives every agent the same build and
+cleanup process. Update these documents rather than adding another charter.
