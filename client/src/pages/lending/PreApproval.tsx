@@ -51,6 +51,7 @@ import { IncomeSourcesStep } from "./preApproval/IncomeSourcesStep";
 import { RestoreDraftBanner, AuthGateOverlay, AffordabilityTeaserOverlay, FunnelFooter, FunnelProgressHeader } from "./preApproval/FunnelChrome";
 import { calculateAffordabilityEstimate, type AffordabilityEstimateResults } from "@/lib/affordabilityEstimate";
 import { buildTeaserInputs, parseTargetPrice } from "./preApproval/affordabilityTeaser";
+import { useAdvertised30YrRate } from "./preApproval/useAdvertised30YrRate";
 import { FUNNEL_SOFT_PULL_CONSENT_TEXT } from "@shared/creditConsentCopy";
 import { EditorialNavigation } from "@/components/EditorialNavigation";
 import { SkipLink } from "@/components/SkipLink";
@@ -157,6 +158,9 @@ function PreApprovalFunnel() {
   // post-auth router (getPostAuthRoute) can detect a deferred submit too.
   const [showAuthGate, setShowAuthGate] = useState(false);
   const [teaser, setTeaser] = useState<{ estimate: AffordabilityEstimateResults; targetPrice: number | null } | null>(null);
+  // The funnel prices everything a borrower sees off one live rate; the
+  // advisory panel reads the same hook.
+  const advertised30YrRate = useAdvertised30YrRate();
 
   const hasMeaningfulData = useCallback((values: PreApprovalFormData) => {
     return Object.entries(values).some(([k, v]) => {
@@ -427,7 +431,9 @@ function PreApprovalFunnel() {
           localStorage.setItem(PENDING_SUBMIT_KEY, "true");
         } catch {}
         const values = form.getValues();
-        const teaserInputs = buildTeaserInputs(values);
+        // Same live rate the advisory panel beside this funnel prices with —
+        // the teaser used to fall back to a hardcoded 6.5%.
+        const teaserInputs = buildTeaserInputs(values, advertised30YrRate);
         if (teaserInputs) {
           setTeaser({
             estimate: calculateAffordabilityEstimate(teaserInputs),
@@ -747,7 +753,7 @@ function PreApprovalFunnel() {
         <SEOHead title="Start Your Mortgage Application" description="Start your Homiquity mortgage application and get a clear next step in about three minutes." />
         <SkipLink />
         <EditorialNavigation />
-        {restoreBanner}
+        {restoreBanner ? <div className="pt-4">{restoreBanner}</div> : null}
         <main id="main" tabIndex={-1} className="flex min-h-[calc(100vh-6rem)] items-center justify-center px-5 py-16 text-center focus:outline-none sm:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -788,8 +794,7 @@ function PreApprovalFunnel() {
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
       <SEOHead title="Get Pre-Approved in 3 Minutes" description="Start your mortgage pre-approval application. Answer a few questions about your income and finances to get a clear, confident approval decision." />
       <SkipLink />
-      {restoreBanner}
-      
+
       <VerificationPulse active={submitMutation.isPending || (isAuthenticated && hasPendingSubmit())} />
 
       {/* Orientation chrome — chapter rail, step counter, percentage, and a
@@ -814,6 +819,10 @@ function PreApprovalFunnel() {
           row + chapter rail + labels + the chapter/time line) rather than the
           ~70px of the single-line header it replaced. */}
       <main id="main" tabIndex={-1} className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-32 sm:pt-36 pb-0 relative flex flex-col items-center lg:grid lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-10 lg:items-center focus:outline-none">
+       {/* The draft-restore prompt lives inside main so it clears the fixed
+           FunnelProgressHeader on the same padding the question does, and
+           spans both lg columns so the question column keeps its own cell. */}
+       {restoreBanner ? <div className="mb-6 w-full lg:col-span-2">{restoreBanner}</div> : null}
        <div className="w-full min-w-0 flex flex-1 lg:flex-none flex-col items-center justify-center">
         {/*
           mode="wait" mounts the next step only after the previous step's exit

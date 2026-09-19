@@ -108,6 +108,7 @@ const status: LoanStatusView = {
     daysInPipeline: 17,
     conditionsOutstanding: 4,
     conditionsTotal: 7,
+    conditionsSettled: 3,
     percentComplete: 43,
     targetCloseDate: null,
   },
@@ -128,6 +129,27 @@ describe("StatusPanel — where the file stands", () => {
     expect(screen.getByTestId("text-stage-label").textContent).toBe("Underwriting");
     expect(screen.getByTestId("text-conditions").textContent).toContain("3 of 7");
     expect(screen.getByTestId("journey-underwriting").textContent).toContain("Conditions cleared: 3 of 7");
+  });
+
+  it("counts only conditions with a verdict — a submitted one is not cleared", () => {
+    // 7 conditions: 4 still owed by the borrower, 2 submitted and awaiting a
+    // reviewer, 1 cleared. `total - outstanding` would claim 3 cleared.
+    render(
+      <StatusPanel
+        status={{
+          ...status,
+          pipeline: {
+            ...status.pipeline!,
+            conditionsOutstanding: 4,
+            conditionsTotal: 7,
+            conditionsSettled: 1,
+            percentComplete: 14,
+          },
+        }}
+      />,
+    );
+    expect(screen.getByTestId("text-conditions").textContent).toContain("1 of 7");
+    expect(screen.getByTestId("text-conditions").textContent).not.toContain("3 of 7");
   });
 
   it("marks itself as fact, not suggestion", () => {

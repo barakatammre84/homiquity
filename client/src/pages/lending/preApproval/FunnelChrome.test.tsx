@@ -124,6 +124,20 @@ describe("RestoreDraftBanner", () => {
     await user.click(screen.getByTestId("button-dismiss-restore"));
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });
+
+  it("takes space rather than floating over the funnel's top chrome", () => {
+    // As `fixed top-2 z-50` this banner sat inside the header band: on /apply's
+    // intro step elementFromPoint at the centre of "Who we help", "About" and
+    // "Resources" returned this banner instead of the nav links, and on a
+    // question step it covered the application label and step counter.
+    // happy-dom does no layout, so the invariant asserted here is the one that
+    // caused it — the banner must not be viewport-positioned.
+    render(<RestoreDraftBanner onRestore={vi.fn()} onDismiss={vi.fn()} />);
+    const className = screen.getByTestId("banner-restore-draft").className;
+    expect(className).not.toMatch(/(^|\s)fixed(\s|$)/);
+    expect(className).not.toMatch(/(^|\s)absolute(\s|$)/);
+    expect(className).not.toMatch(/(^|\s)z-\d/);
+  });
 });
 
 describe("FunnelProgressHeader", () => {

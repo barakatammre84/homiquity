@@ -1,15 +1,14 @@
 // The live advisory side panel + dynamic step titles for the pre-approval
 // funnel. Extracted verbatim from PreApproval.tsx.
 import { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { type PreApprovalFormData } from "@shared/schema";
 import { CONFORMING_LOAN_LIMIT_2026 } from "@shared/lendingLimits";
-import type { MortgageRateWithProgram } from "@/types/rates";
 import { TrendingUp, Info } from "lucide-react";
 
 import { type Question } from "./questions";
 import { computePreApprovalAnalysis } from "@/lib/preApprovalAnalysis";
+import { useAdvertised30YrRate } from "./useAdvertised30YrRate";
 
 export interface AdvisoryPanelProps {
   formValues: PreApprovalFormData;
@@ -27,16 +26,8 @@ export function AdvisoryPanel({ formValues, currentStepId }: AdvisoryPanelProps)
   // Payment estimates use the live advertised 30-year fixed rate — a payment
   // figure shown to a borrower must be reproducible from current pricing,
   // never a hardcoded constant. Falls back to a labeled illustrative rate.
-  const { data: advertisedRates } = useQuery<MortgageRateWithProgram[]>({
-    queryKey: ["/api/mortgage-rates"],
-  });
-  const advertised30YrRate = useMemo(() => {
-    const row = advertisedRates?.find(
-      (r) => r.program?.termYears === 30 && !r.program?.isAdjustable && r.isActive !== false,
-    );
-    const parsed = row ? parseFloat(row.rate) : NaN;
-    return !isNaN(parsed) && parsed > 0 ? parsed : null;
-  }, [advertisedRates]);
+  // Shared with the pre-signup teaser so the funnel quotes one rate.
+  const advertised30YrRate = useAdvertised30YrRate();
 
   const stats = useMemo(
     () => computePreApprovalAnalysis(formValues, advertised30YrRate),

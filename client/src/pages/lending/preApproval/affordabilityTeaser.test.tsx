@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import type { PreApprovalFormData } from "@shared/schema";
 import { buildTeaserInputs, parseTargetPrice } from "./affordabilityTeaser";
+import { AFFORDABILITY_ESTIMATE_DEFAULTS } from "@/lib/affordabilityEstimate";
 
 const BASE: PreApprovalFormData = {
   annualIncome: "120,000",
@@ -85,6 +86,22 @@ describe("buildTeaserInputs", () => {
       downPayment: "0",
     });
     expect(vaRefi?.downPaymentSaved).toBe(0);
+  });
+
+  it("prices at the funnel's live advertised rate, not the shared default", () => {
+    // The advisory panel quotes "today's advertised" rate on every question
+    // step; the teaser used to ignore it and price at 6.5%, so one set of
+    // answers produced two different monthly payments.
+    expect(buildTeaserInputs(BASE, 6.375)?.interestRate).toBe(6.375);
+  });
+
+  it("falls back to the shared default when no advertised rate is available", () => {
+    expect(buildTeaserInputs(BASE, null)?.interestRate).toBe(
+      AFFORDABILITY_ESTIMATE_DEFAULTS.interestRate,
+    );
+    expect(buildTeaserInputs(BASE)?.interestRate).toBe(
+      AFFORDABILITY_ESTIMATE_DEFAULTS.interestRate,
+    );
   });
 });
 
