@@ -1124,6 +1124,9 @@ export async function checkPipelineProgress(applicationId: string): Promise<{
   conditions: {
     total: number;
     outstanding: number;
+    /** Sent by the borrower, awaiting staff review — open work, not progress. */
+    submitted: number;
+    /** Conditions with a verdict (SETTLED_CONDITION_STATUSES). */
     cleared: number;
     categories: Record<string, { total: number; cleared: number }>;
   };
@@ -1137,10 +1140,18 @@ export async function checkPipelineProgress(applicationId: string): Promise<{
 
   const conditions = await storage.getLoanConditionsByApplication(applicationId);
   
+  // "Settled" is the shared verdict set (cleared | waived | not_applicable).
+  // `cleared` here is the progress numerator every caller renders, so it
+  // derives from that set: counting only status === "cleared" showed a file
+  // whose conditions were waived as 0% done. `submitted` is reported
+  // separately because it is neither owed by the borrower nor finished — it
+  // is waiting on staff review, and the shape used to hide it entirely.
+  const settledStatuses: ReadonlySet<string> = new Set(SETTLED_CONDITION_STATUSES);
   const conditionStats = {
     total: conditions.length,
     outstanding: conditions.filter(c => c.status === "outstanding").length,
-    cleared: conditions.filter(c => c.status === "cleared").length,
+    submitted: conditions.filter(c => c.status === "submitted").length,
+    cleared: conditions.filter(c => settledStatuses.has(c.status)).length,
     categories: {} as Record<string, { total: number; cleared: number }>,
   };
 
@@ -1149,7 +1160,7 @@ export async function checkPipelineProgress(applicationId: string): Promise<{
       conditionStats.categories[condition.category] = { total: 0, cleared: 0 };
     }
     conditionStats.categories[condition.category].total++;
-    if (condition.status === "cleared") {
+    if (settledStatuses.has(condition.status)) {
       conditionStats.categories[condition.category].cleared++;
     }
   }
@@ -1159,11 +1170,10 @@ export async function checkPipelineProgress(applicationId: string): Promise<{
 
   const currentStage = application.status || "draft";
 
-  // "Settled" is the shared verdict set (cleared | waived | not_applicable) —
-  // every branch derives from it so a waived or not-applicable condition can
-  // never false-block a stage (the pre-fix early branches exempted only
-  // cleared|waived; register F-0820-63).
-  const settled: ReadonlySet<string> = new Set(SETTLED_CONDITION_STATUSES);
+  // Same shared verdict set as the counters above — every branch derives from
+  // it so a waived or not-applicable condition can never false-block a stage
+  // (the pre-fix early branches exempted only cleared|waived; F-0820-63).
+  const settled = settledStatuses;
 
   switch (currentStage) {
     case "pre_approved":
@@ -1229,8 +1239,17 @@ export interface PipelineSummary {
   currentStage: string;
   daysInPipeline: number;
   targetCloseDate: Date | null;
+  /** Conditions still needing something FROM the borrower (status
+   * "outstanding"). Deliberately narrower than "open": a "submitted"
+   * condition is open work for staff but nothing is owed by the borrower,
+   * so nextAction/fileHealth count only this. */
   conditionsOutstanding: number;
   conditionsTotal: number;
+  /** Conditions with a verdict — SETTLED_CONDITION_STATUSES, i.e.
+   * cleared | waived | not_applicable. Consumers must read this rather than
+   * inferring `total - conditionsOutstanding`, which counts a "submitted"
+   * condition nobody has reviewed yet as finished work. */
+  conditionsSettled: number;
   percentComplete: number;
   nextAction: string;
   priority: "normal" | "high" | "urgent";
@@ -1253,8 +1272,13 @@ function resolveBorrowerName(user: User | undefined): string {
  * from data access so it can be shared by the single-application path
  * (getPipelineSummary) and the batched path (getPipelineSummaries) without
  * duplicating the stage/priority logic.
+ *
+ * Exported for its test (tests/pipelineSummaryConditionCounts.test.ts): the
+ * counters here are what the officer's queue, the borrower's journey line and
+ * the coach panel all render, and they must stay derived from
+ * SETTLED_CONDITION_STATUSES rather than hand-listed statuses.
  */
-function buildPipelineSummary(
+export function buildPipelineSummary(
   application: LoanApplication,
   milestones: LoanMilestone | undefined,
   conditions: LoanCondition[],
@@ -1270,8 +1294,12 @@ function buildPipelineSummary(
 
   const conditionsOutstanding = conditions.filter(c => c.status === "outstanding").length;
   const conditionsTotal = conditions.length;
-  const clearedCount = conditions.filter(c => c.status === "cleared" || c.status === "waived").length;
-  const percentComplete = conditionsTotal > 0 ? Math.round((clearedCount / conditionsTotal) * 100) : 0;
+  // Progress is the shared verdict set, same as the gating branches above —
+  // hand-listing cleared|waived here dropped "not_applicable", so a file
+  // whose last condition was marked not-applicable could never reach 100%.
+  const settledStatuses: ReadonlySet<string> = new Set(SETTLED_CONDITION_STATUSES);
+  const conditionsSettled = conditions.filter(c => settledStatuses.has(c.status)).length;
+  const percentComplete = conditionsTotal > 0 ? Math.round((conditionsSettled / conditionsTotal) * 100) : 0;
 
   let nextAction = "Submit application";
   let priority: "normal" | "high" | "urgent" = "normal";
@@ -1354,6 +1382,7 @@ function buildPipelineSummary(
     targetCloseDate: milestones?.targetCloseDate || null,
     conditionsOutstanding,
     conditionsTotal,
+    conditionsSettled,
     percentComplete,
     nextAction,
     priority,
