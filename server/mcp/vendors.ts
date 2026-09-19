@@ -8,6 +8,13 @@ import { createHash } from "node:crypto";
  * clearly flagged via `simulated: true` — so the tool surface, persistence,
  * and downstream flows can be built and exercised before vendor onboarding.
  * When credentials land, only these functions change.
+ *
+ * Outside production. Under NODE_ENV=production a simulating adapter refuses
+ * unless its own permission variable says otherwise (F-037): CREDIT_VENDOR_MODE
+ * for softPullCredit, AVM_VENDOR_MODE for fetchAvm. The flag alone was not
+ * enough — `simulated: true` is dropped at persistence by more than one
+ * consumer, so the value outlives the marker. One variable per leg, because
+ * permitting one kind of fabricated data is not consent to another.
  */
 
 const VENDOR_TIMEOUT_MS = Number(process.env.MCP_VENDOR_TIMEOUT_MS ?? 10_000);
@@ -171,6 +178,35 @@ export async function fetchAvm(address: string, zipCode?: string): Promise<AvmRe
   if (apiKey) {
     throw new Error(
       "HOUSECANARY_API_KEY is set but the live HouseCanary adapter is not implemented yet — remove the key to use simulation.",
+    );
+  }
+
+  // Refuse to fabricate a property valuation in production (F-037). This is the
+  // THIRD simulated vendor entrance in this file's family; softPullCredit above
+  // has carried this guard since F-037 and this one did not, so the guard set was
+  // asymmetric in the same way and for the same reason: with no vendor key set —
+  // the actual state, since no HouseCanary contract exists — the branch above
+  // cannot fire, and this adapter returned an invented valuation under any
+  // NODE_ENV. That value is not merely displayed: lifecycleEngine substitutes it
+  // for the homeowner's stored property value, recordEquitySnapshot persists it
+  // with no provenance column, and the homeowner is notified they may be able to
+  // remove PMI. Measured over 500 addresses in #826, 63.2% produced a false
+  // at-or-below-80% LTV.
+  //
+  // Throwing is the whole fix at the call sites: resolveHomeownerPosition already
+  // wraps this call in try/catch ("an AVM hiccup must not kill the sweep") and
+  // keeps the stored value, which is the correct number. The MCP tool records an
+  // error invocation. Nothing needs to change in either caller.
+  //
+  // Deliberately the same escape hatch and the same message shape as the sibling
+  // guard, but its own variable: allowing fabricated credit must not silently
+  // allow fabricated valuations.
+  if (
+    process.env.NODE_ENV === "production" &&
+    process.env.AVM_VENDOR_MODE !== "simulation"
+  ) {
+    throw new Error(
+      "Simulated property valuations are disabled in production. Set AVM_VENDOR_MODE=simulation to explicitly allow fabricated valuations in non-live environments.",
     );
   }
 

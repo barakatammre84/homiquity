@@ -73,7 +73,11 @@ export interface LoanPipelineSnapshot {
   daysInPipeline: number;
   conditionsOutstanding: number;
   conditionsTotal: number;
-  /** Conditions cleared+waived over total — the pipeline engine's own figure. */
+  /** Conditions with a verdict (cleared | waived | not_applicable). Read this
+   * instead of `conditionsTotal - conditionsOutstanding`. */
+  conditionsSettled: number;
+  /** Settled (cleared | waived | not_applicable) over total — the pipeline
+   * engine's own figure. */
   percentComplete: number;
   targetCloseDate: string | null;
 }
@@ -144,7 +148,11 @@ export async function loadFileTruth(
   const docsComplete = checklist.stats.verified + checklist.stats.uploaded;
 
   const conditionsTotal = summary?.conditionsTotal ?? 0;
-  const conditionsCleared = Math.max(0, conditionsTotal - (summary?.conditionsOutstanding ?? 0));
+  // The engine's own verdict count. `total - conditionsOutstanding` used to
+  // stand in for it, which counted a condition the borrower had SUBMITTED but
+  // nobody had reviewed as cleared — this file's borrower-visible line then
+  // read "Conditions cleared: 1 of 9" on a file with zero verdicts.
+  const conditionsCleared = summary?.conditionsSettled ?? 0;
 
   const closingPrepInProgress = borrowerTasks.some(
     (t) => t.taskTypeCode === "CMP_CLOSING_DISC" && (t.status === "OPEN" || t.status === "IN_PROGRESS"),
@@ -185,6 +193,7 @@ export async function loadFileTruth(
             daysInPipeline: summary.daysInPipeline,
             conditionsOutstanding: summary.conditionsOutstanding,
             conditionsTotal: summary.conditionsTotal,
+            conditionsSettled: summary.conditionsSettled,
             percentComplete: summary.percentComplete,
             targetCloseDate: summary.targetCloseDate ? summary.targetCloseDate.toISOString() : null,
           }

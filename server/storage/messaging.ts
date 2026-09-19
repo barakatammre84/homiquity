@@ -92,10 +92,14 @@ export class MessagingStorage extends OpsAnalyticsStorage {
       u.createdAt && new Date(u.createdAt) >= startOfMonth
     ).length;
     
-    // Get applications from referred users
+    // Get applications from referred users. `inArray` — not a raw
+    // `= ANY(${array})`: drizzle binds an embedded array as a parenthesised
+    // parameter list, so the emitted `ANY(($1))` handed Postgres a bare uuid
+    // and every LO with at least one referral got 22P02 "malformed array
+    // literal" (a 500 the referral rail rendered as four zeros).
     const applications = await db.select()
       .from(loanApplications)
-      .where(sql`${loanApplications.userId} = ANY(${referredUserIds})`);
+      .where(inArray(loanApplications.userId, referredUserIds));
     
     // Same active/terminal split as brokerReferrals.getBrokerReferralStats —
     // derived from the canonical vocabulary, not hand-listed.

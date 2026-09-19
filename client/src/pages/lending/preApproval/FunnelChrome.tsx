@@ -36,7 +36,18 @@ export function RestoreDraftBanner({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4"
+      // In FLOW, not floating. As `fixed top-2 z-50` this banner rendered
+      // after the chrome at the same z and sat inside the header band on both
+      // funnel branches: on the intro step it made three EditorialNavigation
+      // links unhittable (elementFromPoint at the centre of "Who we help",
+      // "About" and "Resources" returned this banner's own <p>), and on a
+      // question step it covered FunnelProgressHeader's application label and
+      // step counter. Offsetting it past the chrome only moved the collision
+      // onto the question heading — the funnel has no free band at any
+      // breakpoint — so it takes space instead of borrowing it. Each call site
+      // places it below its own chrome; nothing here depends on a measured
+      // chrome height.
+      className="mx-auto w-full max-w-md px-4"
       data-testid="banner-restore-draft"
     >
       <div className="bg-card border shadow-lg rounded-xl p-4 flex items-center gap-3">
@@ -102,8 +113,13 @@ export function AffordabilityTeaserOverlay({
         <p className="text-3xl font-bold text-primary mb-1" data-testid="text-teaser-range">
           {formatCurrency(estimate.comfortablePrice)} &ndash; {formatCurrency(estimate.maxHomePrice)}
         </p>
-        <p className="text-sm text-muted-foreground mb-4">
-          Est. {formatCurrency(estimate.monthlyPITI)}/mo
+        {/* `monthlyPITI` is priced at maxHomePrice with the minimum down
+            payment for this credit tier — NOT at the borrower's own target and
+            deposit. Unlabelled as "Est. $X/mo" it read as their payment and
+            contradicted the advisory panel beside every question step by ~$1k
+            on the same answers. Say which price it belongs to. */}
+        <p className="text-sm text-muted-foreground mb-4" data-testid="text-teaser-monthly">
+          Est. {formatCurrency(estimate.monthlyPITI)}/mo at the top of this range
         </p>
         {targetPrice != null && (
           <p className="text-sm text-muted-foreground mb-6" data-testid="text-teaser-target-comparison">

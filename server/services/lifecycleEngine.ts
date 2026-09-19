@@ -195,8 +195,20 @@ const IN_FLIGHT_STATUSES = LOAN_APP_STATUSES.filter(
 
 /**
  * Consumer freshness signal: documents on in-flight applications crossing the
- * 25-day mark TODAY get one nudge (the daily window makes this naturally
- * idempotent — each document passes through the window exactly once).
+ * 25-day mark TODAY get one nudge.
+ *
+ * The one-day age window narrows the candidates to a day's worth; it does NOT
+ * make the sweep idempotent, which this comment used to claim. A document
+ * created at T is selected by any run in [T + 25d, T + 26d), so two runs inside
+ * that span both pick it up — and `/api/jobs/lifecycle` has an
+ * admin-authenticated manual variant beside the cron one (routes/jobs.ts), so a
+ * re-run on a day the cron already ran is an ordinary ops action rather than a
+ * drift scenario. The sibling sweep below already knew this and carried a
+ * same-day guard; this one did not (#838).
+ *
+ * Deduped per user per day, which matches how this notification is grouped —
+ * one row per user naming their documents, where the sibling writes one row per
+ * application and keys its guard on that.
  */
 async function sweepAgingDocuments(counters: SweepResult): Promise<void> {
   const rows = await db
@@ -223,6 +235,24 @@ async function sweepAgingDocuments(counters: SweepResult): Promise<void> {
   }
 
   for (const [userId, { fileNames, applicationId }] of byUser) {
+    // Same-day guard, mirrored from sweepMissingConditionDocuments. Compared
+    // entirely in SQL for the reason that one documents: created_at is a bare
+    // `timestamp` holding the DB's wall clock, and a JS Date param arrives as a
+    // UTC-rendered wall clock, so a JS "start of day" silently misses by the
+    // UTC offset for part of every day.
+    const [alreadyNudgedToday] = await db
+      .select({ id: notifications.id })
+      .from(notifications)
+      .where(
+        and(
+          eq(notifications.userId, userId),
+          eq(notifications.type, "document_expiring"),
+          sql`${notifications.createdAt} >= date_trunc('day', now())`,
+        ),
+      )
+      .limit(1);
+    if (alreadyNudgedToday) continue;
+
     await storage.createNotification({
       userId,
       type: "document_expiring",
@@ -305,8 +335,10 @@ export function planMissingDocNudges(
  * Missing-document reminder (roadmap A8): outstanding conditions that entered
  * the [2d, 3d) age window TODAY and still have no matching upload get one
  * grouped nudge per application — in-app notification + email. The one-day
- * window is the same natural-idempotency trick as sweepAgingDocuments: each
- * condition passes through exactly once, so nobody is re-nagged daily.
+ * window narrows the candidates to a day's worth; the same-day guard further
+ * down is what actually keeps a borrower from being re-nagged. This comment
+ * used to credit the window alone, citing sweepAgingDocuments — which had the
+ * window and no guard until #838 mirrored this one onto it.
  *
  * Copy stays inside the Reg N rails — a factual reminder of what's missing,
  * never approval/eligibility language (tests/complianceInvariants.test.ts
