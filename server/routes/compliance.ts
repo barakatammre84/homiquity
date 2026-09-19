@@ -5,6 +5,7 @@ import { isAuthenticated, requireRole } from "../auth";
 import { isStaffRole, isInternalStaffRole, type User } from "@shared/schema";
 import { z } from "zod";
 import * as creditService from "../services/creditService";
+import { resolveDenialFcraPosture } from "../services/creditAdverseActions";
 import { encryptToken } from "../services/piiVault";
 import { sendNotificationEmail } from "../services/emailService";
 import { firstQueryValue } from "./queryParams";
@@ -957,6 +958,35 @@ export function registerComplianceRoutes(
             error:
               "This application's credit pull contains simulated bureau data; no consumer reporting agency furnished a report, so a bureau cannot be truthfully identified on an FCRA §615(a) notice. Omit creditScoreSource, or wait for a live-vendor credit pull (roadmap F3).",
           });
+        }
+      }
+
+      // #855: the simulated-pull invariant belongs to the FILE, not to the
+      // optional creditScoreSource field. creditAdverseActions.ts states it
+      // absolutely — "the file must not be deniable at all: real denials must
+      // not occur on any file carrying a completed simulated pull, in any
+      // environment" — and both deny seams honour it via
+      // resolveDenialFcraPosture. This endpoint calls generateAdverseAction
+      // directly, so omitting creditScoreSource skipped the isSimulated check
+      // above entirely and produced a full "NOTICE OF DENIAL OF CREDIT" over
+      // simulated data, plus a borrower notification, an email and a
+      // downloadable PDF, on a file the deny seams refuse with 422.
+      //
+      // Route it through the same resolver so the invariant has one
+      // enforcement point and one wording. Deliberately narrow: ONLY the
+      // simulated_pull branch refuses here. The resolver's other refusal
+      // (unattributable_score) would newly block pre-generation on REAL pulls
+      // that nothing blocks today, and #855 leaves the non-denial actionTypes
+      // (counteroffer / rate_adjustment / terms_change) open — neither is this
+      // fix's call to make.
+      if (actionType === "denial") {
+        const denialBasisPull =
+          referencedPull ?? (await creditService.getLatestCreditPull(routeParam(req, "id")));
+        const completedBasis =
+          denialBasisPull && denialBasisPull.status === "completed" ? denialBasisPull : null;
+        const posture = resolveDenialFcraPosture(completedBasis);
+        if (posture.kind === "refuse" && posture.reason === "simulated_pull") {
+          return res.status(422).json({ error: posture.error });
         }
       }
 
