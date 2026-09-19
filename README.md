@@ -1,7 +1,8 @@
 # Homiquity
 
-A mortgage operation designed for one loan officer, with software performing routine work
-and coordinating the journey from lead capture through closeout.
+An LOS-agnostic mortgage intelligence sidekick for one loan officer. It connects the officer's
+existing systems and turns authorized loan data into source-aware analysis, persisted opportunities
+and explanations. It is not a replacement LOS.
 
 Start with [AGENTS.md](AGENTS.md), [product direction](CTO_ROADMAP.md), and
 [current implementation context](knowledge-base/ACTIVE_CONTEXT.md).

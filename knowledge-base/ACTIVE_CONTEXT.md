@@ -11,7 +11,7 @@ These are implementation observations, not legal conclusions or evidence of laun
 | Wholesale submission acknowledgments use a simulation | `server/services/lenderSubmission.ts`: simulateLenderAcknowledgment |
 | The merged instruction cleanup did not change loan-processing behavior | #811 has no changes under server/, client/, shared/ or migrations/ |
 
-## One-operator implementation starting points
+## Existing operator surfaces — inventory input, not the target
 
 Inspected 2026-09-13; these are code observations, not an end-to-end verification:
 
@@ -24,8 +24,10 @@ Inspected 2026-09-13; these are code observations, not an end-to-end verificatio
 - `server/routes/task-engine.ts` and the task engine are existing implementation entry points;
   their complete event, completion and retry behavior has not been audited in this task.
 
-The one-operator journey in CTO_ROADMAP.md is the target. It is not yet verified as a complete
-operating capability. Current issues and PRs record work in progress.
+Direction changed 2026-09-18 (#856, recorded in CTO_ROADMAP.md by #864): CTO_ROADMAP.md no longer
+carries a one-operator lead-to-close journey, so these surfaces are input to the KEEP / REPURPOSE /
+DEPRIORITIZE / NEW inventory (#857) rather than a target to complete. They are not verified as a
+complete operating capability. Current issues and PRs record work in progress.
 
 ## Verify before relying on it
 

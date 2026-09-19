@@ -1,9 +1,10 @@
 # Homiquity
 
-Build a mortgage business run by one loan officer with an automated support team, as defined in
-[CTO_ROADMAP.md](CTO_ROADMAP.md). Software executes routine work and coordinates the journey
-from lead to close and follow-up; the officer advises borrowers and handles decisions and
-exceptions. Reduce elapsed time, manual effort, errors and repeated borrower requests.
+Make one loan officer measurably faster and better informed, as defined in
+[CTO_ROADMAP.md](CTO_ROADMAP.md). Connect the officer's existing LOS and turn its authorized data
+into source-aware intelligence — Second Look, Opportunity Watch and Homi. The officer advises
+borrowers and handles decisions and exceptions; the software is not a replacement LOS and does not
+approve or deny credit. Reduce elapsed time, manual effort, errors and repeated borrower requests.
 
 ## Read only what the task needs
 
