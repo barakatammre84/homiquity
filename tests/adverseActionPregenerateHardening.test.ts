@@ -169,4 +169,63 @@ describe("POST /api/loan-applications/:id/credit/adverse-action — bureau-attri
     expect(h.generateCalls[0]).toMatchObject({ basisPullVerifiedReal: false });
     expect(h.generateCalls[0].creditScoreSource).toBeUndefined();
   });
+
+  // -------------------------------------------------------------------------
+  // #855: the simulated-pull refusal, which every case above misses because
+  // they all key on creditScoreSource. Omitting that optional field used to
+  // skip the isSimulated check entirely and return 201 with a full
+  // "NOTICE OF DENIAL OF CREDIT" over simulated data — while the two deny
+  // seams refused the same file 422 and its status never moved.
+  // -------------------------------------------------------------------------
+
+  it("refuses a DENIAL when the latest completed pull is simulated, even with no creditScoreSource", async () => {
+    h.latestPull = { id: PULL_UUID, applicationId: "app-1", status: "completed", isSimulated: true };
+
+    const res = await generate();
+
+    expect(res.status).toBe(422);
+    expect((await res.json()).error).toMatch(/simulated bureau data/i);
+    expect(h.generateCalls).toHaveLength(0);
+  });
+
+  it("refuses a DENIAL when an explicitly referenced pull is simulated, even with no creditScoreSource", async () => {
+    // creditPullId is validated for ownership but was never checked for
+    // simulation unless creditScoreSource came with it, so the stored notice
+    // linked the denial to the simulated pull.
+    const pull = { id: PULL_UUID, applicationId: "app-1", status: "completed", isSimulated: true };
+    h.pullsById.set(PULL_UUID, pull);
+    h.latestPull = null;
+
+    const res = await generate({ creditPullId: PULL_UUID });
+
+    expect(res.status).toBe(422);
+    expect(h.generateCalls).toHaveLength(0);
+  });
+
+  it("still allows a DENIAL backed by a completed REAL pull", async () => {
+    h.latestPull = { id: PULL_UUID, applicationId: "app-1", status: "completed", isSimulated: false,
+      bureauData: { experian: { score: 700 } }, representativeScore: 700 };
+
+    const res = await generate();
+
+    expect(res.status).toBe(201);
+    expect(h.generateCalls).toHaveLength(1);
+  });
+
+  it("does not refuse a non-denial actionType on a simulated pull — #855 leaves that open", async () => {
+    h.latestPull = { id: PULL_UUID, applicationId: "app-1", status: "completed", isSimulated: true };
+
+    const res = await generate({ actionType: "counteroffer" });
+
+    expect(res.status).toBe(201);
+    expect(h.generateCalls).toHaveLength(1);
+  });
+
+  it("does not refuse a DENIAL when the simulated pull is not completed — no basis, ECOA-only", async () => {
+    h.latestPull = { id: PULL_UUID, applicationId: "app-1", status: "pending", isSimulated: true };
+
+    const res = await generate();
+
+    expect(res.status).toBe(201);
+  });
 });
