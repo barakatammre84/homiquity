@@ -440,13 +440,21 @@ export async function resolveHomeownerPosition(
   profile: HomeownerProfile,
 ): Promise<HomeownerPosition | null> {
   // --- Value: AVM refresh (simulated until a contract lands) ---------------
+  // In production `fetchAvm` REFUSES (F-037) unless AVM_VENDOR_MODE=simulation,
+  // so this falls through to the homeowner's stored property value — a real
+  // figure, if a stale one. That matters because everything below is derived
+  // from `estimatedValue`: equity, equityPercent and the LTV that decides the
+  // borrower-facing "You may be able to remove PMI" notification. While the
+  // adapter fabricated under any NODE_ENV, that notification could assert an
+  // LTV of 58.8% to a homeowner whose real LTV was 95%.
   let estimatedValue = toNum(profile.propertyValue);
   if (profile.propertyAddress) {
     try {
       const avm = await fetchAvm(profile.propertyAddress);
       if (avm?.estimatedValue && avm.estimatedValue > 0) estimatedValue = avm.estimatedValue;
     } catch {
-      // Keep the stored value — an AVM hiccup must not kill the sweep.
+      // Keep the stored value — neither an AVM hiccup nor the production
+      // refusal above may kill the sweep.
     }
   }
 

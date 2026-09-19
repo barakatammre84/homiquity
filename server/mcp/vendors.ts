@@ -4,10 +4,18 @@ import { createHash } from "node:crypto";
  * Vendor adapters for the MCP tools.
  *
  * Each adapter reads its credential from the environment. When the credential
- * is absent (no vendor contract yet), it returns a deterministic SIMULATION —
- * clearly flagged via `simulated: true` — so the tool surface, persistence,
- * and downstream flows can be built and exercised before vendor onboarding.
- * When credentials land, only these functions change.
+ * is absent (no vendor contract yet), it returns a deterministic SIMULATION,
+ * so the tool surface, persistence, and downstream flows can be built and
+ * exercised before vendor onboarding. When credentials land, only these
+ * functions change.
+ *
+ * `simulated: true` rides every simulated result, but treat it as ADVISORY —
+ * it is a label a consumer has to choose to read, and both of this file's
+ * fabricating adapters have had consumers that did not. The control that
+ * actually holds is the production refusal each one carries (F-037): fabricated
+ * data is unavailable under NODE_ENV=production unless that adapter's escape
+ * hatch is set explicitly. Any adapter added here needs the same guard, and
+ * tests/simulatedVendorGuards.test.ts fails if one is missing it.
  */
 
 const VENDOR_TIMEOUT_MS = Number(process.env.MCP_VENDOR_TIMEOUT_MS ?? 10_000);
@@ -171,6 +179,33 @@ export async function fetchAvm(address: string, zipCode?: string): Promise<AvmRe
   if (apiKey) {
     throw new Error(
       "HOUSECANARY_API_KEY is set but the live HouseCanary adapter is not implemented yet — remove the key to use simulation.",
+    );
+  }
+
+  // Refuse to fabricate a property valuation in production — the THIRD
+  // simulated-vendor entrance in this file, and the one F-037 never reached.
+  // `softPullCredit` seventy lines above has had this guard; this one did not,
+  // and the gate it did have is inverted the same way that one's was: a vendor
+  // key PRESENT throws, a key ABSENT fabricates — and no key can be present,
+  // since no HouseCanary contract exists.
+  //
+  // The value below is a hash of the address string, and it does not stay
+  // labelled. `AvmResult.simulated` is read by no consumer: the MCP tool writes
+  // estimatedValue/confidence onto the properties row (mcp/index.ts:527) where
+  // only the "-sim" provider suffix hints at it, and
+  // lifecycleEngine.resolveHomeownerPosition OVERWRITES the homeowner's stored
+  // property value with it (:446) to derive equity and LTV — which is then
+  // asserted to the borrower as "Your estimated loan-to-value just reached
+  // X%" with a PMI-removal prompt. A 95%-LTV homeowner was told 58.8%.
+  //
+  // Deliberately the same shape, escape hatch and message as the sibling guard,
+  // so there is one thing to remember rather than three.
+  if (
+    process.env.NODE_ENV === "production" &&
+    process.env.AVM_VENDOR_MODE !== "simulation"
+  ) {
+    throw new Error(
+      "Simulated property valuations are disabled in production. Set AVM_VENDOR_MODE=simulation to explicitly allow fabricated valuation data in non-live environments.",
     );
   }
 
