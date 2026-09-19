@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -261,8 +262,15 @@ export default function GapCalculator() {
                   Your credit and savings goals have been met. You can now proceed with your mortgage application.
                 </p>
               </div>
-              <Button className="ml-auto" data-testid="button-apply-now">
-                Apply Now <ArrowRight className="ml-2 h-4 w-4" />
+              {/* The card above tells the borrower they can proceed with their
+                  application, so this has to take them there. It carried no
+                  onClick, no asChild and no link (#513), which made the one
+                  call to action on a completed goal plan do nothing. Same
+                  pattern and destination as BuyerProperties' "Apply Now". */}
+              <Button asChild className="ml-auto" data-testid="button-apply-now">
+                <Link href="/apply">
+                  Apply Now <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </CardContent>

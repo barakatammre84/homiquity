@@ -47,7 +47,7 @@ const CLIENT_SRC = join(REPO_ROOT, "client", "src");
  * it: `button-generate-le` is ux-0818-01 (its own worked example, below), the
  * four ApplicationSummary CTAs are ux-26, and the policyOps console is ux-25.
  */
-const BASELINE_INERT = 34; // 35 -> 34: the worked example itself is wired — button-generate-le (ux-0818-01) now links to /loan-estimate/:id (2026-08-23 LO review)
+const BASELINE_INERT = 33; // 34 -> 33: button-apply-now, the Gap Calculator's "Goals Complete" CTA, now links to /apply (2026-09-19)
 
 /** Anything that makes a child Button actionable by wrapping it. */
 const WRAPPER = /<(Link|a|\w*Trigger)\b/;
@@ -137,6 +137,9 @@ describe("no new buttons that do nothing", () => {
     const wired: [string, RegExp][] = [
       // "Save this Loan Estimate to compare with your Closing Disclosure."
       ["client/src/pages/lending/LoanEstimate.tsx", /window\.print\(\)/],
+      // "Your credit and savings goals have been met. You can now proceed with
+      // your mortgage application." — the CTA beside that sentence (#513).
+      ["client/src/pages/borrower/GapCalculator.tsx", /button-apply-now[\s\S]{0,120}?href="\/apply"/],
     ];
     for (const [rel, pattern] of wired) {
       const src = readFileSync(join(REPO_ROOT, rel), "utf8");
