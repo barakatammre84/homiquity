@@ -4,7 +4,7 @@ import type { Resolver } from "react-hook-form";
 import { z } from "zod";
 
 import { preApprovalFormSchema } from "@shared/schema";
-import { goalFormSchema } from "@/pages/borrower/GapGoalOnboardingForm";
+import { goalFormSchema } from "@/pages/borrower/gapGoalFormSchema";
 import { savingsFormSchema } from "@/pages/borrower/gapCalculator/types";
 import { inviteFormSchema } from "@/pages/agent-broker/inviteGenerator/types";
 import {
