@@ -1,68 +1,60 @@
 # Product direction
 
-Founder direction, 2026-09-13. These are product choices, not legal requirements.
+Founder direction, 2026-09-18, recorded in [#856](https://github.com/barakatammre84/homiquity/issues/856).
+It supersedes the 2026-09-13 direction this file carried before it. These are product choices, not
+legal requirements.
 
-**Enable one loan officer to operate Homiquity from lead capture through funding, commission
-reconciliation and client follow-up. Automate routine execution and coordination, and assist the
-officer's decisions, borrower advice and exception handling.**
+**Keep the loan officer's existing LOS. Connect Mortgage Intel AI as an LOS-agnostic mortgage
+intelligence sidekick that is worth more to the officer than the integration costs.**
 
-Aim to outperform Loan Factory on lead-to-close speed, officer effort and borrower experience.
-This is an ambition to measure, not a demonstrated comparison. Optimize the whole journey.
+Mortgage Intel AI is not a replacement LOS and not a second loan file an officer maintains by hand.
+It assists the licensed officer; it does not approve or deny credit on its own.
 
-One internal operator works with external lenders, title/settlement companies, appraisers and
-contracted services. Automate those handoffs. Internal processor, assistant and closing role names
-organize work; they are not staffing prerequisites. Automate routine work or expose the specific
-integration, authorization or decision still needed and help the officer complete it.
+## The loop
 
-For each human action, state whether it is required by an applicable primary provision or chosen
-by the business; a business preference is not a legal or program requirement. Automate its
-preparation, follow-up and recordkeeping wherever possible. Internal governance programs and
-fixed manual cohorts are not standing prerequisites to building automation.
+Connect authorized borrower, loan, document, scenario and milestone data from the officer's existing
+systems → normalize it into a source-aware model that separates verified facts, evidence,
+calculations, rules, assumptions and unknowns → **Second Look**: when the current structure produces
+no supported qualifying path, evaluate legitimate alternative structures and treatments, never
+changing facts to fit a rule → explain why one may work, with the calculation, the source, the
+documentation it needs, and what would invalidate it → when nothing is supported, state the universe
+searched and the precise blockers rather than claiming ineligibility → **Opportunity Watch**: persist
+those blockers with client context and monitor authorized data for meaningful change → re-evaluate
+and surface what changed and the next supported action → **Homi**: a conversational interface over
+the connected business that explains the reasoning, teaches in context and helps the officer
+prioritize.
 
-## The workflow to serve
-
-| Stage | Work the software should perform or prepare |
-|---|---|
-| Lead and application | Capture, follow up, schedule, collect the application and reuse verified borrower facts |
-| Qualification | Extract and check evidence, calculate supported scenarios, compare products and prepare the officer's recommendation |
-| Submission and processing | Assemble the actual lender's package, coordinate authorized disclosures and service orders, track acknowledgments |
-| Underwriting conditions | Read findings, turn conditions into specific requests, match evidence, follow up and prepare resubmission |
-| Closing and funding | Reconcile documents and figures, track signatures and funding conditions, confirm actual completion with counterparties |
-| Closeout and relationship | Reconcile commission receipt, chase trailing items, organize records and prepare authorized client follow-up |
-
-Map these views to existing states and services. Competitor workflows are design input, not legal
-requirements or a staffing plan. Build for Homiquity's broker channel.
+Second Look, Opportunity Watch and Homi are the three flagship experiences. Differentiation comes
+from the connected loop, not from any single feature.
 
 ## Build order
 
-Prioritize the biggest verified cause of delay, repeated work or error. This sequence guides
-delivery; it does not require a dashboard-only phase or add release gates.
+1. Inventory the current implementation against this direction — KEEP / REPURPOSE / DEPRIORITIZE /
+   NEW ([#857](https://github.com/barakatammre84/homiquity/issues/857)). No destructive deletion.
+2. Define the provider-neutral connector contract and the normalized borrower/loan/evidence model
+   ([#859](https://github.com/barakatammre84/homiquity/issues/859)); verify a connector's actual
+   capabilities before assuming them ([#858](https://github.com/barakatammre84/homiquity/issues/858)).
+3. Build the smallest end-to-end slice — ingest one file without duplicate entry → Second Look →
+   evidence-backed explanation or precise blockers → blockers persist → re-evaluation → Homi can
+   explain the result ([#860](https://github.com/barakatammre84/homiquity/issues/860)).
+4. Reuse the calculations, evidence and provenance already built rather than growing a parallel
+   subsystem beside them.
 
-1. Extend the existing officer workspace and task engine: show the next action, owner, blocker,
-   due-date basis and evidence. Distinguish completed work, running automation, external waits
-   and officer decisions across authorized loans.
-2. Complete a document/request loop: request or receipt, extraction, validation, matching,
-   completion or a precise exception, then the next authorized action. Prove safe retries and
-   visible failures.
-3. Extend that pattern through real lender submission, conditions, disclosures, closing and
-   funding. A provider acknowledgment establishes an external action; a simulated response
-   does not. Expose missing integrations and their actual dependencies.
-4. Finish commission/trailing-document closeout and routine CRM/administrative follow-up.
-   Improve the whole journey using observed time, rework and borrower experience.
+Before building a feature, ask whether it eliminates officer work or creates intelligence the
+connected LOS does not already provide. Do not expand LOS-duplicative workflows — routine
+disclosures, lender submission, generic file management, closing coordination — unless an
+integration-independent fallback needs them. Re-keying or re-uploading data the connected system
+already holds is not the intended steady state.
 
-The officer should handle the day from one workspace. Status changes trigger the next supported
-action or expose the exact wait. Preserve consent, authorization and applicable source requirements.
+Preserve existing consent, authorization, access, audit and loan-decision controls. Work already
+shipped is retained and reclassified, not discarded; defects that protect borrower truth, access
+control or auditability stay valid on their own merits.
 
-## What “best” means
+Measure officer touches and time saved, actionable opportunities surfaced, supported alternatives
+found, unsupported suggestions produced, and evidence completeness. Do not invent performance targets
+before measuring a baseline.
 
-Measure lead-to-application and application-to-funded time, officer minutes and manual touches
-per funded loan, repeated borrower requests, aging exceptions, missed deadlines, errors/rework,
-funding success and borrower satisfaction. Track typical and slow cases, and distinguish internal
-execution time from borrower/lender/provider waits. Establish a baseline before setting numeric
-targets; compare competitors only with verifiable, comparable data. Count an automation as complete
-only when its promised action succeeds and is recorded; auto-created tasks are not completed work.
-
-GitHub issues are the work queue. [AGENTS.md](AGENTS.md) gives both agents the same build and
-cleanup process. [Current context](knowledge-base/ACTIVE_CONTEXT.md) records facts; the
-[source map](knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md) identifies primary
-authorities. Update these documents rather than adding another charter.
+[Current facts](knowledge-base/ACTIVE_CONTEXT.md) identify what has been checked.
+[Primary sources](knowledge-base/compliance/SELLING_GUIDE_DECISION_RULE.md) establish applicable
+loan and legal requirements. Open PRs and issues hold implementation work; this file is not a
+second backlog.
